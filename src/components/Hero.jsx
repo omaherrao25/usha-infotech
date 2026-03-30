@@ -88,7 +88,7 @@ export default function Hero() {
                   variants={wordVariants}
                   initial="hidden"
                   animate="visible"
-                  className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-tight tracking-tight"
+                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-tight tracking-tight"
                 >
                   {word}
                 </motion.span>
@@ -102,7 +102,7 @@ export default function Hero() {
                   variants={wordVariants}
                   initial="hidden"
                   animate="visible"
-                  className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic"
+                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic"
                 >
                   {word}
                 </motion.span>

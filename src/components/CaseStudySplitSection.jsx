@@ -116,24 +116,37 @@ export default function CaseStudySplitSection({ study, index }) {
       viewport={viewportOnce}
       className="relative"
     >
-      {/* Big icon card */}
-      <div className={`relative rounded-2xl bg-gradient-to-br ${c.imgBg} border border-slate-200 overflow-hidden aspect-[4/3] shadow-card flex flex-col items-center justify-center gap-4`}>
-        <div className="text-[100px] animate-float select-none">
-          {study.icon}
-        </div>
-        <div className="text-center px-8">
-          <p className="text-slate-500 text-sm font-medium italic">"{study.outcome}"</p>
-        </div>
+      {/* Big image card */}
+      <div className={`relative rounded-xl bg-slate-100 border border-slate-200 overflow-hidden w-full h-[220px] lg:h-[250px] shadow-card flex items-center justify-center`}>
+        {study.image ? (
+          <img 
+            src={`/assets/${study.image}.png`} 
+            alt={study.title} 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-[100px] animate-float select-none overflow-hidden relative z-10">
+            {study.icon}
+          </div>
+        )}
+
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent pointer-events-none" />
 
         {/* Floating badges */}
-        <div className="stat-float-badge top-4 left-4">
+        <div className="stat-float-badge top-4 left-4 bg-white/95 backdrop-blur-sm border-0 shadow-lg z-10">
           <span className={`font-display font-black text-lg ${c.num}`}>{study.badges[0].num}</span>
-          <span className="text-[11px] text-slate-400 font-medium">{study.badges[0].label}</span>
+          <span className="text-[11px] text-slate-500 font-bold">{study.badges[0].label}</span>
         </div>
-        <div className="stat-float-badge bottom-4 right-4">
+        <div className="stat-float-badge bottom-4 right-4 bg-white/95 backdrop-blur-sm border-0 shadow-lg z-10">
           <span className={`font-display font-black text-lg ${c.num}`}>{study.badges[1].num}</span>
-          <span className="text-[11px] text-slate-400 font-medium">{study.badges[1].label}</span>
+          <span className="text-[11px] text-slate-500 font-bold">{study.badges[1].label}</span>
         </div>
+      </div>
+
+      {/* Quote */}
+      <div className="mt-5 text-center px-4">
+        <p className="text-slate-600 text-sm font-medium italic">"{study.outcome}"</p>
       </div>
 
       {/* Metrics bar */}
@@ -167,18 +180,13 @@ export default function CaseStudySplitSection({ study, index }) {
       className={`py-20 lg:py-28 ${index % 2 !== 0 ? 'bg-slate-50/60' : 'bg-white'}`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {isEven ? (
-            <>
-              <VisualBlock />
-              <TextBlock />
-            </>
-          ) : (
-            <>
-              <TextBlock />
-              <VisualBlock />
-            </>
-          )}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+            <VisualBlock />
+          </div>
+          <div className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+            <TextBlock />
+          </div>
         </div>
       </div>
     </section>
