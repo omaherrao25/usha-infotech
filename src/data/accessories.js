@@ -252,7 +252,7 @@ export const accessoryProductsList = [
     title: 'Loose Note & Coin Counters',
     desc: 'Compact desktop currency counters and coin sorting machines for petty cash management, retail billing counters, and office finance teams.',
     icon: '🪙',
-    image: 'money_counter',
+    image: 'acc_loose_note_coin_counter',
     features: [
       'Counts mixed denomination notes automatically',
       'Built-in UV counterfeit detection sensor',
