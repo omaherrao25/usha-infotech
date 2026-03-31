@@ -118,7 +118,11 @@ function CaseStudiesSection() {
             viewport={viewportOnce}
             className="lg:sticky lg:top-28"
           >
-            <span className="section-label">CLIENT SUCCESS STORIES</span>
+            <div className="flex items-center gap-4 mb-6">
+              <img src="/assets/logo.png" alt="Usha Infotech" className="h-12 w-auto object-contain" />
+              <div className="h-10 w-[1.5px] bg-slate-200 hidden sm:block" /> { /* Separator line */ }
+              <span className="section-label mb-0">CLIENT SUCCESS STORIES</span>
+            </div>
             <h2 className="font-display font-black text-4xl lg:text-5xl xl:text-6xl text-slate-900 leading-tight mb-6">
               500+ Businesses<br />
               <span className="gradient-text italic">Transformed.</span>
