@@ -58,7 +58,7 @@ function ClientsTicker() {
 // — Services Showcase —
 function ServicesSection() {
   return (
-    <section className="py-24 bg-slate-50/60" id="services">
+    <section className="py-16 lg:py-24 bg-slate-50/60" id="services">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           variants={fadeUp}
@@ -107,7 +107,7 @@ function ServicesSection() {
 // — Case Studies Preview —
 function CaseStudiesSection() {
   return (
-    <section className="py-24 bg-white" id="cases">
+    <section className="py-16 lg:py-24 bg-white" id="cases">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left text */}
@@ -179,7 +179,7 @@ const steps = [
 
 function ProcessSection() {
   return (
-    <section className="py-24 bg-slate-50" id="process">
+    <section className="py-16 lg:py-24 bg-slate-50" id="process">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           variants={fadeUp}
@@ -255,7 +255,7 @@ function ProcessSection() {
 // — Our Story / Founders —
 function StorySection() {
   return (
-    <section className="py-24 bg-white" id="story">
+    <section className="py-16 lg:py-24 bg-white" id="story">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Founders visual */}
@@ -354,7 +354,7 @@ const trustPoints = [
 
 function TrustSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
+    <section className="py-16 lg:py-24 bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           variants={fadeUp}

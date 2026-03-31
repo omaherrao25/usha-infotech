@@ -26,6 +26,7 @@ export const caseStudies = [
     ctaLabel: 'Scale your Retail Brand? Let\'s Talk',
     color: 'blue',
     icon: '🏪',
+    image: 'cust_real',
   },
   {
     id: 'fizzyfox',
@@ -52,6 +53,7 @@ export const caseStudies = [
     ctaLabel: 'Upgrade Your Network',
     color: 'teal',
     icon: '🎬',
+    image: 'team_meeting',
   },
   {
     id: 'weldtech',
@@ -78,6 +80,7 @@ export const caseStudies = [
     ctaLabel: 'Audit Factory Security',
     color: 'blue',
     icon: '🏭',
+    image: 'Enterprise',
   },
   {
     id: 'whizkids',
@@ -104,6 +107,7 @@ export const caseStudies = [
     ctaLabel: 'Get Rental Estimates',
     color: 'teal',
     icon: '🎓',
+    image: 'laptop_work',
   },
   {
     id: 'kaizen',
@@ -130,6 +134,7 @@ export const caseStudies = [
     ctaLabel: 'Audit Your Network Now',
     color: 'blue',
     icon: '📡',
+    image: 'infra_real',
   },
 ]
 

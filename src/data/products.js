@@ -1,4 +1,5 @@
 // src/data/products.js
+import { accessoryProductsList } from './accessories'
 
 export const productCategories = [
   { id: 'all', label: 'All Products' },
@@ -30,6 +31,7 @@ export const products = [
     bestFor: 'Corporate offices, bulk procurement, government departments and enterprise deployments. We handle GEM orders.',
     ctaLabel: 'Get a Quote',
     icon: '💻',
+    image: 'laptop_work',
     features: [
       'End-to-end IT setup for new offices',
       'Authorised Dell warranty — on-site service',
@@ -57,6 +59,7 @@ export const products = [
     bestFor: 'Finance teams, medical offices, educational institutions and field teams who need durable, long-lasting hardware.',
     ctaLabel: 'Get a Quote',
     icon: '💻',
+    image: 'hw_real',
   },
   {
     id: 'lenovo',
@@ -78,6 +81,7 @@ export const products = [
     bestFor: 'High-demand professionals, developers, government departments, and power users who need military-grade durability.',
     ctaLabel: 'Get a Quote',
     icon: '💻',
+    image: 'laptop_work',
   },
   {
     id: 'networking-gear',
@@ -98,6 +102,7 @@ export const products = [
     bestFor: 'Offices, server rooms, warehouses and data centers needing reliable, high-throughput networking infrastructure.',
     ctaLabel: 'Enquire Now',
     icon: '🌐',
+    image: 'net_real',
   },
   {
     id: 'wifi',
@@ -118,6 +123,7 @@ export const products = [
     bestFor: 'Large offices, warehouses, hotels, hospitals and educational institutions requiring blanket enterprise wireless coverage.',
     ctaLabel: 'Plan Your Wi-Fi',
     icon: '📡',
+    image: 'net_real',
   },
   {
     id: 'cctv-cameras',
@@ -138,6 +144,7 @@ export const products = [
     bestFor: 'Factories, offices, retail stores, warehouses and residential complexes requiring robust, 24/7 surveillance coverage.',
     ctaLabel: 'Get Security Systems Quote',
     icon: '📷',
+    image: 'sec_real',
   },
   {
     id: 'refurbished',
@@ -164,25 +171,7 @@ export const products = [
     bestFor: 'Schools, coaching centers, startups and cost-conscious businesses that need reliable hardware without breaking the budget.',
     ctaLabel: 'Check Stock & Pricing',
     icon: '♻️',
+    image: 'rent_real',
   },
-  {
-    id: 'accessories',
-    category: 'accessories',
-    badge: { type: 'new', label: '● Full Range' },
-    title: 'Accessories & IT Peripherals',
-    desc: 'Everything your office IT setup needs — from structured cabling and UPS systems to keyboards, HDMI switches, server racks and cable management. All in bulk.',
-    features: [
-      'UPS Systems: APC, Numeric & Genus — 600VA to 20KVA for offices and server rooms',
-      'Structured Cabling: Cat6/Cat6A patch cables, keystone jacks, patch panels and fiber accessories',
-      'Peripherals: Keyboards, wireless mice, USB hubs, monitors, HDMI/DP cables and docking stations',
-    ],
-    price: 'Varies',
-    priceNote: 'Bulk pricing available',
-    tags: ['UPS Systems', 'Structured Cabling', 'Monitors & Displays', 'Server Racks'],
-    badge1: { num: 'Bulk', label: 'Available' },
-    badge2: { num: 'Same', label: 'Day Dispatch' },
-    bestFor: 'New office setups, IT refurbishments, server room builds, and one-stop procurement for complete IT deployments.',
-    ctaLabel: 'Enquire About Accessories',
-    icon: '🔌',
-  },
+  ...accessoryProductsList,
 ]

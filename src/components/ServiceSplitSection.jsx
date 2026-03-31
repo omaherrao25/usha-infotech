@@ -121,13 +121,21 @@ export default function ServiceSplitSection({ service, index }) {
       className="relative"
     >
       {/* Main image card */}
-      <div className={`relative rounded-2xl bg-gradient-to-br ${c.imgBg} border border-slate-200 overflow-hidden aspect-[4/3] shadow-card flex items-center justify-center`}>
-        <div className="text-[120px] opacity-80 animate-float select-none">
-          {ICONS[service.id] || service.icon}
-        </div>
+      <div className={`relative rounded-xl bg-slate-100 border border-slate-200 shadow-card w-full h-[220px] lg:h-[250px] overflow-hidden flex items-center justify-center`}>
+        {service.image ? (
+          <img 
+            src={`/assets/${service.image}.png`} 
+            alt={service.title} 
+            className="w-full h-full object-cover rounded-xl" 
+          />
+        ) : (
+          <div className="text-[120px] opacity-80 animate-float select-none">
+            {ICONS[service.id] || service.icon}
+          </div>
+        )}
 
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl" />
 
         {/* Stat badges */}
         <div className="stat-float-badge top-4 left-4">
@@ -182,18 +190,13 @@ export default function ServiceSplitSection({ service, index }) {
       className={`py-20 lg:py-28 ${index % 2 !== 0 ? 'bg-slate-50/60' : 'bg-white'}`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {isEven ? (
-            <>
-              <ImageBlock />
-              <TextBlock />
-            </>
-          ) : (
-            <>
-              <TextBlock />
-              <ImageBlock />
-            </>
-          )}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className={`order-1 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+            <ImageBlock />
+          </div>
+          <div className={`order-2 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+            <TextBlock />
+          </div>
         </div>
       </div>
     </section>

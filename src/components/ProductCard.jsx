@@ -13,24 +13,36 @@ export default function ProductCard({ product }) {
     <motion.div
       variants={staggerItem}
       layout
-      className="group bg-white rounded-2xl border border-slate-100 shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-350 overflow-hidden"
+      className="group bg-white rounded-2xl border border-slate-100 shadow-card hover:shadow-card-hover hover:scale-[1.03] transition-all duration-300 overflow-hidden"
     >
-      {/* Image placeholder / Icon header */}
-      <div className="relative bg-gradient-to-br from-slate-50 to-blue-50/50 px-6 pt-8 pb-6 flex flex-col items-center border-b border-slate-100">
-        <div className="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
-          {product.icon}
-        </div>
-        <div className={`badge-pill ${badgeStyles[product.badge.type] || 'badge-new-tech'}`}>
+      {/* Image Header */}
+      <div className="relative w-full h-[220px] lg:h-[250px] bg-slate-100 flex flex-col items-center justify-center overflow-hidden border-b border-slate-100">
+        {product.image ? (
+          <img 
+            src={`/assets/${product.image}${product.image.includes('.') ? '' : '.png'}`} 
+            alt={product.title} 
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          />
+        ) : (
+          <div className="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300 relative z-10">
+            {product.icon}
+          </div>
+        )}
+
+        {/* Overlay gradient for badges */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+
+        <div className={`absolute bottom-4 left-4 badge-pill shadow-md border-0 z-10 ${badgeStyles[product.badge.type] || 'badge-new-tech'}`}>
           {product.badge.label}
         </div>
 
         {/* Floating mini-badges */}
         {product.badge1 && (
-          <div className="absolute top-4 right-4 bg-white rounded-xl shadow-md px-3 py-2 border border-slate-100 text-center">
+          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg px-3 py-2 text-center z-10 border border-slate-100/50">
             <div className="font-display font-black text-sm text-slate-900 leading-tight">
               {product.badge1.num}
             </div>
-            <div className="text-[10px] text-slate-400 font-medium leading-tight">
+            <div className="text-[10px] text-slate-500 font-bold leading-tight uppercase tracking-wider">
               {product.badge1.label}
             </div>
           </div>
@@ -42,7 +54,7 @@ export default function ProductCard({ product }) {
         <h3 className="font-display font-bold text-lg text-slate-900 mb-2 leading-tight group-hover:text-blue-700 transition-colors">
           {product.title}
         </h3>
-        <p className="text-slate-500 text-sm leading-relaxed mb-4">
+        <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
           {product.desc}
         </p>
 
@@ -80,11 +92,10 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Price row */}
-        <div className="flex items-baseline gap-3 mb-5 pb-5 border-b border-slate-100">
-          <span className="font-display font-black text-2xl gradient-text">
-            {product.price}
+        <div className="flex items-center gap-3 mb-5 pb-5 border-b border-slate-100">
+          <span className="font-display font-medium text-base text-blue-600">
+            Contact for Pricing
           </span>
-          <span className="text-xs text-slate-400 font-medium">{product.priceNote}</span>
         </div>
 
         {/* Best for */}

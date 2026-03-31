@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import CTASection from '../components/CTASection'
 import { products, productCategories } from '../data/products'
+import { accessorySubcategories } from '../data/accessories'
 import { fadeUp, viewportOnce } from '../animations/fadeUp'
 import { staggerFast, staggerItem } from '../animations/stagger'
 
@@ -16,9 +17,9 @@ const categoryMeta = {
   accessories: { label: 'Accessories & Peripherals', icon: '🔌', desc: 'UPS, cabling, monitors, racks — everything else' },
 }
 
-function CategorySection({ category, items, isVisible }) {
+function CategorySection({ category, items, isVisible, metaOverrides }) {
   if (!isVisible || items.length === 0) return null
-  const meta = categoryMeta[category]
+  const meta = metaOverrides || categoryMeta[category]
 
   return (
     <motion.div
@@ -49,6 +50,31 @@ function CategorySection({ category, items, isVisible }) {
         ))}
       </motion.div>
     </motion.div>
+  )
+}
+
+function AccessoriesCatalog({ allItems }) {
+  return (
+    <div className="mt-8">
+      <div className="text-center mb-16">
+        <h2 className="font-display font-black text-3xl lg:text-4xl text-slate-900 mb-4">Complete IT Accessories Catalog</h2>
+        <p className="text-slate-500 max-w-2xl mx-auto">Everything your office IT setup needs — from structured cabling and UPS systems to GPUs, monitors, and networking racks. Browse our structured categories below.</p>
+      </div>
+
+      {accessorySubcategories.map((sub) => {
+        const subItems = allItems.filter(p => p.subCategory === sub.id)
+        if (subItems.length === 0) return null
+        return (
+          <CategorySection
+            key={sub.id}
+            category={sub.id}
+            items={subItems}
+            isVisible={true}
+            metaOverrides={{ label: sub.label, icon: sub.icon, desc: sub.desc }}
+          />
+        )
+      })}
+    </div>
   )
 }
 
@@ -113,6 +139,13 @@ export default function Products() {
               <motion.div key="all">
                 {categoriesOrder.map((cat) => {
                   const items = products.filter((p) => p.category === cat)
+                  if (cat === 'accessories') {
+                    return (
+                      <div key={cat} className="mt-20 pt-16 border-t border-slate-200">
+                        <AccessoriesCatalog allItems={items} />
+                      </div>
+                    )
+                  }
                   return (
                     <CategorySection
                       key={cat}
@@ -122,6 +155,16 @@ export default function Products() {
                     />
                   )
                 })}
+              </motion.div>
+            ) : activeCategory === 'accessories' ? (
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <AccessoriesCatalog allItems={filteredProducts} />
               </motion.div>
             ) : (
               <motion.div
