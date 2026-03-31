@@ -5,7 +5,8 @@ export default {
     extend: {
       fontFamily: {
         display: ['Outfit', 'sans-serif'],
-        body: ['Outfit', 'sans-serif'],
+        body: ['League Spartan', 'sans-serif'],
+        spartan: ['League Spartan', 'sans-serif'],
       },
       colors: {
         brand: {

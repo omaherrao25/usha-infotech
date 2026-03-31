@@ -32,8 +32,11 @@ export default function ProductCard({ product }) {
         {/* Overlay gradient for badges */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-        <div className={`absolute bottom-4 left-4 badge-pill shadow-md border-0 z-10 ${badgeStyles[product.badge.type] || 'badge-new-tech'}`}>
-          {product.badge.label}
+        <div className={`absolute bottom-4 left-4 badge-pill shadow-lg z-10 !bg-white/95 backdrop-blur-md !border-white/60 flex items-center gap-1.5 ${badgeStyles[product.badge.type] || 'badge-new-tech'}`}>
+          {product.badge1 && ['DELL', 'HP', 'Lenovo', 'Cisco'].includes(product.badge1.num) && (
+             <img src={`https://logo.clearbit.com/${product.badge1.num.toLowerCase()}.com`} alt={product.badge1.num} className="h-3.5 w-auto object-contain shrink-0" />
+          )}
+          {product.badge.label.replace('✓', '').trim()}
         </div>
 
         {/* Floating mini-badges */}

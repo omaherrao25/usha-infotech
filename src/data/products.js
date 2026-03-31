@@ -59,7 +59,7 @@ export const products = [
     bestFor: 'Finance teams, medical offices, educational institutions and field teams who need durable, long-lasting hardware.',
     ctaLabel: 'Get a Quote',
     icon: '💻',
-    image: 'hw_real',
+    image: 'hp_laptops',
   },
   {
     id: 'lenovo',
@@ -81,7 +81,7 @@ export const products = [
     bestFor: 'High-demand professionals, developers, government departments, and power users who need military-grade durability.',
     ctaLabel: 'Get a Quote',
     icon: '💻',
-    image: 'laptop_work',
+    image: 'lenovo_thinkpad',
   },
   {
     id: 'networking-gear',
@@ -171,7 +171,7 @@ export const products = [
     bestFor: 'Schools, coaching centers, startups and cost-conscious businesses that need reliable hardware without breaking the budget.',
     ctaLabel: 'Check Stock & Pricing',
     icon: '♻️',
-    image: 'rent_real',
+    image: 'refurbished_laptops',
   },
   ...accessoryProductsList,
 ]

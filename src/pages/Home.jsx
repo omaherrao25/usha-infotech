@@ -71,7 +71,7 @@ function ServicesSection() {
           <h2 className="font-display font-black text-4xl lg:text-5xl text-slate-900 mb-4">
             Service Showcase
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">
+          <p className="text-slate-500 text-lg max-w-3xl mx-auto md:whitespace-nowrap">
             From business infrastructure to personal devices — everything under one roof.
           </p>
         </motion.div>

@@ -56,7 +56,7 @@ const wordVariants = {
 
 export default function Hero() {
   const headlineWords = ["25+", "Years", "of", "IT", "that"];
-  const accentWords = ["just works."];
+  const accentWords = ["Just Works."];
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
@@ -128,19 +128,30 @@ export default function Hero() {
           </div>
 
           {/* Subtext */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10"
+            className="flex flex-col items-center gap-4 mb-10 w-full"
           >
-            IT Infrastructure · AMC Support · Refurbished · Rentals · Security
-            Systems · Networking
-            <br />
-            <span className="text-slate-400 text-base">
-              No technical knowledge needed — everything handled for you.
-            </span>
-          </motion.p>
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 font-spartan font-medium tracking-wide lg:whitespace-nowrap">
+              IT Infrastructure · AMC Support · Refurbished · Rentals · Security Systems · Networking
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5 text-sm sm:text-base font-medium px-5 py-2 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm">
+              <div className="flex items-center gap-2 text-slate-600">
+                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-100 text-green-600">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span>No technical knowledge needed</span>
+              </div>
+              <span className="hidden sm:inline-block text-slate-300">|</span>
+              <span className="bg-gradient-to-r from-brand-blue to-teal-500 bg-clip-text text-transparent font-bold">
+                Everything handled for you
+              </span>
+            </div>
+          </motion.div>
 
           {/* Buttons */}
           <motion.div

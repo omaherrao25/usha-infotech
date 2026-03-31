@@ -4,6 +4,7 @@ export const caseStudies = [
   {
     id: 'timus',
     client: 'Timus Lifestyle',
+    logo: '/assets/logos/TIMUS LIFESTYLE.png',
     industry: 'Retail',
     tag: 'IT Infrastructure',
     title: 'Pan-India Retail Rollout',
@@ -31,6 +32,7 @@ export const caseStudies = [
   {
     id: 'fizzyfox',
     client: 'Fizzy Fox',
+    logo: '/assets/logos/fizzyfox logo.png',
     industry: 'Media & Creative',
     tag: 'Networking',
     title: 'Media Studio Network Overhaul',
@@ -53,11 +55,12 @@ export const caseStudies = [
     ctaLabel: 'Upgrade Your Network',
     color: 'teal',
     icon: '🎬',
-    image: 'team_meeting',
+    image: 'fizzyfox_network',
   },
   {
     id: 'weldtech',
     client: 'WeldTech',
+    logo: '/assets/logos/WELD TECH.png.png',
     industry: 'Manufacturing',
     tag: 'Security Systems',
     title: 'Industrial Plant Security',
@@ -80,11 +83,12 @@ export const caseStudies = [
     ctaLabel: 'Audit Factory Security',
     color: 'blue',
     icon: '🏭',
-    image: 'Enterprise',
+    image: 'weldtech_security',
   },
   {
     id: 'whizkids',
     client: 'Whizkids',
+    logo: '/assets/logos/WHIZKIDS.png',
     industry: 'Education',
     tag: 'IT Rentals',
     title: 'Zero-CapEx Education Lab',
@@ -112,6 +116,7 @@ export const caseStudies = [
   {
     id: 'kaizen',
     client: 'Kaizen Solutions',
+    logo: '/assets/logos/KAIZEN SOLUTIONS.png',
     industry: 'Corporate',
     tag: 'Networking',
     title: 'Cisco Networking & Factory Uptime',
@@ -141,6 +146,7 @@ export const caseStudies = [
 export const homePreviewCases = [
   {
     client: 'Timus Lifestyle',
+    logo: '/assets/logos/TIMUS LIFESTYLE.png',
     title: 'Pan-India Retail IT Rollout',
     metric1: { val: '20+', label: 'Stores' },
     metric2: { val: '30%', label: 'Faster Launch' },
@@ -149,6 +155,7 @@ export const homePreviewCases = [
   },
   {
     client: 'WeldTech Manufacturing',
+    logo: '/assets/logos/WELD TECH.png.png',
     title: 'Industrial Plant Surveillance',
     metric1: { val: '100%', label: 'Coverage' },
     metric2: { val: '0 Theft', label: 'Incidents' },
@@ -157,6 +164,7 @@ export const homePreviewCases = [
   },
   {
     client: 'Fizzy Fox Studio',
+    logo: '/assets/logos/fizzyfox logo.png',
     title: 'Media Network Overhaul',
     metric1: { val: '70%', label: 'Faster Transfers' },
     metric2: { val: 'Zero', label: 'Dropouts' },
