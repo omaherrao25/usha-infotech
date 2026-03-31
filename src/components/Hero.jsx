@@ -57,6 +57,24 @@ const wordVariants = {
 export default function Hero() {
   const headlineWords = ["25+", "Years", "of", "IT", "that"];
   const accentWords = ["just works."];
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const target = document.getElementById("spline-container");
+    if (target) observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
@@ -69,13 +87,23 @@ export default function Hero() {
       <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" />
 
       {/* Spline 3D Background */}
-      <iframe
-        src="https://my.spline.design/websitedesigncopycopycopy-CcOG0L8LDoXZOY5T7Cl7Wh26-LtE/"
-        frameBorder="0"
-        className="absolute inset-0 w-full h-full z-0"
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-        title="Spline 3D Background"
-      ></iframe>
+      <div id="spline-container" className="absolute inset-0 w-full h-full z-0">
+        {isVisible && (
+          <iframe
+            src="https://my.spline.design/websitedesigncopycopycopy-CcOG0L8LDoXZOY5T7Cl7Wh26-LtE/"
+            frameBorder="0"
+            width="100%"
+            height="100%"
+            title="Spline 3D Background"
+            onLoad={() => setIsSplineLoaded(true)}
+          ></iframe>
+        )}
+        {!isSplineLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <p>Loading 3D Background...</p>
+          </div>
+        )}
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div className="max-w-4xl mx-auto text-center">
@@ -209,23 +237,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
-      >
-        <span className="text-xs tracking-widest uppercase font-semibold">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-5 h-8 border-2 border-slate-300 rounded-full flex items-start justify-center pt-1.5"
-        >
-          <div className="w-1 h-2 bg-slate-400 rounded-full" />
-        </motion.div>
-      </motion.div> */}
     </section>
   );
 }
