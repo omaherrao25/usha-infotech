@@ -272,31 +272,31 @@ function StorySection() {
           >
             <div className="grid grid-cols-2 gap-5 pb-8">
               {/* Founder 1 */}
-              <div className="group relative bg-gradient-to-br from-blue-50 to-slate-100 rounded-2xl overflow-hidden aspect-[3/4] border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-end pb-6 px-4 text-center">
+              <div className="group relative bg-gradient-to-br from-blue-50 to-slate-100 rounded-2xl overflow-hidden aspect-[3/4] border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-end pb-4 px-2 sm:pb-6 sm:px-4 text-center">
                 <div className="absolute inset-0">
                   <img src="/assets/SameerAgarwal.jpeg" alt="Sameer Agarwal" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/60">
-                  <p className="font-display font-bold text-slate-900 text-sm">Sameer Agarwal</p>
-                  <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide">Founder & MD</p>
+                <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl px-2 py-1.5 sm:px-4 sm:py-3 border border-white/60">
+                  <p className="font-display font-bold text-slate-900 text-xs sm:text-sm">Sameer Agarwal</p>
+                  <p className="text-[10px] sm:text-xs text-blue-600 font-semibold uppercase tracking-wide">Founder & MD</p>
                 </div>
               </div>
               {/* Founder 2 */}
-              <div className="group relative bg-gradient-to-br from-teal-50 to-slate-100 rounded-2xl overflow-hidden aspect-[3/4] border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-end pb-6 px-4 text-center">
+              <div className="group relative bg-gradient-to-br from-teal-50 to-slate-100 rounded-2xl overflow-hidden aspect-[3/4] border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-end pb-4 px-2 sm:pb-6 sm:px-4 text-center">
                 <div className="absolute inset-0">
                   <img src="/assets/EktaAgarwal.jpeg" alt="Ekta Agarwal" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/60">
-                  <p className="font-display font-bold text-slate-900 text-sm">Ekta Agarwal</p>
-                  <p className="text-xs text-teal-600 font-semibold uppercase tracking-wide">Co-Founder & Director</p>
+                <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-xl px-2 py-1.5 sm:px-4 sm:py-3 border border-white/60">
+                  <p className="font-display font-bold text-slate-900 text-xs sm:text-sm">Ekta Agarwal</p>
+                  <p className="text-[10px] sm:text-xs text-teal-600 font-semibold uppercase tracking-wide">Co-Founder & Director</p>
                 </div>
               </div>
             </div>
 
             {/* Floating year badge */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white rounded-2xl px-6 py-3 shadow-lg flex items-center gap-3">
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white rounded-2xl px-3 py-2 sm:px-6 sm:py-3 shadow-lg flex items-center gap-3 w-max max-w-[90vw]">
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="font-display font-bold text-sm tracking-wide">Since 2000 · 25+ Years</span>
+              <span className="font-display font-bold text-xs sm:text-sm tracking-wide">Since 2000 · 25+ Years</span>
             </div>
           </motion.div>
 
