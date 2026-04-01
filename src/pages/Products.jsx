@@ -92,9 +92,10 @@ export default function Products() {
     <>
       <PageHero
         label="IT Product Catalog"
-        title="Quality Hardware."
-        accent="Trusted Brands."
-        subtitle="Authorised laptops, desktops, servers, networking gear, security systems, and refurbished systems — sourced directly and available across India."
+        title="Quality Hardware"
+        accent="Trusted Brands"
+        subtitle="Authorised laptops, desktops, servers, networking gear, security systems, and refurbished systems"
+        subtitleLine2="sourced directly and available across India."
         badges={[
           '✅ Authorised Dell, HP & Lenovo Dealer',
           '🔁 Grade-A Refurbished Systems',

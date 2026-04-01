@@ -125,7 +125,7 @@ function CaseStudiesSection() {
             </div>
             <h2 className="font-display font-black text-4xl lg:text-5xl xl:text-6xl text-slate-900 leading-tight mb-6">
               500+ Businesses<br />
-              <span className="gradient-text italic">Transformed.</span>
+              <span className="gradient-text italic px-4 overflow-visible inline-block">Transformed.</span>
             </h2>
             <p className="text-slate-500 text-base leading-relaxed mb-8">
               99.9% uptime guaranteed · 40% average cost savings · Zero-downtime migrations · 25 years trusted
@@ -310,7 +310,7 @@ function StorySection() {
             <span className="section-label">Our Story</span>
             <h2 className="font-display font-black text-4xl lg:text-5xl xl:text-6xl text-slate-900 leading-tight mb-6">
               Built on one promise<br />
-              <span className="gradient-text italic">since 2000.</span>
+              <span className="gradient-text italic px-4 overflow-visible inline-block">since 2000.</span>
             </h2>
             <p className="text-slate-500 text-base leading-relaxed mb-6">
               What started as a small computer shop in Nashik has grown into a leading pan-India IT solutions provider. For over 25 years, our journey has been defined by a relentless focus on reliability and customer-first service.
