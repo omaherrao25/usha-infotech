@@ -28,8 +28,12 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
       >
         {/* Icon header */}
         <div className={`${c.icon} px-6 pt-6 pb-4 flex items-center justify-between`}>
-          <span className="text-4xl">{study.icon}</span>
-          <span className={`text-xs font-bold px-3 py-1 rounded-full border ${c.tag} uppercase tracking-wide`}>
+          {study.logo ? (
+            <img src={study.logo} alt={study.client} className="h-9 max-w-[130px] object-contain" />
+          ) : (
+            <span className="text-4xl">{study.icon}</span>
+          )}
+          <span className={`text-xs font-bold px-3 py-1 rounded-full border ${c.tag} uppercase tracking-wide shrink-0 ml-3`}>
             {study.tag}
           </span>
         </div>
@@ -73,8 +77,12 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
       className="group bg-white rounded-2xl border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
     >
       <div className={`${c.icon} px-7 pt-7 pb-4 flex items-center justify-between`}>
-        <span className="text-5xl">{study.icon}</span>
-        <span className={`text-xs font-bold px-3 py-1.5 rounded-full border ${c.tag} uppercase tracking-wide`}>
+        {study.logo ? (
+          <img src={study.logo} alt={study.client} className="h-10 max-w-[150px] object-contain" />
+        ) : (
+          <span className="text-5xl">{study.icon}</span>
+        )}
+        <span className={`text-xs font-bold px-3 py-1.5 rounded-full border ${c.tag} uppercase tracking-wide shrink-0 ml-4`}>
           {study.tag}
         </span>
       </div>

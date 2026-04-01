@@ -48,10 +48,15 @@ export default function CaseStudySplitSection({ study, index }) {
         </span>
       </div>
 
-      {/* Client name */}
-      <p className="font-display font-black text-sm tracking-widest uppercase text-slate-400 mb-2">
-        {study.client}
-      </p>
+      {/* Client name + Logo */}
+      <div className="flex items-center gap-4 mb-3">
+        {study.logo && (
+          <img src={study.logo} alt={study.client} className="h-8 max-w-[120px] object-contain" />
+        )}
+        <p className="font-display font-black text-sm tracking-widest uppercase text-slate-400">
+          {study.client}
+        </p>
+      </div>
 
       {/* Title */}
       <h2 className="font-display font-black text-3xl lg:text-4xl xl:text-[2.6rem] text-slate-900 leading-tight mb-4">

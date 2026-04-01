@@ -56,7 +56,7 @@ const wordVariants = {
 
 export default function Hero() {
   const headlineWords = ["25+", "Years", "of", "IT", "that"];
-  const accentWords = ["just works."];
+  const accentWords = ["Just Works"];
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -86,23 +86,16 @@ export default function Hero() {
       <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" />
 
-      {/* Spline 3D Background */}
-      <div id="spline-container" className="absolute inset-0 w-full h-full z-0">
-        {isVisible && (
-          <iframe
-            src="https://my.spline.design/websitedesigncopycopycopy-CcOG0L8LDoXZOY5T7Cl7Wh26-LtE/"
-            frameBorder="0"
-            width="100%"
-            height="100%"
-            title="Spline 3D Background"
-            onLoad={() => setIsSplineLoaded(true)}
-          ></iframe>
-        )}
-        {!isSplineLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <p>Loading 3D Background...</p>
-          </div>
-        )}
+      {/* Video Background */}
+      <div id="video-container" className="absolute inset-0 w-full h-full z-0">
+        <video
+          src="/Animation.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
@@ -147,7 +140,7 @@ export default function Hero() {
                   variants={wordVariants}
                   initial="hidden"
                   animate="visible"
-                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic"
+                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic px-4 py-2 overflow-visible"
                 >
                   {word}
                 </motion.span>
@@ -156,19 +149,30 @@ export default function Hero() {
           </div>
 
           {/* Subtext */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10"
+            className="flex flex-col items-center gap-4 mb-10 w-full"
           >
-            IT Infrastructure · AMC Support · Refurbished · Rentals · Security
-            Systems · Networking
-            <br />
-            <span className="text-slate-400 text-base">
-              No technical knowledge needed — everything handled for you.
-            </span>
-          </motion.p>
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 font-spartan font-medium tracking-wide lg:whitespace-nowrap">
+              IT Infrastructure · AMC Support · Refurbished · Rentals · Security Systems · Networking
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5 text-sm sm:text-base font-medium px-5 py-2 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm">
+              <div className="flex items-center gap-2 text-slate-600">
+                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-100 text-green-600">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span>No technical knowledge needed</span>
+              </div>
+              <span className="hidden sm:inline-block text-slate-300">|</span>
+              <span className="bg-gradient-to-r from-brand-blue to-teal-500 bg-clip-text text-transparent font-bold">
+                Everything handled for you
+              </span>
+            </div>
+          </motion.div>
 
           {/* Buttons */}
           <motion.div
