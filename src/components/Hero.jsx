@@ -89,7 +89,7 @@ export default function Hero() {
       {/* Video Background */}
       <div id="video-container" className="absolute inset-0 w-full h-full z-0">
         <video
-          src="/Animation.mp4"
+          src="/Animation.webm"
           autoPlay
           loop
           muted
