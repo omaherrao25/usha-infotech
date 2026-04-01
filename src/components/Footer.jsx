@@ -69,7 +69,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src="/logo.png" alt="Usha Infotech" className="h-12 w-auto object-contain brightness-0 invert" />
+              <img src="/logo.png" alt="Usha Infotech" className="h-12 w-auto object-contain" />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
               Nashik's leading IT solutions provider with a national reach. 25 years of excellence in infrastructure, hardware, and managed IT support.

@@ -65,7 +65,7 @@ export default function Services() {
         label="Our Expertise"
         title="Complete IT Services"
         accent="Under One Roof"
-        subtitle="From infrastructure setup to ongoing AMC support — we handle every layer of your IT, so you can focus on running your business."
+        subtitle="From infrastructure setup to ongoing AMC support we handle every layer of your IT, so you can focus on running your business."
         badges={[
           '🏢 Office Setup', '💻 Hardware Supply', '📷 Security Systems', '🌐 Networking', '🔄 Rentals', '🤝 B2B'
         ]}

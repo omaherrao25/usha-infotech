@@ -148,7 +148,7 @@ export default function CaseStudies() {
       <PageHero
         label="Client Success Stories"
         title="500+ Businesses"
-        accent="Transformed."
+        accent="Transformed"
         subtitle="Real deployments. Real savings. Real uptime. See how Usha Infotech has solved enterprise IT challenges across India."
         badges={['🏪 Retail', '🎬 Media', '🏭 Manufacturing', '🎓 Education', '📡 Networking']}
       />

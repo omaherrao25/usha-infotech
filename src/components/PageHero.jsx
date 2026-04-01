@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { fadeUp } from '../animations/fadeUp'
 
-export default function PageHero({ label, title, accent, subtitle, badges = [] }) {
+export default function PageHero({ label, title, accent, subtitle, subtitleLine2, badges = [] }) {
   return (
     <section className="relative pt-32 pb-16 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-teal-50/20" />
@@ -19,12 +19,13 @@ export default function PageHero({ label, title, accent, subtitle, badges = [] }
 
           <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-slate-900 leading-tight mb-6">
             {title}{' '}
-            {accent && <span className="gradient-text italic">{accent}</span>}
+            {accent && <span className="gradient-text italic px-4 overflow-visible inline-block">{accent}</span>}
           </h1>
 
           {subtitle && (
-            <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-slate-500 leading-relaxed max-w-4xl mx-auto mb-8">
               {subtitle}
+              {subtitleLine2 && <><br />{subtitleLine2}</>}
             </p>
           )}
 
