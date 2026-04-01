@@ -56,7 +56,7 @@ const wordVariants = {
 
 export default function Hero() {
   const headlineWords = ["25+", "Years", "of", "IT", "that"];
-  const accentWords = ["Just Works."];
+  const accentWords = ["Just Works"];
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
