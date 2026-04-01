@@ -86,23 +86,16 @@ export default function Hero() {
       <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" />
 
-      {/* Spline 3D Background */}
-      <div id="spline-container" className="absolute inset-0 w-full h-full z-0">
-        {isVisible && (
-          <iframe
-            src="https://my.spline.design/websitedesigncopycopycopy-CcOG0L8LDoXZOY5T7Cl7Wh26-LtE/"
-            frameBorder="0"
-            width="100%"
-            height="100%"
-            title="Spline 3D Background"
-            onLoad={() => setIsSplineLoaded(true)}
-          ></iframe>
-        )}
-        {!isSplineLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <p>Loading 3D Background...</p>
-          </div>
-        )}
+      {/* Video Background */}
+      <div id="video-container" className="absolute inset-0 w-full h-full z-0">
+        <video
+          src="/Animation.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
