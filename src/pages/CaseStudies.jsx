@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import CaseStudySplitSection from '../components/CaseStudySplitSection'
 import CTASection from '../components/CTASection'
@@ -145,6 +146,11 @@ function TestimonialsStrip() {
 export default function CaseStudies() {
   return (
     <>
+      <SEO
+        title="Case Studies"
+        path="/case-studies"
+        description="500+ businesses transformed. Real IT deployments, real savings, real uptime. See how Usha Infotech solves enterprise IT challenges across India."
+      />
       <PageHero
         label="Client Success Stories"
         title="500+ Businesses"

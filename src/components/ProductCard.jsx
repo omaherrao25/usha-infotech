@@ -18,10 +18,11 @@ export default function ProductCard({ product }) {
       {/* Image Header */}
       <div className="relative w-full h-[220px] lg:h-[250px] bg-slate-100 flex flex-col items-center justify-center overflow-hidden border-b border-slate-100">
         {product.image ? (
-          <img 
-            src={`/assets/${product.image}${product.image.includes('.') ? '' : '.png'}`} 
-            alt={product.title} 
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+          <img
+            src={`/assets/${product.image}${product.image.includes('.') ? '' : '.png'}`}
+            alt={`${product.title} — ${product.desc?.slice(0, 60)}`}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
           />
         ) : (
           <div className="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300 relative z-10">

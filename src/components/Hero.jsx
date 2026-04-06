@@ -11,6 +11,13 @@ function CountUp({ target, suffix = "", prefix = "", duration = 2000 }) {
 
   useEffect(() => {
     if (!inView) return;
+
+    // Respect reduced motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(target);
+      return;
+    }
+
     const startTime = performance.now();
     const animate = (now) => {
       const elapsed = now - startTime;
@@ -57,37 +64,22 @@ const wordVariants = {
 export default function Hero() {
   const headlineWords = ["25+", "Years", "of", "IT", "that"];
   const accentWords = ["Just Works"];
-  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const target = document.getElementById("spline-container");
-    if (target) observer.observe(target);
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
+      aria-label="Hero section"
+    >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-teal-50/30" />
-      <div className="absolute inset-0 grid-bg opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-teal-50/30" aria-hidden="true" />
+      <div className="absolute inset-0 grid-bg opacity-60" aria-hidden="true" />
 
       {/* Decorative blobs */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
 
       {/* Video Background */}
-      <div id="video-container" className="absolute inset-0 w-full h-full z-0">
+      <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
         <video
           src="/Animation.webm"
           autoPlay
@@ -95,6 +87,7 @@ export default function Hero() {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
         />
       </div>
 
@@ -107,7 +100,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-2 bg-white border border-blue-100 rounded-full px-5 py-2 mb-8 shadow-sm"
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
@@ -117,36 +110,39 @@ export default function Hero() {
           </motion.div>
 
           {/* Headline */}
-          <div className="mb-6 perspective-[1000px]">
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-0 mb-2">
-              {headlineWords.map((word, i) => (
-                <motion.span
-                  key={word + i}
-                  custom={i}
-                  variants={wordVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-tight tracking-tight"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
-            <div className="flex justify-center">
-              {accentWords.map((word, i) => (
-                <motion.span
-                  key={word}
-                  custom={headlineWords.length + i}
-                  variants={wordVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic px-4 py-2 overflow-visible"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
-          </div>
+          <h1 className="mb-6 perspective-[1000px]">
+            <span className="sr-only">25+ Years of IT that Just Works</span>
+            <span aria-hidden="true">
+              <span className="flex flex-wrap justify-center gap-x-4 gap-y-0 mb-2">
+                {headlineWords.map((word, i) => (
+                  <motion.span
+                    key={word + i}
+                    custom={i}
+                    variants={wordVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-tight tracking-tight"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="flex justify-center">
+                {accentWords.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    custom={headlineWords.length + i}
+                    variants={wordVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic px-4 py-2 overflow-visible"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+            </span>
+          </h1>
 
           {/* Subtext */}
           <motion.div
@@ -160,14 +156,14 @@ export default function Hero() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-2.5 text-sm sm:text-base font-medium px-5 py-2 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm">
               <div className="flex items-center gap-2 text-slate-600">
-                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-100 text-green-600">
+                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-100 text-green-600" aria-hidden="true">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <span>No technical knowledge needed</span>
               </div>
-              <span className="hidden sm:inline-block text-slate-300">|</span>
+              <span className="hidden sm:inline-block text-slate-300" aria-hidden="true">|</span>
               <span className="bg-gradient-to-r from-brand-blue to-teal-500 bg-clip-text text-transparent font-bold">
                 Everything handled for you
               </span>
@@ -191,6 +187,7 @@ export default function Hero() {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -203,8 +200,9 @@ export default function Hero() {
             <a
               href="tel:+918087051208"
               className="btn-secondary text-base px-7 py-4"
+              aria-label="Call for free consultation"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
               </svg>
               Get Free Consultation
@@ -217,14 +215,17 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+            role="list"
+            aria-label="Key statistics"
           >
             {stats.map((stat) => (
               <motion.div
                 key={stat.label}
                 variants={staggerItem}
+                role="listitem"
                 className="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-6 text-center group hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="text-2xl mb-2">{stat.icon}</div>
+                <div className="text-2xl mb-2" aria-hidden="true">{stat.icon}</div>
                 <div className="font-display text-3xl lg:text-4xl font-black text-slate-900 mb-1">
                   <CountUp
                     target={stat.target}

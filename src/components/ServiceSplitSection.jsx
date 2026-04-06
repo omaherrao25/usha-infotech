@@ -77,7 +77,7 @@ export default function ServiceSplitSection({ service, index }) {
             <span className={`mt-0.5 w-5 h-5 rounded-full ${c.check} flex items-center justify-center text-[11px] font-bold flex-shrink-0`}>
               ✓
             </span>
-            <span className="text-slate-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: feature }} />
+            <span className="text-slate-700 text-sm leading-relaxed">{feature}</span>
           </motion.li>
         ))}
       </motion.ul>
@@ -123,10 +123,11 @@ export default function ServiceSplitSection({ service, index }) {
       {/* Main image card */}
       <div className={`relative rounded-xl bg-slate-100 border border-slate-200 shadow-card w-full h-[220px] lg:h-[250px] overflow-hidden flex items-center justify-center`}>
         {service.image ? (
-          <img 
-            src={`/assets/${service.image}.png`} 
-            alt={service.title} 
-            className="w-full h-full object-cover rounded-xl" 
+          <img
+            src={`/assets/${service.image}.png`}
+            alt={`${service.title} — ${service.shortDesc}`}
+            className="w-full h-full object-cover rounded-xl"
+            loading="lazy"
           />
         ) : (
           <div className="text-[120px] opacity-80 animate-float select-none">

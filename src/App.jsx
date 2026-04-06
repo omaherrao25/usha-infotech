@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
-import Home from './pages/Home'
-import Services from './pages/Services'
-import Products from './pages/Products'
-import CaseStudies from './pages/CaseStudies'
+
+// Lazy-load pages for code splitting
+const Home = lazy(() => import('./pages/Home'))
+const Services = lazy(() => import('./pages/Services'))
+const Products = lazy(() => import('./pages/Products'))
+const CaseStudies = lazy(() => import('./pages/CaseStudies'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -21,7 +23,18 @@ function Layout({ children }) {
     <>
       <ScrollProgress />
       <Navbar />
-      <main>{children}</main>
+      <main id="main-content">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm text-slate-400 font-medium">Loading...</p>
+            </div>
+          </div>
+        }>
+          {children}
+        </Suspense>
+      </main>
       <Footer />
     </>
   )

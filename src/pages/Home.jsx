@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 import Hero from '../components/Hero'
 import ServiceCard from '../components/ServiceCard'
 import CaseStudyCard from '../components/CaseStudyCard'
@@ -27,7 +28,7 @@ const clientLogos = [
 function ClientsTicker() {
   const doubled = [...clientLogos, ...clientLogos]
   return (
-    <section className="py-16 bg-white border-y border-slate-100 overflow-hidden">
+    <section className="py-16 bg-white border-y border-slate-100 overflow-hidden" aria-label="Our trusted clients">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10 text-center">
         <p className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-1">Trusted By</p>
         <h2 className="font-display font-bold text-2xl text-slate-900">Our Clients</h2>
@@ -41,10 +42,10 @@ function ClientsTicker() {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="flex-shrink-0 flex items-center justify-center p-2 opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer"
             >
-              <img 
-                src={logo} 
-                alt="Client Logo" 
-                className="h-10 md:h-12 w-auto object-contain max-w-[160px]" 
+              <img
+                src={logo}
+                alt={`Client: ${logo.split('/').pop().replace(/\.(png|jpg|jpeg|svg)$/i, '').replace(/[-_]/g, ' ')}`}
+                className="h-10 md:h-12 w-auto object-contain max-w-[160px]"
                 loading="lazy"
               />
             </motion.div>
@@ -412,6 +413,10 @@ function TrustSection() {
 export default function Home() {
   return (
     <>
+      <SEO
+        path="/"
+        description="Usha Infotech — Nashik's trusted IT solutions provider since 2000. Enterprise hardware, CCTV, networking, AMC and IT rentals across India."
+      />
       <Hero />
       <ClientsTicker />
       <ServicesSection />

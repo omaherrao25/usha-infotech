@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
+import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import ServiceSplitSection from '../components/ServiceSplitSection'
 import CTASection from '../components/CTASection'
@@ -61,6 +62,11 @@ export default function Services() {
 
   return (
     <>
+      <SEO
+        title="IT Services"
+        path="/services"
+        description="Complete IT services under one roof — infrastructure setup, hardware supply, CCTV surveillance, enterprise networking, IT rentals and AMC support across India."
+      />
       <PageHero
         label="Our Expertise"
         title="Complete IT Services"

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import CTASection from '../components/CTASection'
@@ -90,6 +91,11 @@ export default function Products() {
 
   return (
     <>
+      <SEO
+        title="IT Products & Hardware"
+        path="/products"
+        description="Authorised Dell, HP & Lenovo dealer. Enterprise laptops, networking gear, CCTV cameras, refurbished systems and IT accessories. GEM registered. Pan-India delivery."
+      />
       <PageHero
         label="IT Product Catalog"
         title="Quality Hardware"

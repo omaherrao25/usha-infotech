@@ -124,10 +124,11 @@ export default function CaseStudySplitSection({ study, index }) {
       {/* Big image card */}
       <div className={`relative rounded-xl bg-slate-100 border border-slate-200 overflow-hidden w-full h-[220px] lg:h-[250px] shadow-card flex items-center justify-center`}>
         {study.image ? (
-          <img 
-            src={`/assets/${study.image}.png`} 
-            alt={study.title} 
+          <img
+            src={`/assets/${study.image}.png`}
+            alt={`${study.client} — ${study.title}`}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
         ) : (
           <div className="text-[100px] animate-float select-none overflow-hidden relative z-10">
