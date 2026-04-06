@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SEO from '../components/SEO'
-import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import CTASection from '../components/CTASection'
 import { products, productCategories } from '../data/products'
@@ -9,13 +8,12 @@ import { accessorySubcategories } from '../data/accessories'
 import { fadeUp, viewportOnce } from '../animations/fadeUp'
 import { staggerFast, staggerItem } from '../animations/stagger'
 
-// Category label dividers
 const categoryMeta = {
-  laptops: { label: 'Laptops & Desktops', icon: '💻', desc: 'Authorised Dell, HP & Lenovo — enterprise grade' },
-  networking: { label: 'Networking Equipment', icon: '🌐', desc: 'Cisco, Fortinet, TP-Link — complete enterprise stacks' },
-  cctv: { label: 'Security Systems', icon: '📷', desc: 'Hikvision, Dahua, CP-Plus — 4K to industrial grade' },
-  refurbished: { label: 'Grade-A Refurbished Systems', icon: '♻️', desc: '60% savings · 3-month warranty · bulk ready' },
-  accessories: { label: 'Accessories & Peripherals', icon: '🔌', desc: 'UPS, cabling, monitors, racks — everything else' },
+  laptops: { label: 'Laptops & Desktops', icon: 'computer', desc: 'Authorised Dell, HP & Lenovo — enterprise grade' },
+  networking: { label: 'Networking Equipment', icon: 'router', desc: 'Cisco, Fortinet, TP-Link — complete enterprise stacks' },
+  cctv: { label: 'Security Systems', icon: 'videocam', desc: 'Hikvision, Dahua, CP-Plus — 4K to industrial grade' },
+  refurbished: { label: 'Grade-A Refurbished Systems', icon: 'recycling', desc: '60% savings · 3-month warranty · bulk ready' },
+  accessories: { label: 'Accessories & Peripherals', icon: 'cable', desc: 'UPS, cabling, monitors, racks — everything else' },
 }
 
 function CategorySection({ category, items, isVisible, metaOverrides }) {
@@ -30,21 +28,22 @@ function CategorySection({ category, items, isVisible, metaOverrides }) {
       transition={{ duration: 0.3 }}
       className="mb-16"
     >
-      {/* Category header */}
       <div className="flex items-center gap-5 mb-8">
-        <div className="text-3xl">{meta?.icon}</div>
-        <div>
-          <h3 className="font-display font-bold text-xl text-slate-900">{meta?.label}</h3>
-          <p className="text-sm text-slate-400">{meta?.desc}</p>
+        <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+          <span className="material-symbols-outlined text-primary text-2xl">{meta?.icon || 'devices'}</span>
         </div>
-        <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent ml-4" />
+        <div>
+          <h3 className="font-sora font-bold text-xl text-on-surface">{meta?.label}</h3>
+          <p className="text-sm text-outline">{meta?.desc}</p>
+        </div>
+        <div className="flex-1 h-px bg-outline-variant/20 ml-4" />
       </div>
 
       <motion.div
         variants={staggerFast}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
       >
         {items.map((product) => (
           <ProductCard key={product.id} product={product} />
@@ -58,8 +57,8 @@ function AccessoriesCatalog({ allItems }) {
   return (
     <div className="mt-8">
       <div className="text-center mb-16">
-        <h2 className="font-display font-black text-3xl lg:text-4xl text-slate-900 mb-4">Complete IT Accessories Catalog</h2>
-        <p className="text-slate-500 max-w-2xl mx-auto">Everything your office IT setup needs — from structured cabling and UPS systems to GPUs, monitors, and networking racks. Browse our structured categories below.</p>
+        <h2 className="font-sora font-bold text-3xl lg:text-4xl text-on-surface mb-4">Complete IT Accessories Catalog</h2>
+        <p className="text-on-surface-variant max-w-2xl mx-auto">Everything your office IT setup needs — from structured cabling and UPS systems to GPUs, monitors, and networking racks.</p>
       </div>
 
       {accessorySubcategories.map((sub) => {
@@ -71,7 +70,7 @@ function AccessoriesCatalog({ allItems }) {
             category={sub.id}
             items={subItems}
             isVisible={true}
-            metaOverrides={{ label: sub.label, icon: sub.icon, desc: sub.desc }}
+            metaOverrides={{ label: sub.label, icon: sub.icon || 'category', desc: sub.desc }}
           />
         )
       })}
@@ -86,7 +85,6 @@ export default function Products() {
     ? products
     : products.filter((p) => p.category === activeCategory)
 
-  // Group by category for display
   const categoriesOrder = ['laptops', 'networking', 'cctv', 'refurbished', 'accessories']
 
   return (
@@ -96,51 +94,64 @@ export default function Products() {
         path="/products"
         description="Authorised Dell, HP & Lenovo dealer. Enterprise laptops, networking gear, CCTV cameras, refurbished systems and IT accessories. GEM registered. Pan-India delivery."
       />
-      <PageHero
-        label="IT Product Catalog"
-        title="Quality Hardware"
-        accent="Trusted Brands"
-        subtitle="Authorised laptops, desktops, servers, networking gear, security systems, and refurbished systems"
-        subtitleLine2="sourced directly and available across India."
-        badges={[
-          '✅ Authorised Dell, HP & Lenovo Dealer',
-          '🔁 Grade-A Refurbished Systems',
-          '🚚 Pan-India Delivery',
-          '📋 GEM Registered',
-        ]}
-      />
 
-      {/* Filter bar */}
-      <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-2 py-4 min-w-max">
-            {productCategories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                  activeCategory === cat.id
-                    ? 'bg-slate-900 text-white shadow-md'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {cat.label}
-                {activeCategory === cat.id && (
-                  <motion.div
-                    layoutId="filter-active"
-                    className="absolute inset-0 bg-slate-900 rounded-full -z-10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
+      {/* Editorial Hero */}
+      <section className="pt-32 pb-20">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="editorial-grid">
+            <div className="col-span-12 md:col-span-8">
+              <span className="section-label mb-6 block">Inventory Ledger v.2024</span>
+              <h1 className="text-6xl md:text-8xl font-sora font-extrabold tracking-tighter text-on-surface leading-[0.9] mb-8">
+                Precision<br />Infrastructure.
+              </h1>
+              <p className="text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
+              </p>
+            </div>
+            <div className="hidden md:block col-span-4 relative">
+              <div className="absolute right-0 top-0 w-full h-full bg-surface-container-high rounded-xl -z-10 translate-x-8 translate-y-8" />
+              <div className="w-full h-full bg-surface-container-highest rounded-xl overflow-hidden flex items-center justify-center min-h-[240px]">
+                <span className="material-symbols-outlined text-[80px] text-outline/20">dns</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Catalog Controls */}
+      <section className="max-w-7xl mx-auto px-8 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant/20 pb-8 gap-8">
+          <div className="flex flex-wrap gap-8">
+            <div className="flex flex-col gap-2">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-outline">Hardware Type</label>
+              <div className="flex gap-2 flex-wrap">
+                {productCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+                      activeCategory === cat.id
+                        ? 'border border-primary text-primary'
+                        : 'border border-outline-variant/30 text-on-surface-variant hover:border-primary/50'
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <span className="text-sm font-manrope text-outline">
+              Displaying {filteredProducts.length} of {products.length} Units
+            </span>
+          </div>
+        </div>
+      </section>
 
       {/* Products grid */}
-      <section className="py-16 lg:py-20 bg-slate-50/40">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="pb-16 lg:pb-20">
+        <div className="max-w-7xl mx-auto px-8">
           <AnimatePresence mode="wait">
             {activeCategory === 'all' ? (
               <motion.div key="all">
@@ -148,18 +159,13 @@ export default function Products() {
                   const items = products.filter((p) => p.category === cat)
                   if (cat === 'accessories') {
                     return (
-                      <div key={cat} className="mt-20 pt-16 border-t border-slate-200">
+                      <div key={cat} className="mt-20 pt-16 border-t border-outline-variant/20">
                         <AccessoriesCatalog allItems={items} />
                       </div>
                     )
                   }
                   return (
-                    <CategorySection
-                      key={cat}
-                      category={cat}
-                      items={items}
-                      isVisible={true}
-                    />
+                    <CategorySection key={cat} category={cat} items={items} isVisible={true} />
                   )
                 })}
               </motion.div>
@@ -181,45 +187,38 @@ export default function Products() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <CategorySection
-                  category={activeCategory}
-                  items={filteredProducts}
-                  isVisible={true}
-                />
+                <CategorySection category={activeCategory} items={filteredProducts} isVisible={true} />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </section>
 
-      {/* Trust badges strip */}
-      <section className="py-12 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            variants={staggerFast}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-          >
-            {[
-              { icon: '✅', label: 'Authorised Dealer', sub: 'Dell · HP · Lenovo' },
-              { icon: '📋', label: 'GEM Registered', sub: 'Govt procurement ready' },
-              { icon: '🚚', label: 'Pan-India Delivery', sub: 'All major cities' },
-              { icon: '🛡️', label: 'OEM Warranty', sub: 'On all new hardware' },
-            ].map((item) => (
-              <motion.div
-                key={item.label}
-                variants={staggerItem}
-                className="flex flex-col items-center gap-2 p-5 bg-slate-50 rounded-2xl border border-slate-100"
-              >
-                <span className="text-2xl">{item.icon}</span>
-                <p className="font-display font-bold text-sm text-slate-900">{item.label}</p>
-                <p className="text-xs text-slate-400">{item.sub}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+      {/* Ledger Stats Bar */}
+      <section className="max-w-7xl mx-auto px-8 mb-24">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="bg-on-surface text-surface py-16 px-12 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-16"
+        >
+          <div>
+            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Availability</span>
+            <p className="text-4xl font-sora font-bold">98.4%</p>
+            <p className="text-surface-dim mt-2 text-sm">System uptime for rented hardware clusters across global nodes.</p>
+          </div>
+          <div>
+            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Certification</span>
+            <p className="text-4xl font-sora font-bold">ISO 27001</p>
+            <p className="text-surface-dim mt-2 text-sm">Every refurbished unit undergoes a 124-point laboratory stress test.</p>
+          </div>
+          <div>
+            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Logistics</span>
+            <p className="text-4xl font-sora font-bold">24hr Ship</p>
+            <p className="text-surface-dim mt-2 text-sm">Priority logistics infrastructure for rental emergency replacement.</p>
+          </div>
+        </motion.div>
       </section>
 
       <CTASection

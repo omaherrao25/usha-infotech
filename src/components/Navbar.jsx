@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'Products', href: '/products' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Solutions', href: '/' },
+  { label: 'Infrastructure', href: '/products' },
+  { label: 'Insights', href: '/case-studies' },
+  { label: 'About', href: '/services' },
 ]
 
 export default function Navbar() {
@@ -20,7 +20,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close mobile nav on route change
   useEffect(() => {
     setMobileOpen(false)
     document.body.style.overflow = ''
@@ -33,12 +32,9 @@ export default function Navbar() {
     })
   }
 
-  // Close on Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && mobileOpen) {
-        toggleMobile()
-      }
+      if (e.key === 'Escape' && mobileOpen) toggleMobile()
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
@@ -51,23 +47,20 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         role="banner"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-nav py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-surface/70 backdrop-blur-xl shadow-nav'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group" aria-label="Usha Infotech — Home">
-            <img src="/logo.png" alt="" className="h-10 w-auto object-contain" aria-hidden="true" />
-            <span className="font-display font-bold text-lg text-slate-900">
-              <span className="text-blue-600">Usha</span> Infotech
-            </span>
+          <Link to="/" className="text-xl font-bold tracking-tighter text-on-surface font-sora" aria-label="Usha Infotech — Home">
+            Usha Infotech
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-10" aria-label="Main navigation">
             {navLinks.map((link) => {
               const active = location.pathname === link.href
               return (
@@ -75,58 +68,48 @@ export default function Navbar() {
                   key={link.href}
                   to={link.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`relative px-4 py-2 rounded-lg text-[13px] font-semibold tracking-wide uppercase transition-all duration-200 ${
+                  className={`font-sora font-light tracking-tight transition-all duration-200 ${
                     active
-                      ? 'text-blue-600'
-                      : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'
+                      ? 'text-primary font-semibold border-b-2 border-primary'
+                      : 'text-on-surface-variant hover:text-on-surface'
                   }`}
                 >
                   {link.label}
-                  {active && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute bottom-0 left-4 right-4 h-0.5 bg-blue-600 rounded-full"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
                 </Link>
               )
             })}
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden md:block">
             <a
               href="tel:+918087051208"
-              className="btn-primary text-sm py-2.5 px-5"
-              aria-label="Call for free IT consultation"
+              className="bg-primary-container text-on-primary px-6 py-2.5 rounded-lg font-sora font-semibold text-sm hover:opacity-80 transition-all transform active:scale-95 duration-200"
+              aria-label="Call for consultation"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
-              </svg>
-              Free IT Consultation
+              Consultation
             </a>
           </div>
 
           {/* Hamburger */}
           <button
             onClick={toggleMobile}
-            className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container-low transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
           >
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-slate-700 rounded-full origin-center transition-all"
+              className="block w-6 h-0.5 bg-on-surface rounded-full origin-center"
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-slate-700 rounded-full"
+              className="block w-6 h-0.5 bg-on-surface rounded-full"
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-slate-700 rounded-full origin-center"
+              className="block w-6 h-0.5 bg-on-surface rounded-full origin-center"
             />
           </button>
         </div>
@@ -144,12 +127,11 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 bg-surface flex flex-col items-center justify-center"
           >
-            {/* Close button */}
             <button
               onClick={toggleMobile}
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-slate-700 text-xl hover:bg-slate-200 transition-colors"
+              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface text-xl hover:bg-surface-container transition-colors"
               aria-label="Close menu"
             >
               <span aria-hidden="true">&times;</span>
@@ -168,8 +150,8 @@ export default function Navbar() {
                     to={link.href}
                     onClick={toggleMobile}
                     aria-current={location.pathname === link.href ? 'page' : undefined}
-                    className={`font-display text-4xl font-bold transition-colors hover:text-blue-600 ${
-                      location.pathname === link.href ? 'text-blue-600' : 'text-slate-900'
+                    className={`font-sora text-4xl font-bold transition-colors hover:text-primary ${
+                      location.pathname === link.href ? 'text-primary' : 'text-on-surface'
                     }`}
                   >
                     {link.label}

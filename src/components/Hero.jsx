@@ -1,247 +1,66 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
-import { fadeUp, viewportOnce } from "../animations/fadeUp";
-import { staggerMed, staggerItem } from "../animations/stagger";
-
-function CountUp({ target, suffix = "", prefix = "", duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
-  useEffect(() => {
-    if (!inView) return;
-
-    // Respect reduced motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setCount(target);
-      return;
-    }
-
-    const startTime = performance.now();
-    const animate = (now) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
-  }, [inView, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}
-      {count}
-      {suffix}
-    </span>
-  );
-}
-
-const stats = [
-  { target: 25, suffix: "+", label: "Years Experience", icon: "🏆" },
-  { target: 500, suffix: "+", label: "Enterprise Clients", icon: "🏢" },
-  { target: 5000, suffix: "+", label: "Deployments Done", icon: "⚡" },
-  {
-    target: 50,
-    prefix: "₹",
-    suffix: "Cr+",
-    label: "Capital Saved",
-    icon: "💰",
-  },
-];
-
-const wordVariants = {
-  hidden: { opacity: 0, y: 60, rotateX: -15 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { delay: i * 0.08, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { fadeUp, viewportOnce } from '../animations/fadeUp'
 
 export default function Hero() {
-  const headlineWords = ["25+", "Years", "of", "IT", "that"];
-  const accentWords = ["Just Works"];
-
   return (
-    <section
-      className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
-      aria-label="Hero section"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/40 to-teal-50/30" aria-hidden="true" />
-      <div className="absolute inset-0 grid-bg opacity-60" aria-hidden="true" />
+    <section className="relative min-h-screen flex items-center pt-20 pb-16" aria-label="Hero section">
+      <div className="max-w-7xl mx-auto px-8 w-full">
+        <div className="grid grid-cols-12 gap-8 w-full">
+          {/* Left — Editorial text */}
+          <div className="col-span-12 lg:col-span-8 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="section-label mb-6 block">Precision Infrastructure</span>
 
-      {/* Decorative blobs */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-blue-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
+              <h1 className="text-6xl md:text-8xl font-sora font-extrabold tracking-tighter leading-[0.9] text-on-surface mb-8">
+                Strategic <br />
+                <span className="text-primary-container">IT Solutions</span>
+              </h1>
 
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
-        <video
-          src="/Animation.webm"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        />
-      </div>
+              <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl font-light leading-relaxed mb-12">
+                We architect resilient digital foundations through human-centric engineering and precision technical oversight.
+              </p>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 bg-white border border-blue-100 rounded-full px-5 py-2 mb-8 shadow-sm"
-          >
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-            </span>
-            <span className="text-xs font-bold tracking-widest uppercase text-slate-600">
-              Trusted across India · Since 2000
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <h1 className="mb-6 perspective-[1000px]">
-            <span className="sr-only">25+ Years of IT that Just Works</span>
-            <span aria-hidden="true">
-              <span className="flex flex-wrap justify-center gap-x-4 gap-y-0 mb-2">
-                {headlineWords.map((word, i) => (
-                  <motion.span
-                    key={word + i}
-                    custom={i}
-                    variants={wordVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-slate-900 leading-tight tracking-tight"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </span>
-              <span className="flex justify-center">
-                {accentWords.map((word, i) => (
-                  <motion.span
-                    key={word}
-                    custom={headlineWords.length + i}
-                    variants={wordVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="font-display text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight gradient-text italic px-4 py-2 overflow-visible"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </span>
-            </span>
-          </h1>
-
-          {/* Subtext */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex flex-col items-center gap-4 mb-10 w-full"
-          >
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 font-spartan font-medium tracking-wide lg:whitespace-nowrap">
-              IT Infrastructure · AMC Support · Refurbished · Rentals · Security Systems · Networking
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2.5 text-sm sm:text-base font-medium px-5 py-2 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm">
-              <div className="flex items-center gap-2 text-slate-600">
-                <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-100 text-green-600" aria-hidden="true">
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span>No technical knowledge needed</span>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/services" className="btn-primary text-lg">
+                  Explore Services
+                </Link>
+                <Link to="/case-studies" className="btn-secondary text-lg">
+                  Our Method
+                </Link>
               </div>
-              <span className="hidden sm:inline-block text-slate-300" aria-hidden="true">|</span>
-              <span className="bg-gradient-to-r from-brand-blue to-teal-500 bg-clip-text text-transparent font-bold">
-                Everything handled for you
-              </span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            <Link
-              to="/services"
-              className="btn-primary text-base px-7 py-4 shadow-blue"
+          {/* Right — Asymmetric image bracket */}
+          <div className="hidden lg:block lg:col-span-4 relative">
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute -top-20 right-0 w-full aspect-[3/4] bg-surface-container-highest rounded-xl overflow-hidden"
             >
-              Explore Services
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </Link>
-            <a
-              href="tel:+918087051208"
-              className="btn-secondary text-base px-7 py-4"
-              aria-label="Call for free consultation"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
-              </svg>
-              Get Free Consultation
-            </a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            variants={staggerMed}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
-            role="list"
-            aria-label="Key statistics"
-          >
-            {stats.map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={staggerItem}
-                role="listitem"
-                className="bg-white rounded-2xl border border-slate-100 shadow-card px-5 py-6 text-center group hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="text-2xl mb-2" aria-hidden="true">{stat.icon}</div>
-                <div className="font-display text-3xl lg:text-4xl font-black text-slate-900 mb-1">
-                  <CountUp
-                    target={stat.target}
-                    suffix={stat.suffix}
-                    prefix={stat.prefix || ""}
-                    duration={2200}
-                  />
-                </div>
-                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+              <img
+                src="/assets/hero-server.jpg"
+                alt="High-tech server infrastructure"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                  e.target.parentElement.classList.add('flex', 'items-center', 'justify-center')
+                  const icon = document.createElement('span')
+                  icon.className = 'material-symbols-outlined text-8xl text-outline/30'
+                  icon.textContent = 'dns'
+                  e.target.parentElement.appendChild(icon)
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

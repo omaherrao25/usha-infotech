@@ -4,48 +4,101 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Outfit', 'system-ui', 'sans-serif'],
-        body: ['League Spartan', 'system-ui', 'sans-serif'],
-        spartan: ['League Spartan', 'system-ui', 'sans-serif'],
-      },
-      fontSize: {
-        // Responsive clamp-based scale
-        'h1': ['clamp(2rem, 5vw, 3.5rem)', { lineHeight: '1.1', fontWeight: '900' }],
-        'h2': ['clamp(1.5rem, 3.5vw, 2.5rem)', { lineHeight: '1.15', fontWeight: '800' }],
-        'h3': ['clamp(1.25rem, 2.5vw, 1.5rem)', { lineHeight: '1.25', fontWeight: '700' }],
-        'hero': ['clamp(2.5rem, 7vw, 5rem)', { lineHeight: '1.05', fontWeight: '900' }],
+        sora: ['Sora', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
       colors: {
-        brand: {
-          // Primary — extracted from logo (deep trust blue)
-          blue: '#1E40AF',
-          'blue-mid': '#2563EB',
-          'blue-light': '#DBEAFE',
-          'blue-pale': '#EFF6FF',
-          // Secondary — growth teal
-          teal: '#0D9488',
-          'teal-light': '#CCFBF1',
-          'teal-pale': '#F0FDFA',
-          // Accent — warm amber for highlights
-          amber: '#F59E0B',
-          'amber-light': '#FEF3C7',
-        },
+        background: '#f7f9fb',
         surface: {
-          DEFAULT: '#FFFFFF',
-          muted: '#F8FAFC',
-          subtle: '#F1F5F9',
+          DEFAULT: '#f7f9fb',
+          bright: '#f7f9fb',
+          dim: '#d8dadc',
+          variant: '#e0e3e5',
+          'container-lowest': '#ffffff',
+          'container-low': '#f2f4f6',
+          container: '#eceef0',
+          'container-high': '#e6e8ea',
+          'container-highest': '#e0e3e5',
+          tint: '#4d44e3',
         },
+        primary: {
+          DEFAULT: '#3525cd',
+          container: '#4f46e5',
+          fixed: '#e2dfff',
+          'fixed-dim': '#c3c0ff',
+        },
+        'on-primary': {
+          DEFAULT: '#ffffff',
+          container: '#dad7ff',
+          fixed: '#0f0069',
+          'fixed-variant': '#3323cc',
+        },
+        'on-surface': {
+          DEFAULT: '#191c1e',
+          variant: '#464555',
+        },
+        'on-background': '#191c1e',
+        secondary: {
+          DEFAULT: '#5f5e5e',
+          container: '#e5e2e1',
+          fixed: '#e5e2e1',
+          'fixed-dim': '#c8c6c5',
+        },
+        'on-secondary': {
+          DEFAULT: '#ffffff',
+          container: '#656464',
+          fixed: '#1c1b1b',
+          'fixed-variant': '#474646',
+        },
+        tertiary: {
+          DEFAULT: '#7e3000',
+          container: '#a44100',
+          fixed: '#ffdbcc',
+          'fixed-dim': '#ffb695',
+        },
+        'on-tertiary': {
+          DEFAULT: '#ffffff',
+          container: '#ffd2be',
+          fixed: '#351000',
+          'fixed-variant': '#7b2f00',
+        },
+        error: {
+          DEFAULT: '#ba1a1a',
+          container: '#ffdad6',
+        },
+        'on-error': {
+          DEFAULT: '#ffffff',
+          container: '#93000a',
+        },
+        outline: {
+          DEFAULT: '#777587',
+          variant: '#c7c4d8',
+        },
+        'inverse-surface': '#2d3133',
+        'inverse-on-surface': '#eff1f3',
+        'inverse-primary': '#c3c0ff',
         slate: {
-          950: '#0A0F1E',
+          950: '#0a0f1e',
         },
+      },
+      borderRadius: {
+        DEFAULT: '0.375rem',
+        lg: '0.5rem',
+        xl: '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+        '4xl': '2rem',
+      },
+      boxShadow: {
+        'ambient': '0px 24px 48px rgba(18, 18, 18, 0.06)',
+        'card': '0px 8px 24px rgba(18, 18, 18, 0.04)',
+        'card-hover': '0px 16px 40px rgba(18, 18, 18, 0.08)',
+        'nav': '0 4px 20px rgba(18, 18, 18, 0.04)',
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease forwards',
         'ticker': 'ticker 30s linear infinite',
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
-        'spin-slow': 'spin 12s linear infinite',
-        'dash': 'dash 1.5s linear infinite',
       },
       keyframes: {
         fadeUp: {
@@ -60,31 +113,12 @@ export default {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-16px)' },
         },
-        dash: {
-          '0%': { strokeDashoffset: '24' },
-          '100%': { strokeDashoffset: '0' },
-        },
-      },
-      boxShadow: {
-        'card': '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06)',
-        'card-hover': '0 8px 40px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04)',
-        'blue': '0 8px 32px rgba(37,99,235,0.18)',
-        'blue-lg': '0 16px 48px rgba(37,99,235,0.22)',
-        'nav': '0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06)',
       },
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
         '26': '6.5rem',
         '30': '7.5rem',
-      },
-      borderRadius: {
-        '2xl': '1rem',
-        '3xl': '1.5rem',
-        '4xl': '2rem',
-      },
-      transitionDuration: {
-        '400': '400ms',
       },
     },
   },
