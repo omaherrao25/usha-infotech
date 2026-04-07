@@ -39,12 +39,12 @@ function ClientsTicker() {
               key={i}
               whileHover={{ scale: 1.15 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="flex-shrink-0 flex items-center justify-center p-2 opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer"
+              className="flex-shrink-0 flex items-center justify-center p-2 transition-all duration-300 cursor-pointer"
             >
               <img
                 src={logo}
                 alt={`Client: ${logo.split('/').pop().replace(/\.(png|jpg|jpeg|svg)$/i, '').replace(/[-_]/g, ' ')}`}
-                className="h-10 md:h-12 w-auto object-contain max-w-[160px]"
+                className="h-10 md:h-14 w-auto object-contain max-w-[180px]"
                 loading="lazy"
               />
             </motion.div>
@@ -105,7 +105,7 @@ function NetworkingCaseStudy() {
             className="order-1 lg:order-2"
           >
             <span className="text-sm font-bold text-primary-container mb-4 block uppercase tracking-widest">
-              Case Study 01
+              Case Study
             </span>
             <h2 className="text-4xl md:text-5xl font-sora font-bold tracking-tight mb-6 text-on-surface">
               Cognitive Networking Infrastructure
@@ -116,8 +116,8 @@ function NetworkingCaseStudy() {
             <ul className="space-y-4 mb-10">
               {['SD-WAN Optimization', 'Zero-Trust Architecture', 'Fiber-Optic Precision Layout'].map((item) => (
                 <li key={item} className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-primary text-xl">check_circle</span>
-                  <span className="font-medium">{item}</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                  <span className="font-medium text-on-surface-variant">{item}</span>
                 </li>
               ))}
             </ul>

@@ -11,7 +11,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
       >
         <div className="flex items-center gap-4 mb-4">
           {study.logo ? (
-            <img src={study.logo} alt={study.client} className="h-9 max-w-[130px] object-contain" />
+            <img src={study.logo} alt={study.client} className="h-10 max-w-[140px] object-contain" />
           ) : (
             <span className="text-4xl">{study.icon}</span>
           )}
@@ -51,7 +51,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
     >
       <div className="flex items-center gap-4 mb-6">
         {study.logo ? (
-          <img src={study.logo} alt={study.client} className="h-10 max-w-[150px] object-contain" />
+          <img src={study.logo} alt={study.client} className="h-12 max-w-[160px] object-contain" />
         ) : (
           <span className="text-5xl">{study.icon}</span>
         )}

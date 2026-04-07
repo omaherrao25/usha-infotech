@@ -32,7 +32,7 @@ export default function ServiceCard({ service, index }) {
       <ul className="flex flex-col gap-3 mb-8">
         {service.features.slice(0, 3).map((f) => (
           <li key={f} className="flex items-center gap-3 text-sm">
-            <span className="material-symbols-outlined text-primary text-xl">check_circle</span>
+            <div className="w-1 h-1 rounded-full bg-primary/40 shrink-0" />
             <span className="font-medium text-on-surface">{f}</span>
           </li>
         ))}

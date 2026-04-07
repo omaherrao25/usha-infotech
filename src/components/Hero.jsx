@@ -47,7 +47,7 @@ export default function Hero() {
               <img
                 src="/assets/hero-server.jpg"
                 alt="High-tech server infrastructure"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700"
                 onError={(e) => {
                   e.target.style.display = 'none'
                   e.target.parentElement.classList.add('flex', 'items-center', 'justify-center')

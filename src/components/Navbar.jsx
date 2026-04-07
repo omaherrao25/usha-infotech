@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Solutions', href: '/' },
-  { label: 'Infrastructure', href: '/products' },
-  { label: 'Insights', href: '/case-studies' },
-  { label: 'About', href: '/services' },
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/products' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Services', href: '/services' },
 ]
 
 export default function Navbar() {
