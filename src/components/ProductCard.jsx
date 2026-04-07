@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
         <span className={`absolute top-6 left-6 text-[10px] font-bold tracking-widest uppercase py-1 px-3 rounded-full z-10 ${
           badgeStyles[product.badge?.type] || 'badge-new'
         }`}>
-          {product.badge?.label?.replace('✓', '').trim() || 'New'}
+          {product.badge?.label || 'New'}
         </span>
 
         {product.image ? (
@@ -32,8 +32,8 @@ export default function ProductCard({ product }) {
             loading="lazy"
           />
         ) : (
-          <div className="text-7xl opacity-60 group-hover:scale-110 transition-transform duration-300">
-            {product.icon}
+          <div className="group-hover:scale-110 transition-transform duration-300">
+            <span className="material-symbols-outlined text-7xl text-primary/20">{product.icon}</span>
           </div>
         )}
 

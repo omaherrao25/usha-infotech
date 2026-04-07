@@ -39,7 +39,7 @@ export default function ServiceSplitSection({ service, index }) {
             variants={staggerItem}
             className="flex items-center gap-3"
           >
-            <span className="material-symbols-outlined text-primary text-xl">check_circle</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
             <span className="font-medium text-on-surface">{feature}</span>
           </motion.li>
         ))}
@@ -95,7 +95,7 @@ export default function ServiceSplitSection({ service, index }) {
             />
           ) : (
             <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
-              <span className="text-[100px] opacity-40">{service.icon}</span>
+              <span className="material-symbols-outlined text-[120px] text-primary/10">{service.icon}</span>
             </div>
           )}
         </div>

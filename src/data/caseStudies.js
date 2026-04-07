@@ -26,7 +26,7 @@ export const caseStudies = [
     tags: ['IT Infrastructure', 'Retail Scaling', 'Turnkey Deployment'],
     ctaLabel: 'Scale your Retail Brand? Let\'s Talk',
     color: 'blue',
-    icon: '🏪',
+    icon: 'storefront',
     image: 'cust_real',
   },
   {
@@ -54,7 +54,7 @@ export const caseStudies = [
     tags: ['Gigabit Networking', 'Studio IT Setup', 'Wi-Fi 6 Integration'],
     ctaLabel: 'Upgrade Your Network',
     color: 'teal',
-    icon: '🎬',
+    icon: 'movie',
     image: 'fizzyfox_network',
   },
   {
@@ -82,7 +82,7 @@ export const caseStudies = [
     tags: ['Industrial Security Systems', 'IP Surveillance', 'Factory Security'],
     ctaLabel: 'Audit Factory Security',
     color: 'blue',
-    icon: '🏭',
+    icon: 'factory',
     image: 'weldtech_security',
   },
   {
@@ -110,7 +110,7 @@ export const caseStudies = [
     tags: ['IT Rentals', 'Refurbished Endpoints', 'Education Logistics'],
     ctaLabel: 'Get Rental Estimates',
     color: 'teal',
-    icon: '🎓',
+    icon: 'school',
     image: 'laptop_work',
   },
   {
@@ -138,7 +138,7 @@ export const caseStudies = [
     tags: ['Networking', 'Cisco Integration', 'Corporate Wi-Fi'],
     ctaLabel: 'Audit Your Network Now',
     color: 'blue',
-    icon: '📡',
+    icon: 'settings_input_antenna',
     image: 'infra_real',
   },
 ]
