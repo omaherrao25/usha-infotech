@@ -68,9 +68,9 @@ export default function Hero() {
               className="bg-surface/85 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none p-8 lg:p-0 rounded-3xl lg:rounded-none lg:pl-12 shadow-2xl lg:shadow-none border border-white/20 lg:border-none"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-[2px] bg-primary"></div>
+                {/* <div className="w-8 h-[2px] bg-primary"></div> */}
                 <span className="font-sora font-bold text-xs uppercase tracking-[0.2em] text-primary">
-                  Precision Infrastructure
+                Precision Infrastructure
                 </span>
               </div>
 

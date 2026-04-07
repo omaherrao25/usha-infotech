@@ -13,8 +13,8 @@ export default function ServiceCard({ service, index }) {
         className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 group-hover:blur-[6px]"
         style={{ backgroundImage: `url('/assets/${service.image}.png')` }}
       />
-      {/* Dark overlay for contrast over image (Slightly dark by default, darker on hover) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 group-hover:from-black/95 group-hover:via-black/70 group-hover:to-black/80 transition-all duration-500 ease-in-out" />
+      {/* Professional Gradient Overlay (Blue-tinted bottom shadow for readability and brand consistency) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#120f54]/95 via-transparent to-black/20 group-hover:from-primary/95 group-hover:via-primary/40 group-hover:to-primary/60 transition-all duration-500 ease-in-out" />
 
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
@@ -41,7 +41,7 @@ export default function ServiceCard({ service, index }) {
         <div className="mt-auto transform transition-transform duration-500 relative z-20">
           {/* Decorative bar */}
           <div className="w-8 h-1 bg-primary mb-4 transition-all duration-500 group-hover:w-16 group-hover:bg-white rounded-full" />
-          <h3 className="text-xl md:text-2xl font-sora font-bold text-on-surface group-hover:text-white transition-colors duration-300">
+          <h3 className="text-xl md:text-2xl font-sora font-bold text-white transition-colors duration-300">
             {service.title}
           </h3>
         </div>
