@@ -4,11 +4,11 @@ import { staggerItem } from '../animations/stagger'
 
 // Category-specific accent colors for visual differentiation
 const TAG_ACCENT = {
-  'IT Infrastructure': { bar: '#3525cd', tagBg: 'rgba(53,37,205,0.08)',  tagText: '#3525cd' },
-  'Security Systems':  { bar: '#b45309', tagBg: 'rgba(180,83,9,0.08)',   tagText: '#b45309' },
-  'Networking':        { bar: '#0f766e', tagBg: 'rgba(15,118,110,0.08)', tagText: '#0f766e' },
+  'IT Infrastructure': { bar: '#1A6B8A', tagBg: 'rgba(26,107,138,0.08)',  tagText: '#1A6B8A' },
+  'Security Systems':  { bar: '#b45309', tagBg: 'rgba(180,83,9,0.08)',    tagText: '#b45309' },
+  'Networking':        { bar: '#0f766e', tagBg: 'rgba(15,118,110,0.08)',  tagText: '#0f766e' },
 }
-const DEFAULT_ACCENT = { bar: '#3525cd', tagBg: 'rgba(53,37,205,0.08)', tagText: '#3525cd' }
+const DEFAULT_ACCENT = { bar: '#1A6B8A', tagBg: 'rgba(26,107,138,0.08)', tagText: '#1A6B8A' }
 
 export default function CaseStudyCard({ study, variant = 'default' }) {
   if (variant === 'preview') {

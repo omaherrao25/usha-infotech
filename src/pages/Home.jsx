@@ -221,13 +221,13 @@ function QuoteSection() {
 
 // — Case Studies Preview —
 const CASE_TAG_ACCENT = {
-  'IT Infrastructure': '#3525cd',
+  'IT Infrastructure': '#1A6B8A',
   'Security Systems':  '#b45309',
   'Networking':        '#0f766e',
 }
 
 function CaseStudyRow({ study, index }) {
-  const color = CASE_TAG_ACCENT[study.tag] ?? '#3525cd'
+  const color = CASE_TAG_ACCENT[study.tag] ?? '#1A6B8A'
   const tagBg  = color + '14' // ~8% opacity
 
   return (
