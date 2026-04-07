@@ -162,7 +162,7 @@ function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {services.slice(0, 4).map((service, i) => (
             <ServiceCard key={service.id} service={service} index={i} />
