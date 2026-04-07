@@ -245,15 +245,15 @@ function CaseStudiesSection() {
             </p>
             <div className="flex flex-col gap-4 mb-10">
               {[
-                { icon: 'emoji_events', stat: '25 Cr+', label: 'Capital saved for clients' },
-                { icon: 'bolt', stat: '99.9%', label: 'Uptime across deployments' },
-                { icon: 'rocket_launch', stat: '40%', label: 'Average cost reduction' },
+                { stat: '25 Cr+', label: 'Capital saved for clients' },
+                { stat: '99.9%', label: 'Uptime across deployments' },
+                { stat: '40%', label: 'Average cost reduction' },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl">
-                  <span className="material-symbols-outlined text-primary text-2xl">{item.icon}</span>
+                <div key={item.label} className="flex items-center gap-6 p-6 bg-surface-container-low rounded-xl border border-outline/5 hover:border-primary/20 transition-all group">
+                  <div className="w-1 h-12 bg-primary/20 rounded-full group-hover:bg-primary transition-colors" />
                   <div>
-                    <div className="font-sora font-black text-xl text-on-surface">{item.stat}</div>
-                    <div className="text-sm text-on-surface-variant">{item.label}</div>
+                    <div className="font-sora font-black text-2xl text-on-surface tracking-tight">{item.stat}</div>
+                    <div className="text-sm font-medium text-on-surface-variant uppercase tracking-wide">{item.label}</div>
                   </div>
                 </div>
               ))}
