@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Hero from '../components/Hero'
 import ServiceCard from '../components/ServiceCard'
-import CaseStudyCard from '../components/CaseStudyCard'
 import CTASection from '../components/CTASection'
 import { services } from '../data/services'
 import { homePreviewCases, clients } from '../data/caseStudies'
@@ -162,7 +161,7 @@ function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {services.slice(0, 4).map((service, i) => (
             <ServiceCard key={service.id} service={service} index={i} />
@@ -221,67 +220,154 @@ function QuoteSection() {
 }
 
 // — Case Studies Preview —
+const CASE_TAG_ACCENT = {
+  'IT Infrastructure': '#3525cd',
+  'Security Systems':  '#b45309',
+  'Networking':        '#0f766e',
+}
+
+function CaseStudyRow({ study, index }) {
+  const color = CASE_TAG_ACCENT[study.tag] ?? '#3525cd'
+  const tagBg  = color + '14' // ~8% opacity
+
+  return (
+    <motion.div variants={staggerItem} className="group relative">
+      <Link to="/case-studies" className="block border-b border-surface-container-high">
+        {/* Left accent bar — scale-y reveals on hover */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-[3px] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{ backgroundColor: color }}
+        />
+
+        <div className="flex items-center gap-5 lg:gap-8 py-6 pl-7 pr-3 rounded-r-xl transition-colors duration-200 group-hover:bg-primary/[0.025]">
+          {/* Index number */}
+          <span className="font-sora font-black text-[1.9rem] leading-none w-9 shrink-0 text-surface-dim group-hover:text-primary/20 transition-colors duration-300 tabular-nums select-none">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+
+          {/* Logo */}
+          <div className="w-[72px] h-7 shrink-0 hidden sm:flex items-center">
+            {study.logo ? (
+              <img
+                src={study.logo}
+                alt={study.client}
+                className="h-full w-full max-w-[72px] object-contain opacity-50 group-hover:opacity-90 transition-opacity duration-300"
+              />
+            ) : (
+              <span className="text-xl leading-none">{study.icon}</span>
+            )}
+          </div>
+
+          {/* Client name + title */}
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-extrabold text-outline uppercase tracking-[0.18em] mb-1 leading-none">
+              {study.client}
+            </p>
+            <h3 className="font-sora font-bold text-base lg:text-[1.05rem] text-on-surface leading-snug group-hover:text-primary transition-colors duration-250 truncate">
+              {study.title}
+            </h3>
+          </div>
+
+          {/* Category badge */}
+          <span
+            className="text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full shrink-0 hidden md:inline-block"
+            style={{ color, backgroundColor: tagBg }}
+          >
+            {study.tag}
+          </span>
+
+          {/* Metrics */}
+          <div className="hidden lg:flex items-stretch divide-x divide-surface-container-high shrink-0">
+            {[study.metric1, study.metric2].map((m, i) => (
+              <div key={m.label} className={`${i === 0 ? 'pr-6' : 'px-6'} text-right`}>
+                <div className="font-sora font-black text-lg text-on-surface group-hover:text-primary transition-colors duration-250 leading-none mb-1">
+                  {m.val}
+                </div>
+                <div className="text-[10px] text-outline font-semibold uppercase tracking-wide whitespace-nowrap">
+                  {m.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Arrow */}
+          <span className="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-1.5 transition-all duration-300 shrink-0">
+            arrow_forward
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  )
+}
+
 function CaseStudiesSection() {
   return (
     <section className="py-24 lg:py-32 bg-surface-container-low" id="cases">
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left text */}
-          <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="lg:sticky lg:top-28"
-          >
-            <span className="section-label">Client Success Stories</span>
-            <h2 className="font-sora font-extrabold text-4xl lg:text-5xl xl:text-6xl text-on-surface leading-tight mb-6">
-              500+ Businesses
-              <br />
-              <span className="text-primary-container">Transformed.</span>
-            </h2>
-            <p className="text-on-surface-variant text-base leading-relaxed mb-8">
-              99.9% uptime guaranteed &middot; 40% average cost savings &middot; Zero-downtime migrations &middot; 25 years trusted
-            </p>
-            <div className="flex flex-col gap-4 mb-10">
-              {[
-                { stat: '25 Cr+', label: 'Capital saved for clients' },
-                { stat: '99.9%', label: 'Uptime across deployments' },
-                { stat: '40%', label: 'Average cost reduction' },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-6 p-6 bg-surface-container-low rounded-xl border border-outline/5 hover:border-primary/20 transition-all group">
-                  <div className="w-1 h-12 bg-primary/20 rounded-full group-hover:bg-primary transition-colors" />
-                  <div>
-                    <div className="font-sora font-black text-2xl text-on-surface tracking-tight">{item.stat}</div>
-                    <div className="text-sm font-medium text-on-surface-variant uppercase tracking-wide">{item.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <a href="tel:+918087051208" className="btn-primary py-4 px-7">
-                Get Free IT Consultation
-              </a>
-              <Link to="/case-studies" className="btn-secondary py-4 px-7">
-                View All Stories
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </Link>
-            </div>
-          </motion.div>
 
-          {/* Right: cards */}
-          <motion.div
-            variants={staggerMed}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="flex flex-col gap-6"
-          >
-            {homePreviewCases.map((study) => (
-              <CaseStudyCard key={study.client} study={study} variant="preview" />
+        {/* Header — headline left, stats right */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 pb-12 mb-0 border-b border-surface-container-high"
+        >
+          <div className="max-w-lg">
+            <span className="section-label">Client Success Stories</span>
+            <h2 className="font-sora font-extrabold text-4xl lg:text-5xl text-on-surface leading-tight">
+              Results that speak
+              <br />
+              <span className="text-primary-container">louder than claims.</span>
+            </h2>
+          </div>
+
+          {/* 4 stats — clean, no boxes */}
+          <div className="grid grid-cols-2 gap-x-10 gap-y-5 lg:text-right shrink-0">
+            {[
+              { val: '500+',   label: 'Businesses served' },
+              { val: '25 Cr+', label: 'Capital saved'     },
+              { val: '99.9%',  label: 'Avg. uptime'       },
+              { val: '40%',    label: 'Cost reduction'    },
+            ].map((s) => (
+              <div key={s.label}>
+                <div className="font-sora font-black text-3xl text-on-surface leading-none mb-1.5">{s.val}</div>
+                <div className="text-sm text-outline font-medium">{s.label}</div>
+              </div>
             ))}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+
+        {/* Numbered case study rows */}
+        <motion.div
+          variants={staggerMed}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mb-14"
+        >
+          {homePreviewCases.map((study, i) => (
+            <CaseStudyRow key={study.client} study={study} index={i} />
+          ))}
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="flex flex-wrap gap-4"
+        >
+          <a href="tel:+918087051208" className="btn-primary py-4 px-7">
+            Get Free IT Consultation
+          </a>
+          <Link to="/case-studies" className="btn-secondary py-4 px-7">
+            View All Stories
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </Link>
+        </motion.div>
+
       </div>
     </section>
   )
