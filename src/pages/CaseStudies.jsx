@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
@@ -32,11 +33,8 @@ function MetricsBar() {
               variants={staggerItem}
               className="flex flex-col items-center text-center"
             >
-              <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-3">
-                <span className="material-symbols-outlined text-primary-container text-2xl">{m.icon}</span>
-              </div>
               <div className="font-sora font-black text-2xl lg:text-3xl text-white mb-0.5">{m.val}</div>
-              <div className="text-xs text-outline font-medium leading-tight">{m.label}</div>
+              <div className="text-xs text-outline font-medium uppercase tracking-widest leading-tight">{m.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -45,21 +43,27 @@ function MetricsBar() {
   )
 }
 
-function IndustryNav() {
+function IndustryNav({ activeId }) {
   return (
-    <div className="sticky top-20 z-40 bg-surface/70 backdrop-blur-xl">
+    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
       <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
         <div className="flex gap-2 py-3 min-w-max">
-          {caseStudies.map((s) => (
-            <a
-              key={s.id}
-              href={`#case-${s.id}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all whitespace-nowrap font-sora"
-            >
-              <span>{s.icon}</span>
-              {s.client}
-            </a>
-          ))}
+          {caseStudies.map((s) => {
+            const isActive = activeId === s.id
+            return (
+              <a
+                key={s.id}
+                href={`#case-${s.id}`}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
+                  isActive
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
+                }`}
+              >
+                {s.client}
+              </a>
+            )
+          })}
         </div>
       </div>
     </div>
@@ -126,6 +130,32 @@ function TestimonialsStrip() {
 }
 
 export default function CaseStudies() {
+  const [activeId, setActiveId] = useState('')
+
+  useEffect(() => {
+    const handleObserver = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id.replace('case-', ''))
+            }
+          })
+        },
+        { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
+      )
+
+      caseStudies.forEach((study) => {
+        const el = document.getElementById(`case-${study.id}`)
+        if (el) observer.observe(el)
+      })
+      return observer
+    }
+
+    const obs = handleObserver()
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <>
       <SEO
@@ -142,7 +172,7 @@ export default function CaseStudies() {
       />
 
       <MetricsBar />
-      <IndustryNav />
+      <IndustryNav activeId={activeId} />
 
       {caseStudies.map((study, index) => (
         <CaseStudySplitSection key={study.id} study={study} index={index} />
