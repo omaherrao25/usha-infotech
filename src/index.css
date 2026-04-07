@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --primary: #1A6B8A;
-    --primary-container: #1d8cb6;
+    --primary-container: #1a7d96;
     --surface: #f7f9fb;
     --on-surface: #191c1e;
     --outline-variant: #c7c4d8;
@@ -49,7 +49,7 @@
 
   /* Focus visible styles for keyboard navigation */
   :focus-visible {
-    outline: 2px solid #1d8cb6;
+    outline: 2px solid #1a7d96;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -84,7 +84,7 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: linear-gradient(90deg, #1A6B8A, #1d8cb6);
+    background: linear-gradient(90deg, #1A6B8A, #1a7d96);
     z-index: 9999;
     transition: width 0.1s linear;
   }
@@ -135,7 +135,7 @@
     transform: scale(0.97);
   }
   .btn-primary:focus-visible {
-    outline: 2px solid #1d8cb6;
+    outline: 2px solid #1a7d96;
     outline-offset: 2px;
   }
 
@@ -271,7 +271,7 @@
 
   /* Gradient accent text */
   .gradient-text {
-    background: linear-gradient(135deg, #1A6B8A 0%, #1d8cb6 100%);
+    background: linear-gradient(135deg, #1A6B8A 0%, #1a7d96 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

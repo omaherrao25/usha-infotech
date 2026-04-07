@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Hero from '../components/Hero'
@@ -148,7 +149,7 @@ function ServicesSection() {
         >
           <div className="max-w-2xl">
             <h2 className="text-5xl font-sora font-extrabold tracking-tighter mb-6 text-on-surface">
-              Precision Services for Critical Operations.
+              Precision Services for Critical Operations
             </h2>
             <p className="text-xl text-on-surface-variant font-light">
               Combining technical rigor with proactive human oversight to ensure total operational continuity.
@@ -374,59 +375,208 @@ function CaseStudiesSection() {
 }
 
 // — Process/How We Work —
-const steps = [
-  { icon: 'call', step: '01', title: 'Free Consultation', desc: 'Call or WhatsApp us. We discuss your requirements, timeline and budget — no obligations.' },
-  { icon: 'assignment', step: '02', title: 'Site Survey & Quote', desc: 'Our engineers visit your site (or do a remote assessment) and deliver a detailed, transparent quotation.' },
-  { icon: 'bolt', step: '03', title: 'Deployment', desc: 'Our trained team handles the entire installation — hardware, software, networking — with zero mess left behind.' },
-  { icon: 'shield', step: '04', title: 'Support & AMC', desc: 'Post-installation support, AMC contracts, and 24-hr replacement guarantee keep you running smoothly.' },
+
+const processSteps = [
+  { title: 'Free Consultation Call', desc: 'Call or WhatsApp us to discuss your requirements, timeline, and budget — absolutely no obligations attached.', icon: 'call' },
+  { title: 'Site Survey & Planning', desc: 'Our engineers visit your site or do a remote assessment, then deliver a detailed, transparent quotation.', icon: 'search' },
+  { title: 'Deployment & Support', desc: 'Our trained team handles installation end-to-end with post-deployment AMC and 24-hr replacement guarantee.', icon: 'build' },
 ]
 
 function ProcessSection() {
+  const sectionRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  })
+
+  // Animate path drawing
+  const pathLength = useSpring(
+    useTransform(scrollYProgress, [0.1, 0.55], [0, 1]),
+    { stiffness: 60, damping: 20 }
+  )
+
+  // Animate step reveals
+  const step1Opacity = useTransform(scrollYProgress, [0.12, 0.25], [0, 1])
+  const step1Y = useTransform(scrollYProgress, [0.12, 0.25], [30, 0])
+  const step2Opacity = useTransform(scrollYProgress, [0.22, 0.35], [0, 1])
+  const step2Y = useTransform(scrollYProgress, [0.22, 0.35], [30, 0])
+  const step3Opacity = useTransform(scrollYProgress, [0.32, 0.45], [0, 1])
+  const step3Y = useTransform(scrollYProgress, [0.32, 0.45], [30, 0])
+
+  const stepAnims = [
+    { opacity: step1Opacity, y: step1Y },
+    { opacity: step2Opacity, y: step2Y },
+    { opacity: step3Opacity, y: step3Y },
+  ]
+
   return (
-    <section className="py-24 lg:py-32 bg-surface" id="process">
-      <div className="max-w-7xl mx-auto px-8">
+    <section ref={sectionRef} className="py-24 lg:py-32 overflow-hidden relative" id="process"
+      style={{ background: '#0f1923' }}
+    >
+      {/* Decorative background circles */}
+      <div className="absolute top-8 right-[-40px] w-[260px] h-[260px] rounded-full border-[28px] pointer-events-none"
+        style={{ borderColor: 'rgba(26,107,138,0.08)' }} />
+      <div className="absolute bottom-[-60px] left-[-80px] w-[200px] h-[200px] rounded-full border-[22px] pointer-events-none"
+        style={{ borderColor: 'rgba(26,107,138,0.06)' }} />
+      <div className="absolute top-[40%] right-[5%] w-[120px] h-[120px] rounded-full pointer-events-none hidden lg:block"
+        style={{ background: 'rgba(26,107,138,0.05)' }} />
+
+      <div className="max-w-7xl mx-auto px-8 relative">
+        {/* Full-width heading */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-16"
+          className="mb-20 max-w-3xl"
         >
-          <span className="section-label">How We Work</span>
-          <h2 className="font-sora font-extrabold text-4xl lg:text-5xl text-on-surface mb-4">
-            Simple Process.<br />
-            <span className="text-primary-container">Zero Hassle.</span>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] mb-6 block"
+            style={{ color: '#1A6B8A' }}>
+            How We Work
+          </span>
+          <h2 className="font-sora font-extrabold text-4xl lg:text-5xl xl:text-[3.5rem] leading-tight text-white">
+            Our team of experts deliver
+            <br />
+            <span style={{ color: '#1a9dbb' }}>precision and reliability</span>
+            {' '}at every step.
           </h2>
         </motion.div>
 
-        <motion.div
-          variants={staggerMed}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {steps.map((step) => (
-            <motion.div
-              key={step.step}
-              variants={staggerItem}
-              className="relative bg-surface-container-lowest rounded-2xl p-8 group hover:translate-y-[-4px] transition-all duration-300"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary text-2xl">{step.icon}</span>
-                </div>
-                <span className="font-sora font-black text-5xl text-outline/10 group-hover:text-primary/10 transition-colors">
-                  {step.step}
-                </span>
-              </div>
-              <h3 className="font-sora font-bold text-lg text-on-surface mb-3 group-hover:text-primary transition-colors">
-                {step.title}
+        {/* Horizontal timeline — dots on curve, text alternating above/below */}
+        {/* Horizontal timeline — dots on curve, text alternating above/below */}
+        <div className="relative hidden md:block" style={{ height: '420px' }}>
+          {/* SVG curved line — fills the container height to sync coordinates */}
+          <svg
+            className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none w-full h-full"
+            viewBox="0 0 1000 420"
+            fill="none"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            {/* 
+              Curve coordinates (x, y):
+              Start: 0, 240
+              Point 1 (Step 1): ~100, 240
+              Point 2 (Step 2): ~460, 160
+              Point 3 (Step 3): ~900, 220
+              End: 1000, 230
+            */}
+            {/* Ghost path */}
+            <path
+              d="M 0 240 C 50 240, 70 240, 100 240 C 250 240, 300 160, 460 160 C 650 160, 750 220, 900 220 C 950 220, 980 230, 1000 230"
+              stroke="#1A6B8A"
+              strokeWidth="2"
+              strokeLinecap="round"
+              fill="none"
+              opacity="0.15"
+            />
+            {/* Animated path */}
+            <motion.path
+              d="M 0 240 C 50 240, 70 240, 100 240 C 250 240, 300 160, 460 160 C 650 160, 750 220, 900 220 C 950 220, 980 230, 1000 230"
+              stroke="#1A6B8A"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+              style={{ pathLength }}
+            />
+            {/* Glow */}
+            <motion.path
+              d="M 0 240 C 50 240, 70 240, 100 240 C 250 240, 300 160, 460 160 C 650 160, 750 220, 900 220 C 950 220, 980 230, 1000 230"
+              stroke="#1A6B8A"
+              strokeWidth="8"
+              strokeLinecap="round"
+              fill="none"
+              opacity="0.1"
+              style={{ pathLength }}
+            />
+          </svg>
+
+          {/* Step 1 — dot on curve, text BELOW */}
+          <motion.div
+            className="absolute"
+            style={{ left: '10%', top: '240px', transform: 'translate(-50%, -50%)', opacity: step1Opacity }}
+          >
+            <div className="w-[18px] h-[18px] rounded-full border-[2.5px] flex items-center justify-center mx-auto relative z-10"
+              style={{ borderColor: '#1A6B8A', background: 'rgba(15,25,35,0.9)' }}>
+              <div className="w-[7px] h-[7px] rounded-full" style={{ background: '#1a9dbb' }} />
+            </div>
+            <motion.div className="mt-8 w-[240px] text-center absolute left-1/2 -translate-x-1/2" style={{ y: step1Y }}>
+              <span className="font-sora font-black text-[8rem] leading-none select-none absolute pointer-events-none"
+                style={{ color: 'rgba(26,107,138,0.07)', top: '-10px', left: '50%', transform: 'translateX(-50%)' }}>
+                1
+              </span>
+              <h3 className="font-sora font-bold text-base text-white mb-2 relative">
+                {processSteps[0].title}
               </h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{step.desc}</p>
+              <p className="text-sm leading-relaxed relative mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                {processSteps[0].desc}
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Step 2 — dot on curve, text ABOVE */}
+          <motion.div
+            className="absolute"
+            style={{ left: '46%', top: '160px', transform: 'translate(-50%, -50%)', opacity: step2Opacity }}
+          >
+            <motion.div className="mb-8 w-[260px] text-center absolute bottom-full left-1/2 -translate-x-1/2" style={{ y: step2Y }}>
+              <span className="font-sora font-black text-[8rem] leading-none select-none absolute pointer-events-none"
+                style={{ color: 'rgba(26,107,138,0.07)', bottom: '-20px', left: '50%', transform: 'translateX(-50%)' }}>
+                2
+              </span>
+              <h3 className="font-sora font-bold text-base text-white mb-2 relative">
+                {processSteps[1].title}
+              </h3>
+              <p className="text-sm leading-relaxed relative mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                {processSteps[1].desc}
+              </p>
+            </motion.div>
+            <div className="w-[18px] h-[18px] rounded-full border-[2.5px] flex items-center justify-center mx-auto relative z-10"
+              style={{ borderColor: '#1A6B8A', background: 'rgba(15,25,35,0.9)' }}>
+              <div className="w-[7px] h-[7px] rounded-full" style={{ background: '#1a9dbb' }} />
+            </div>
+          </motion.div>
+
+          {/* Step 3 — dot on curve, text BELOW */}
+          <motion.div
+            className="absolute"
+            style={{ left: '90%', top: '220px', transform: 'translate(-50%, -50%)', opacity: step3Opacity }}
+          >
+            <div className="w-[18px] h-[18px] rounded-full border-[2.5px] flex items-center justify-center mx-auto relative z-10"
+              style={{ borderColor: '#1A6B8A', background: 'rgba(15,25,35,0.9)' }}>
+              <div className="w-[7px] h-[7px] rounded-full" style={{ background: '#1a9dbb' }} />
+            </div>
+            <motion.div className="mt-8 w-[240px] text-center absolute left-1/2 -translate-x-1/2" style={{ y: step3Y }}>
+              <span className="font-sora font-black text-[8rem] leading-none select-none absolute pointer-events-none"
+                style={{ color: 'rgba(26,107,138,0.07)', top: '-10px', left: '50%', transform: 'translateX(-50%)' }}>
+                3
+              </span>
+              <h3 className="font-sora font-bold text-base text-white mb-2 relative">
+                {processSteps[2].title}
+              </h3>
+              <p className="text-sm leading-relaxed relative mx-auto" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                {processSteps[2].desc}
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Mobile fallback — vertical stack */}
+        <div className="md:hidden space-y-10">
+          {processSteps.map((step, i) => (
+            <motion.div key={step.title} className="flex gap-5 items-start"
+              style={{ opacity: stepAnims[i].opacity, y: stepAnims[i].y }}>
+              <div className="w-[18px] h-[18px] rounded-full border-[2.5px] flex items-center justify-center shrink-0 mt-1"
+                style={{ borderColor: '#1A6B8A', background: 'rgba(26,107,138,0.15)' }}>
+                <div className="w-[7px] h-[7px] rounded-full" style={{ background: '#1a9dbb' }} />
+              </div>
+              <div>
+                <h3 className="font-sora font-bold text-base text-white mb-1.5">{step.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{step.desc}</p>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

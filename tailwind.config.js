@@ -23,7 +23,7 @@ export default {
         },
         primary: {
           DEFAULT: '#1A6B8A',
-          container: '#1d8cb6',
+          container: '#1a7d96',
           fixed: '#cce8f4',
           'fixed-dim': '#94cfe5',
         },

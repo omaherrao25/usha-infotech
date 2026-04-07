@@ -6,15 +6,15 @@ export default function ServiceCard({ service, index }) {
   return (
     <motion.div
       variants={staggerItem}
-      className="group relative h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
+      className="group relative h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
     >
       {/* Background Image (Always visible, blurs and scales up on hover) */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 group-hover:blur-[6px]"
         style={{ backgroundImage: `url('/assets/${service.image}.png')` }}
       />
-      {/* Dark overlay for contrast over image (Slightly dark by default, darker on hover) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 group-hover:from-black/95 group-hover:via-black/70 group-hover:to-black/80 transition-all duration-500 ease-in-out" />
+      {/* Teal overlay for contrast over image */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0d3d52]/88 via-[#1A6B8A]/15 to-[#0d3d52]/35 group-hover:from-[#0a2e3e]/97 group-hover:via-[#1A6B8A]/65 group-hover:to-[#0a2e3e]/88 transition-all duration-500 ease-in-out" />
 
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
@@ -41,7 +41,7 @@ export default function ServiceCard({ service, index }) {
         <div className="mt-auto transform transition-transform duration-500 relative z-20">
           {/* Decorative bar */}
           <div className="w-8 h-1 bg-primary mb-4 transition-all duration-500 group-hover:w-16 group-hover:bg-white rounded-full" />
-          <h3 className="text-xl md:text-2xl font-sora font-bold text-on-surface group-hover:text-white transition-colors duration-300">
+          <h3 className="text-xl md:text-2xl font-sora font-bold text-white/90 group-hover:text-white transition-colors duration-300">
             {service.title}
           </h3>
         </div>
