@@ -10,8 +10,8 @@ export default function ServiceCard({ service, index }) {
     >
       {/* Number + Icon row */}
       <div className="flex justify-between items-start mb-10">
-        <div className="w-16 h-16 bg-primary/5 rounded-xl flex items-center justify-center">
-          <span className="text-3xl">{service.icon}</span>
+        <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary transition-colors duration-500">
+          <span className="material-symbols-outlined text-3xl text-primary group-hover:text-white transition-colors duration-500">{service.icon}</span>
         </div>
         <span className="text-4xl font-sora font-black text-outline/10">
           {String(index + 1).padStart(2, '0')}

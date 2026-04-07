@@ -95,7 +95,7 @@ export default function ServiceSplitSection({ service, index }) {
             />
           ) : (
             <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
-              <span className="text-[100px] opacity-40">{service.icon}</span>
+              <span className="material-symbols-outlined text-[120px] text-primary/10">{service.icon}</span>
             </div>
           )}
         </div>

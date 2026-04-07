@@ -13,7 +13,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
           {study.logo ? (
             <img src={study.logo} alt={study.client} className="h-10 max-w-[140px] object-contain" />
           ) : (
-            <span className="text-4xl">{study.icon}</span>
+            <span className="material-symbols-outlined text-4xl text-primary">{study.icon}</span>
           )}
           <span className="tag-pill shrink-0 ml-auto">{study.tag}</span>
         </div>

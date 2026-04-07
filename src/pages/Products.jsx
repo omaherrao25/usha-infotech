@@ -194,32 +194,7 @@ export default function Products() {
         </div>
       </section>
 
-      {/* Ledger Stats Bar */}
-      <section className="max-w-7xl mx-auto px-8 mb-24">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="bg-on-surface text-surface py-16 px-12 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-16"
-        >
-          <div>
-            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Availability</span>
-            <p className="text-4xl font-sora font-bold">98.4%</p>
-            <p className="text-surface-dim mt-2 text-sm">System uptime for rented hardware clusters across global nodes.</p>
-          </div>
-          <div>
-            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Certification</span>
-            <p className="text-4xl font-sora font-bold">ISO 27001</p>
-            <p className="text-surface-dim mt-2 text-sm">Every refurbished unit undergoes a 124-point laboratory stress test.</p>
-          </div>
-          <div>
-            <span className="text-primary-container font-bold text-xs tracking-widest uppercase block mb-4">Logistics</span>
-            <p className="text-4xl font-sora font-bold">24hr Ship</p>
-            <p className="text-surface-dim mt-2 text-sm">Priority logistics infrastructure for rental emergency replacement.</p>
-          </div>
-        </motion.div>
-      </section>
+
 
       <CTASection
         title="Need a quote or bulk pricing?"
