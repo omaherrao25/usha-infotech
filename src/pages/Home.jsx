@@ -245,10 +245,12 @@ function QuoteSection() {
             that supports the human experience."
           </blockquote>
           <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
-              <span className="material-symbols-outlined text-on-surface text-2xl">
-                person
-              </span>
+            <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white/10">
+              <img
+                src="/assets/SameerAgarwal.jpeg"
+                alt="Sameer Agarwal"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div className="text-left">
               <p className="font-bold text-white">Sameer Agarwal</p>
