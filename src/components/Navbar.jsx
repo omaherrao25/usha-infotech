@@ -48,9 +48,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         role="banner"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-surface/70 backdrop-blur-xl shadow-nav'
-            : 'bg-transparent'
+          scrolled ? 'bg-surface/70 backdrop-blur-xl shadow-nav' : 'bg-transparent'
         }`}
       >
         <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">

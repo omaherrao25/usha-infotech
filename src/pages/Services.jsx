@@ -91,6 +91,8 @@ export default function Services() {
         accent="IT Solutions"
         subtitle="We architect resilient digital foundations through human-centric engineering and precision technical oversight."
         badges={['Cloud Architecture', 'Cybersecurity', 'Networking', 'AMC Support', 'Hardware Supply', 'IT Rentals']}
+        bgImage="IT Infra Service.webp"
+        invertImage
       />
 
       <ServiceQuickNav activeId={activeId} />

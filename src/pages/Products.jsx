@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import ProductCard from '../components/ProductCard'
 import CTASection from '../components/CTASection'
@@ -9,83 +9,138 @@ import { fadeUp, viewportOnce } from '../animations/fadeUp'
 import { staggerFast, staggerItem } from '../animations/stagger'
 
 const categoryMeta = {
-  laptops: { label: 'Laptops & Desktops', icon: 'computer', desc: 'Authorised Dell, HP & Lenovo — enterprise grade' },
-  networking: { label: 'Networking Equipment', icon: 'router', desc: 'Cisco, Fortinet, TP-Link — complete enterprise stacks' },
-  cctv: { label: 'Security Systems', icon: 'videocam', desc: 'Hikvision, Dahua, CP-Plus — 4K to industrial grade' },
-  refurbished: { label: 'Grade-A Refurbished Systems', icon: 'recycling', desc: '60% savings · 3-month warranty · bulk ready' },
-  accessories: { label: 'Accessories & Peripherals', icon: 'cable', desc: 'UPS, cabling, monitors, racks — everything else' },
+  all:         { label: 'All Products',               icon: 'grid_view',   desc: 'Full product catalog' },
+  laptops:     { label: 'Laptops & Desktops',         icon: 'computer',    desc: 'Authorised Dell, HP & Lenovo — enterprise grade' },
+  networking:  { label: 'Networking Equipment',       icon: 'router',      desc: 'Cisco, Fortinet, TP-Link — complete enterprise stacks' },
+  cctv:        { label: 'Security Systems',           icon: 'videocam',    desc: 'Hikvision, Dahua, CP-Plus — 4K to industrial grade' },
+  refurbished: { label: 'Grade-A Refurbished',        icon: 'recycling',   desc: '60% savings · 3-month warranty · bulk ready' },
+  accessories: { label: 'Accessories & Peripherals',  icon: 'cable',       desc: 'UPS, cabling, monitors, racks — everything else' },
 }
 
-function CategorySection({ category, items, isVisible, metaOverrides }) {
-  if (!isVisible || items.length === 0) return null
-  const meta = metaOverrides || categoryMeta[category]
+const categoriesOrder = ['laptops', 'networking', 'cctv', 'refurbished', 'accessories']
 
+// — Sticky Nav (identical pattern to Services & CaseStudies) —
+function ProductQuickNav({ activeId }) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="mb-16"
-    >
-      <div className="flex items-center gap-5 mb-8">
-        <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center">
-          <span className="material-symbols-outlined text-primary text-2xl">{meta?.icon || 'devices'}</span>
+    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-2 py-3 min-w-max">
+          {categoriesOrder.map((id) => {
+            const meta = categoryMeta[id]
+            const isActive = activeId === id
+            return (
+              <a
+                key={id}
+                href={`#cat-${id}`}
+                className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
+                  isActive
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
+                }`}
+              >
+                {meta.label}
+              </a>
+            )
+          })}
         </div>
-        <div>
-          <h3 className="font-sora font-bold text-xl text-on-surface">{meta?.label}</h3>
-          <p className="text-sm text-outline">{meta?.desc}</p>
-        </div>
-        <div className="flex-1 h-px bg-outline-variant/20 ml-4" />
       </div>
-
-      <motion.div
-        variants={staggerFast}
-        initial="hidden"
-        animate="visible"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
-      >
-        {items.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </motion.div>
-    </motion.div>
-  )
-}
-
-function AccessoriesCatalog({ allItems }) {
-  return (
-    <div className="mt-8">
-      <div className="text-center mb-16">
-        <h2 className="font-sora font-bold text-3xl lg:text-4xl text-on-surface mb-4">Complete IT Accessories Catalog</h2>
-        <p className="text-on-surface-variant max-w-2xl mx-auto">Everything your office IT setup needs — from structured cabling and UPS systems to GPUs, monitors, and networking racks.</p>
-      </div>
-
-      {accessorySubcategories.map((sub) => {
-        const subItems = allItems.filter(p => p.subCategory === sub.id)
-        if (subItems.length === 0) return null
-        return (
-          <CategorySection
-            key={sub.id}
-            category={sub.id}
-            items={subItems}
-            isVisible={true}
-            metaOverrides={{ label: sub.label, icon: sub.icon || 'category', desc: sub.desc }}
-          />
-        )
-      })}
     </div>
   )
 }
 
+// — Category Section with scroll anchor —
+function CategorySection({ categoryId }) {
+  const meta = categoryMeta[categoryId]
+  const items =
+    categoryId === 'accessories'
+      ? products.filter((p) => p.category === 'accessories')
+      : products.filter((p) => p.category === categoryId)
+
+  if (items.length === 0) return null
+
+  return (
+    <section id={`cat-${categoryId}`} className="pt-16 pb-8 scroll-mt-40">
+      <div className="max-w-7xl mx-auto px-8">
+        {/* Section header */}
+        <div className="flex items-center gap-5 mb-10">
+          <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-primary text-2xl">{meta.icon}</span>
+          </div>
+          <div>
+            <h2 className="font-sora font-bold text-xl text-on-surface">{meta.label}</h2>
+            <p className="text-sm text-outline">{meta.desc}</p>
+          </div>
+          <div className="flex-1 h-px bg-outline-variant/20 ml-4" />
+        </div>
+
+        {categoryId === 'accessories' ? (
+          // Accessories — rendered by sub-category
+          <div>
+            {accessorySubcategories.map((sub) => {
+              const subItems = items.filter((p) => p.subCategory === sub.id)
+              if (subItems.length === 0) return null
+              return (
+                <div key={sub.id} className="mb-16">
+                  <div className="flex items-center gap-4 mb-8">
+                    <h3 className="font-sora font-semibold text-base text-on-surface-variant">{sub.label}</h3>
+                    <div className="flex-1 h-px bg-outline-variant/10" />
+                  </div>
+                  <motion.div
+                    variants={staggerFast}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    {subItems.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </motion.div>
+                </div>
+              )
+            })}
+          </div>
+        ) : (
+          <motion.div
+            variants={staggerFast}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {items.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </motion.div>
+        )}
+      </div>
+    </section>
+  )
+}
+
 export default function Products() {
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeId, setActiveId] = useState('laptops')
 
-  const filteredProducts = activeCategory === 'all'
-    ? products
-    : products.filter((p) => p.category === activeCategory)
+  // IntersectionObserver — same pattern as Services & CaseStudies
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id.replace('cat-', ''))
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
+    )
 
-  const categoriesOrder = ['laptops', 'networking', 'cctv', 'refurbished', 'accessories']
+    categoriesOrder.forEach((id) => {
+      const el = document.getElementById(`cat-${id}`)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
@@ -95,100 +150,45 @@ export default function Products() {
         description="Authorised Dell, HP & Lenovo dealer. Enterprise laptops, networking gear, CCTV cameras, refurbished systems and IT accessories. GEM registered. Pan-India delivery."
       />
 
-      {/* Editorial Hero */}
-      <section className="pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="editorial-grid">
-            <div className="col-span-12">
-              <span className="section-label mb-6 block">Inventory Ledger v.2026</span>
-              <h1 className="text-6xl md:text-8xl font-sora font-extrabold tracking-tighter text-on-surface leading-[0.9] mb-8">
-                Precision<br />Infrastructure.
-              </h1>
-              <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-                Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
-              </p>
-            </div>
+      {/* Hero */}
+      <section className="relative pt-36 pb-28 overflow-hidden min-h-[560px] flex items-center">
+        <div className="absolute inset-x-0 top-0 h-20 bg-surface" aria-hidden="true" />
+        <div className="absolute inset-x-0 top-20 bottom-0" aria-hidden="true">
+          <img src="/assets/hw_real.png" alt="" className="w-full h-full object-cover object-center" />
+        </div>
+        <div
+          className="absolute inset-x-0 top-20 bottom-0"
+          aria-hidden="true"
+          style={{ background: 'linear-gradient(105deg, rgba(11,25,35,0.92) 0%, rgba(11,25,35,0.82) 40%, rgba(11,25,35,0.55) 70%, rgba(11,25,35,0.25) 100%)' }}
+        />
+        <div
+          className="absolute inset-x-0 top-20 bottom-0"
+          aria-hidden="true"
+          style={{ background: 'linear-gradient(180deg, rgba(26,107,138,0.18) 0%, transparent 60%)' }}
+        />
+        <div className="relative max-w-7xl mx-auto px-8 w-full">
+          <div className="max-w-3xl">
+            <span className="section-label mb-6 block text-primary-fixed-dim">Inventory Ledger v.2026</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-sora font-extrabold tracking-tighter text-white leading-[0.9] mb-7">
+              Precision<br />
+              <span className="text-primary-fixed-dim">Infrastructure.</span>
+            </h1>
+            <p className="text-lg text-white/75 max-w-2xl font-light leading-relaxed">
+              Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Catalog Controls */}
-      <section className="max-w-7xl mx-auto px-8 mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant/20 pb-8 gap-8">
-          <div className="flex flex-wrap gap-8">
-            <div className="flex flex-col gap-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-outline">Hardware Type</label>
-              <div className="flex gap-2 flex-wrap">
-                {productCategories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
-                      activeCategory === cat.id
-                        ? 'border border-primary text-primary'
-                        : 'border border-outline-variant/30 text-on-surface-variant hover:border-primary/50'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="text-right">
-            <span className="text-sm font-manrope text-outline">
-              Displaying {filteredProducts.length} of {products.length} Units
-            </span>
-          </div>
-        </div>
-      </section>
+      {/* Sticky Quick Nav — same as Services & CaseStudies */}
+      <ProductQuickNav activeId={activeId} />
 
-      {/* Products grid */}
-      <section className="pb-16 lg:pb-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <AnimatePresence mode="wait">
-            {activeCategory === 'all' ? (
-              <motion.div key="all">
-                {categoriesOrder.map((cat) => {
-                  const items = products.filter((p) => p.category === cat)
-                  if (cat === 'accessories') {
-                    return (
-                      <div key={cat} className="mt-20 pt-16 border-t border-outline-variant/20">
-                        <AccessoriesCatalog allItems={items} />
-                      </div>
-                    )
-                  }
-                  return (
-                    <CategorySection key={cat} category={cat} items={items} isVisible={true} />
-                  )
-                })}
-              </motion.div>
-            ) : activeCategory === 'accessories' ? (
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <AccessoriesCatalog allItems={filteredProducts} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <CategorySection category={activeCategory} items={filteredProducts} isVisible={true} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-
+      {/* All category sections — always rendered, scroll-based */}
+      <div className="pb-16 lg:pb-20">
+        {categoriesOrder.map((id) => (
+          <CategorySection key={id} categoryId={id} />
+        ))}
+      </div>
 
       <CTASection
         title="Need a quote or bulk pricing?"

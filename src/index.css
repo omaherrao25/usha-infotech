@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --primary: #3525cd;
-    --primary-container: #4f46e5;
+    --primary: #1A6B8A;
+    --primary-container: #1a7d96;
     --surface: #f7f9fb;
     --on-surface: #191c1e;
     --outline-variant: #c7c4d8;
@@ -49,7 +49,7 @@
 
   /* Focus visible styles for keyboard navigation */
   :focus-visible {
-    outline: 2px solid #4f46e5;
+    outline: 2px solid #1a7d96;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -84,7 +84,7 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: linear-gradient(90deg, #3525cd, #4f46e5);
+    background: linear-gradient(90deg, #1A6B8A, #1a7d96);
     z-index: 9999;
     transition: width 0.1s linear;
   }
@@ -103,7 +103,7 @@
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #3525cd;
+    color: #1A6B8A;
     margin-bottom: 24px;
     font-family: 'Manrope', sans-serif;
   }
@@ -113,7 +113,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #4f46e5;
+    background: #1A6B8A;
     color: white;
     padding: 16px 32px;
     border-radius: 0.5rem;
@@ -124,18 +124,18 @@
     border: none;
     cursor: pointer;
     font-family: 'Sora', sans-serif;
-    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 8px 24px rgba(26, 107, 138, 0.2);
   }
   .btn-primary:hover {
     opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 12px 32px rgba(26, 107, 138, 0.3);
   }
   .btn-primary:active {
     transform: scale(0.97);
   }
   .btn-primary:focus-visible {
-    outline: 2px solid #4f46e5;
+    outline: 2px solid #1a7d96;
     outline-offset: 2px;
   }
 
@@ -144,7 +144,7 @@
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: #3525cd;
+    color: #1A6B8A;
     padding: 16px 32px;
     border-radius: 0.5rem;
     font-weight: 600;
@@ -165,23 +165,93 @@
     border: 1px solid rgba(199, 196, 216, 0.15);
   }
 
-  /* Tag pills — editorial style */
+  /* Glassmorphic Tags — Premium Aesthetic */
+  .tag-glass {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .tag-glass:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .tag-glass-dark {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(25, 28, 30, 0.08); /* Semi-transparent dark surface */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(25, 28, 30, 0.15);
+    color: #191c1e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .tag-glass-primary {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(79, 70, 229, 0.12); /* Semi-transparent primary */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(79, 70, 229, 0.3);
+    color: #4f46e5;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .tag-glass-primary:hover {
+    background: rgba(79, 70, 229, 0.2);
+    border-color: rgba(79, 70, 229, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Tag pills — updated to use glassmorphism */
   .tag-pill {
     display: inline-flex;
     align-items: center;
     font-size: 10px;
     font-weight: 700;
-    color: #777587;
+    color: #3525cd;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 4px 12px;
     border-radius: 100px;
-    border: 1px solid rgba(199, 196, 216, 0.3);
+    background: rgba(53, 37, 205, 0.05);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(53, 37, 205, 0.15);
     transition: all 0.2s;
   }
   .tag-pill:hover {
-    border-color: rgba(79, 70, 229, 0.3);
-    color: #3525cd;
+    border-color: rgba(26, 107, 138, 0.3);
+    color: #1A6B8A;
   }
 
   /* Badge pills */
@@ -198,7 +268,7 @@
   }
 
   .badge-refurbished {
-    background: #4f46e5;
+    background: #1A6B8A;
     color: white;
   }
   .badge-rental {
@@ -206,7 +276,7 @@
     color: white;
   }
   .badge-new {
-    background: #4f46e5;
+    background: #1A6B8A;
     color: white;
   }
 
@@ -271,7 +341,7 @@
 
   /* Gradient accent text */
   .gradient-text {
-    background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%);
+    background: linear-gradient(135deg, #1A6B8A 0%, #1a7d96 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

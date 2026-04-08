@@ -1,23 +1,42 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { staggerItem } from '../animations/stagger'
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { staggerItem } from "../animations/stagger";
 
 // Category-specific accent colors for visual differentiation
 const TAG_ACCENT = {
-  'IT Infrastructure': { bar: '#3525cd', tagBg: 'rgba(53,37,205,0.08)',  tagText: '#3525cd' },
-  'Security Systems':  { bar: '#b45309', tagBg: 'rgba(180,83,9,0.08)',   tagText: '#b45309' },
-  'Networking':        { bar: '#0f766e', tagBg: 'rgba(15,118,110,0.08)', tagText: '#0f766e' },
-}
-const DEFAULT_ACCENT = { bar: '#3525cd', tagBg: 'rgba(53,37,205,0.08)', tagText: '#3525cd' }
+  "IT Infrastructure": {
+    bar: "#1A6B8A",
+    tagBg: "rgba(26,107,138,0.08)",
+    tagText: "#1A6B8A",
+  },
+  "Security Systems": {
+    bar: "#b45309",
+    tagBg: "rgba(180,83,9,0.08)",
+    tagText: "#b45309",
+  },
+  Networking: {
+    bar: "#0f766e",
+    tagBg: "rgba(15,118,110,0.08)",
+    tagText: "#0f766e",
+  },
+};
+const DEFAULT_ACCENT = {
+  bar: "#1A6B8A",
+  tagBg: "rgba(26,107,138,0.08)",
+  tagText: "#1A6B8A",
+};
 
-export default function CaseStudyCard({ study, variant = 'default' }) {
-  if (variant === 'preview') {
-    const accent = TAG_ACCENT[study.tag] ?? DEFAULT_ACCENT
+export default function CaseStudyCard({ study, variant = "default" }) {
+  if (variant === "preview") {
+    const accent = TAG_ACCENT[study.tag] ?? DEFAULT_ACCENT;
 
     return (
       <motion.article
         variants={staggerItem}
-        whileHover={{ y: -6, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } }}
+        whileHover={{
+          y: -6,
+          transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+        }}
         className="group relative bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-container-high hover:shadow-[0_20px_52px_rgba(0,0,0,0.08)] transition-shadow duration-300"
       >
         {/* Left accent bar — scales into view on hover */}
@@ -93,7 +112,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
           </div>
         </div>
       </motion.article>
-    )
+    );
   }
 
   return (
@@ -103,29 +122,48 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
     >
       <div className="flex items-center gap-4 mb-6">
         {study.logo ? (
-          <img src={study.logo} alt={study.client} className="h-12 max-w-[160px] object-contain" />
+          <img
+            src={study.logo}
+            alt={study.client}
+            className="h-12 max-w-[160px] object-contain"
+          />
         ) : (
           <span className="text-5xl">{study.icon}</span>
         )}
-        <span className="tag-pill shrink-0 ml-auto">{study.tag}</span>
+        <span className="tag-glass-primary shrink-0 ml-auto">{study.tag}</span>
       </div>
 
-      <p className="text-xs font-bold text-outline uppercase tracking-widest mb-1">{study.client}</p>
-      <h3 className="font-sora font-bold text-xl text-on-surface mb-2 leading-tight">{study.title}</h3>
-      <p className="text-on-surface-variant text-sm leading-relaxed mb-5">{study.subtitle}</p>
+      <p className="text-xs font-bold text-outline uppercase tracking-widest mb-1">
+        {study.client}
+      </p>
+      <h3 className="font-sora font-bold text-xl text-on-surface mb-2 leading-tight">
+        {study.title}
+      </h3>
+      <p className="text-on-surface-variant text-sm leading-relaxed mb-5">
+        {study.subtitle}
+      </p>
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         {study.metrics.map((m) => (
-          <div key={m.label} className="bg-surface-container-low rounded-xl px-3 py-3 text-center">
-            <div className="font-sora font-black text-xl text-primary">{m.val}</div>
-            <div className="text-[11px] text-outline font-medium mt-0.5">{m.label}</div>
+          <div
+            key={m.label}
+            className="bg-surface-container-low rounded-xl px-3 py-3 text-center"
+          >
+            <div className="font-sora font-black text-xl text-primary">
+              {m.val}
+            </div>
+            <div className="text-[11px] text-outline font-medium mt-0.5">
+              {m.label}
+            </div>
           </div>
         ))}
       </div>
 
       <div className="flex flex-wrap gap-2 mb-5">
         {study.tags.map((tag) => (
-          <span key={tag} className="tag-pill">{tag}</span>
+          <span key={tag} className="tag-pill">
+            {tag}
+          </span>
         ))}
       </div>
 
@@ -137,5 +175,5 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
         <span className="material-symbols-outlined text-sm">arrow_forward</span>
       </a>
     </motion.div>
-  )
+  );
 }
