@@ -198,7 +198,7 @@ function ServicesSection() {
           className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
         >
           {services.slice(0, 4).map((service, i) => (
-            <div key={service.id} className="min-w-[85vw] sm:min-w-[40vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto h-full">
+            <div key={service.id} className="min-w-[calc(100vw-4rem)] sm:min-w-[40vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto h-full">
               <ServiceCard service={service} index={i} />
             </div>
           ))}
@@ -282,7 +282,7 @@ function CaseCard({ study }) {
       className="group relative bg-white rounded-2xl overflow-hidden border border-surface-container-high hover:border-primary/20 hover:shadow-[0_20px_48px_rgba(26,107,138,0.10)] transition-all duration-500 flex flex-col h-full"
     >
       {/* Logo Hero Area */}
-      <div className="relative flex items-center justify-center pt-10 pb-6 overflow-hidden">
+      <div className="relative flex items-center justify-center pt-6 pb-4 md:pt-10 md:pb-6 overflow-hidden">
         {/* Soft radial tint behind circle */}
         <div
           className="absolute inset-0 opacity-100 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -310,7 +310,7 @@ function CaseCard({ study }) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 px-7 pb-7 pt-1">
+      <div className="flex flex-col flex-1 px-4 pb-4 pt-1 md:px-7 md:pb-7">
         {/* Title */}
         <h3 className="font-sora font-bold text-[1.1rem] leading-snug mb-2 text-on-surface group-hover:text-primary transition-colors duration-300">
           {study.title}
@@ -374,7 +374,7 @@ function CaseStudiesSection() {
           className="flex overflow-x-auto snap-x snap-mandatory gap-6 mb-14 pb-8 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0"
         >
           {homePreviewCases.map((study) => (
-            <div key={study.client} className="min-w-[85vw] sm:min-w-[45vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto">
+            <div key={study.client} className="min-w-[calc(100vw-4rem)] sm:min-w-[45vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto">
               <CaseCard study={study} />
             </div>
           ))}
@@ -388,7 +388,7 @@ function CaseStudiesSection() {
           viewport={viewportOnce}
           className="flex flex-col sm:flex-row gap-4 w-full"
         >
-          <a href="tel:+918087051208" className="btn-primary py-4 px-7 justify-center">
+          <a href="tel:+919850751208" className="btn-primary py-4 px-7 justify-center">
             Get Free IT Consultation
           </a>
           <Link to="/case-studies" className="btn-secondary py-4 px-7 justify-center">

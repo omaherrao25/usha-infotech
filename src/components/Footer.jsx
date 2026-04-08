@@ -90,7 +90,7 @@ export default function Footer() {
               CBS, Shalimar, Nashik,<br />
               MH 422001
             </p>
-            <p className="text-white font-bold">+91 8087051208</p>
+            <p className="text-white font-bold">+91 98507 51208</p>
             <p className="text-indigo-400">sales.ushainfocom@gmail.com</p>
           </address>
         </div>

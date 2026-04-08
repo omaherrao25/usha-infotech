@@ -168,7 +168,7 @@ export default function CaseStudyCard({ study, variant = "default" }) {
       </div>
 
       <a
-        href="tel:+918087051208"
+        href="tel:+919850751208"
         className="flex items-center gap-2 text-sm font-semibold text-outline group-hover:text-primary transition-colors"
       >
         {study.ctaLabel}

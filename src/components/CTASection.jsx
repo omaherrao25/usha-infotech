@@ -32,14 +32,14 @@ export default function CTASection({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full">
             <a
-              href="tel:+918087051208"
+              href="tel:+919850751208"
               className="bg-surface-container-lowest text-primary px-10 py-5 rounded-xl font-bold text-lg hover:shadow-2xl transition-shadow flex justify-center items-center gap-3 w-full sm:w-auto"
               aria-label="Schedule consultation call"
             >
               Schedule Consultation
             </a>
             <a
-              href="https://wa.me/918087051208"
+              href="https://wa.me/919850751208"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-on-primary/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-on-primary/10 transition-colors flex justify-center items-center gap-3 w-full sm:w-auto"

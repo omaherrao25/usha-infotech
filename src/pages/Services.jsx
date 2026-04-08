@@ -9,10 +9,21 @@ import { services } from "../data/services";
 import { fadeUp, viewportOnce } from "../animations/fadeUp";
 import { staggerFast, staggerItem } from "../animations/stagger";
 
-function ServiceQuickNav({ activeId }) {
+function ServiceQuickNav({ activeId, onTabClick }) {
+  const scrollRef = useRef(null);
+
+  // Auto-scroll the active tab into view when activeId changes
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    const activeEl = scrollRef.current.querySelector("[data-active='true']");
+    if (activeEl) {
+      activeEl.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  }, [activeId]);
+
   return (
-    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
-      <div className="overflow-x-auto scrollbar-hide">
+    <div className="sticky top-20 z-30 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+      <div className="overflow-x-auto scrollbar-hide" ref={scrollRef}>
         <div className="flex gap-2 py-3 min-w-max max-w-7xl mx-auto px-8">
           {services.map((s) => {
             const isActive = activeId === s.id;
@@ -20,6 +31,8 @@ function ServiceQuickNav({ activeId }) {
               <a
                 key={s.id}
                 href={`#${s.id}`}
+                data-active={isActive.toString()}
+                onClick={(e) => { e.preventDefault(); onTabClick(s.id); }}
                 className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
                     ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
@@ -39,6 +52,8 @@ function ServiceQuickNav({ activeId }) {
 export default function Services() {
   const location = useLocation();
   const [activeId, setActiveId] = useState("");
+  const isNavigating = useRef(false);
+  const targetId = useRef(null);
 
   useEffect(() => {
     // Scroll to hash if exists
@@ -52,30 +67,53 @@ export default function Services() {
     }
   }, [location.hash]);
 
+  const handleTabClick = (serviceId) => {
+    setActiveId(serviceId);
+    isNavigating.current = true;
+    targetId.current = serviceId;
+
+    const el = document.getElementById(serviceId);
+    if (el) {
+      const STICKY_HEIGHT = 136; // main nav + quick nav
+      const top = el.getBoundingClientRect().top + window.scrollY - STICKY_HEIGHT;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+
+    // Fallback: re-enable scroll-spy after scroll completes
+    setTimeout(() => {
+      isNavigating.current = false;
+      targetId.current = null;
+    }, 1000);
+  };
+
   useEffect(() => {
-    // Track active section for nav highlighting
-    const handleObserver = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveId(entry.target.id);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "-40% 0px -40% 0px" },
-      );
-
-      services.forEach((service) => {
+    // Scroll-spy: find the section whose top is at/just above the sticky nav
+    const OFFSET = 150; // main nav (~80px) + quick nav (~52px) + buffer
+    const onScroll = () => {
+      let current = "";
+      for (const service of services) {
         const el = document.getElementById(service.id);
-        if (el) observer.observe(el);
-      });
-
-      return observer;
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= OFFSET) {
+          current = service.id;
+        }
+      }
+      // While navigating to a target, stop scroll-spy from overriding the active tab.
+      // Re-enable once the target section reaches the top.
+      if (isNavigating.current) {
+        if (current === targetId.current) {
+          isNavigating.current = false;
+          targetId.current = null;
+        } else {
+          return;
+        }
+      }
+      if (current) setActiveId(current);
     };
 
-    const obs = handleObserver();
-    return () => obs.disconnect();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // set initial active on mount
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -102,7 +140,7 @@ export default function Services() {
         invertImage
       />
 
-      <ServiceQuickNav activeId={activeId} />
+      <ServiceQuickNav activeId={activeId} onTabClick={handleTabClick} />
 
       {/* All services in alternating split layout */}
       {services.map((service, index) => (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import ProductCard from '../components/ProductCard'
@@ -21,9 +21,20 @@ const categoriesOrder = ['laptops', 'networking', 'cctv', 'refurbished', 'access
 
 // — Sticky Nav (identical pattern to Services & CaseStudies) —
 function ProductQuickNav({ activeId, onNavClick }) {
+  const scrollRef = useRef(null);
+
+  // Auto-scroll the active tab into view when activeId changes
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    const activeEl = scrollRef.current.querySelector("[data-active='true']");
+    if (activeEl) {
+      activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeId]);
+
   return (
-    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
-      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
+    <div className="sticky top-20 z-30 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide" ref={scrollRef}>
         <div className="flex gap-2 py-3 min-w-max">
           {categoriesOrder.map((id) => {
             const meta = categoryMeta[id]
@@ -31,6 +42,7 @@ function ProductQuickNav({ activeId, onNavClick }) {
             return (
               <button
                 key={id}
+                data-active={isActive.toString()}
                 onClick={() => onNavClick(id)}
                 className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
@@ -59,7 +71,7 @@ function CategorySection({ categoryId }) {
   if (items.length === 0) return null
 
   return (
-    <section id={`cat-${categoryId}`} className="pt-16 pb-8 scroll-mt-40">
+    <section id={`cat-${categoryId}`} className="pt-16 pb-8 scroll-mt-36">
       <div className="max-w-7xl mx-auto px-8">
         {/* Section header */}
         <div className="flex items-center gap-5 mb-10">
@@ -132,26 +144,24 @@ export default function Products() {
     }
   }
 
-  // IntersectionObserver — same pattern as Services & CaseStudies
+  // Scroll-spy: find the section whose top is at/just above the sticky nav
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id.replace('cat-', ''))
-          }
-        })
-      },
-      // Wide enough window to catch the tall Accessories section naturally
-      { threshold: 0, rootMargin: '-10% 0px -50% 0px' }
-    )
+    const OFFSET = 150; // main nav (~80px) + quick nav (~52px) + buffer
+    const onScroll = () => {
+      let current = '';
+      for (const id of categoriesOrder) {
+        const el = document.getElementById(`cat-${id}`);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= OFFSET) {
+          current = id;
+        }
+      }
+      if (current) setActiveId(current);
+    };
 
-    categoriesOrder.forEach((id) => {
-      const el = document.getElementById(`cat-${id}`)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // set initial active on mount
+    return () => window.removeEventListener('scroll', onScroll);
   }, [])
 
   return (
