@@ -20,7 +20,7 @@ const categoryMeta = {
 const categoriesOrder = ['laptops', 'networking', 'cctv', 'refurbished', 'accessories']
 
 // — Sticky Nav (identical pattern to Services & CaseStudies) —
-function ProductQuickNav({ activeId }) {
+function ProductQuickNav({ activeId, onNavClick }) {
   return (
     <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
       <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
@@ -29,9 +29,9 @@ function ProductQuickNav({ activeId }) {
             const meta = categoryMeta[id]
             const isActive = activeId === id
             return (
-              <a
+              <button
                 key={id}
-                href={`#cat-${id}`}
+                onClick={() => onNavClick(id)}
                 className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
                     ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
@@ -39,7 +39,7 @@ function ProductQuickNav({ activeId }) {
                 }`}
               >
                 {meta.label}
-              </a>
+              </button>
             )
           })}
         </div>
@@ -121,6 +121,17 @@ function CategorySection({ categoryId }) {
 export default function Products() {
   const [activeId, setActiveId] = useState('laptops')
 
+  // Manual scroll to section with offset for both navbars (80px main + ~52px sticky)
+  const handleNavClick = (id) => {
+    setActiveId(id)
+    const el = document.getElementById(`cat-${id}`)
+    if (el) {
+      const offset = 140 // main navbar height + sticky product nav height
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
+
   // IntersectionObserver — same pattern as Services & CaseStudies
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -131,7 +142,8 @@ export default function Products() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
+      // Wide enough window to catch the tall Accessories section naturally
+      { threshold: 0, rootMargin: '-10% 0px -50% 0px' }
     )
 
     categoriesOrder.forEach((id) => {
@@ -180,8 +192,8 @@ export default function Products() {
         </div>
       </section>
 
-      {/* Sticky Quick Nav — same as Services & CaseStudies */}
-      <ProductQuickNav activeId={activeId} />
+      {/* Sticky Quick Nav */}
+      <ProductQuickNav activeId={activeId} onNavClick={handleNavClick} />
 
       {/* All category sections — always rendered, scroll-based */}
       <div className="pb-16 lg:pb-20">
