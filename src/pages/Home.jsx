@@ -6,12 +6,7 @@ import ServiceCard from "../components/ServiceCard";
 import CTASection from "../components/CTASection";
 import { services } from "../data/services";
 import { homePreviewCases, clients } from "../data/caseStudies";
-import {
-  fadeUp,
-  fadeLeft,
-  fadeRight,
-  viewportOnce,
-} from "../animations/fadeUp";
+import { fadeUp, fadeLeft, fadeRight, viewportOnce } from "../animations/fadeUp";
 import { staggerFast, staggerMed, staggerItem } from "../animations/stagger";
 
 // — Clients Ticker —
@@ -62,105 +57,6 @@ function ClientsTicker() {
               />
             </motion.div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// — Case Study: Networking (editorial split) —
-function NetworkingCaseStudy() {
-  return (
-    <section className="py-24 lg:py-32 bg-surface-container-low">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Image side */}
-          <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="order-2 lg:order-1"
-          >
-            <div className="relative">
-              <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 -z-10 rounded-full" />
-              <div className="w-full aspect-video lg:aspect-square rounded-xl overflow-hidden shadow-ambient bg-surface-container-high">
-                <img
-                  src="/assets/networking.png"
-                  alt="Enterprise networking infrastructure"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.classList.add(
-                      "flex",
-                      "items-center",
-                      "justify-center",
-                    );
-                    const span = document.createElement("span");
-                    span.className =
-                      "material-symbols-outlined text-[120px] text-outline/20";
-                    span.textContent = "cable";
-                    e.target.parentElement.appendChild(span);
-                  }}
-                />
-              </div>
-              {/* Floating metric */}
-              <div className="absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
-                <span className="text-xs font-bold uppercase tracking-widest text-outline block mb-2">
-                  Metrics
-                </span>
-                <p className="text-2xl font-sora font-bold text-primary">
-                  99.99%
-                </p>
-                <p className="text-sm text-on-surface-variant">
-                  Uptime achieved for global enterprise infrastructure.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Text side */}
-          <motion.div
-            variants={fadeRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="order-1 lg:order-2"
-          >
-            <span className="text-sm font-bold text-primary-container mb-4 block uppercase tracking-widest">
-              Case Study
-            </span>
-            <h2 className="text-4xl md:text-5xl font-sora font-bold tracking-tight mb-6 text-on-surface">
-              Cognitive Networking Infrastructure
-            </h2>
-            <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
-              Connectivity is the central nervous system of the modern
-              enterprise. We don't just pull cables; we design intelligent,
-              self-healing network architectures that scale with your ambition.
-            </p>
-            <ul className="space-y-4 mb-10">
-              {[
-                "SD-WAN Optimization",
-                "Zero-Trust Architecture",
-                "Fiber-Optic Precision Layout",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
-                  <span className="font-medium text-on-surface-variant">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/case-studies"
-              className="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all"
-            >
-              View technical breakdown
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </Link>
-          </motion.div>
         </div>
       </div>
     </section>
@@ -234,15 +130,12 @@ function QuoteSection() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <span className="text-7xl text-primary mb-6 block font-serif leading-none select-none" aria-hidden="true">
-            &ldquo;
-          </span>
           <blockquote className="text-3xl md:text-5xl font-sora font-light italic leading-tight mb-12">
-            "Precision is not just about the hardware; it's about the{" "}
+            &ldquo;Precision is not just about the hardware; it&rsquo;s about the{" "}
             <span className="text-primary-container font-semibold not-italic">
               integrity of the architecture
             </span>{" "}
-            that supports the human experience."
+            that supports the human experience.&rdquo;
           </blockquote>
           <div className="flex items-center justify-center gap-4">
             <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white/10">
