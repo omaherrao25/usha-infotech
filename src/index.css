@@ -126,17 +126,20 @@
     font-family: 'Sora', sans-serif;
     box-shadow: 0 8px 24px rgba(26, 107, 138, 0.2);
   }
-  .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(26, 107, 138, 0.3);
-  }
   .btn-primary:active {
     transform: scale(0.97);
   }
   .btn-primary:focus-visible {
     outline: 2px solid #1a7d96;
     outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(26, 107, 138, 0.3);
+    }
   }
 
   .btn-secondary {
@@ -155,9 +158,11 @@
     cursor: pointer;
     font-family: 'Sora', sans-serif;
   }
-  .btn-secondary:hover {
-    background: #f2f4f6;
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    .btn-secondary:hover {
+      background: #f2f4f6;
+      transform: translateY(-2px);
+    }
   }
 
   /* Ghost border — 15% opacity max */
@@ -249,9 +254,11 @@
     border: 1px solid rgba(53, 37, 205, 0.15);
     transition: all 0.2s;
   }
-  .tag-pill:hover {
-    border-color: rgba(26, 107, 138, 0.3);
-    color: #1A6B8A;
+  @media (hover: hover) {
+    .tag-pill:hover {
+      border-color: rgba(26, 107, 138, 0.3);
+      color: #1A6B8A;
+    }
   }
 
   /* Badge pills */
@@ -360,6 +367,15 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  @supports(padding: max(0px)) {
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top);
+    }
   }
 }
 

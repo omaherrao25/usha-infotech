@@ -195,10 +195,12 @@ function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
         >
           {services.slice(0, 4).map((service, i) => (
-            <ServiceCard key={service.id} service={service} index={i} />
+            <div key={service.id} className="min-w-[85vw] sm:min-w-[40vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto h-full">
+              <ServiceCard service={service} index={i} />
+            </div>
           ))}
         </motion.div>
 
@@ -232,8 +234,8 @@ function QuoteSection() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <span className="material-symbols-outlined text-6xl text-primary mb-8 block">
-            format_quote
+          <span className="text-7xl text-primary mb-6 block font-serif leading-none select-none" aria-hidden="true">
+            &ldquo;
           </span>
           <blockquote className="text-3xl md:text-5xl font-sora font-light italic leading-tight mb-12">
             "Precision is not just about the hardware; it's about the{" "}
@@ -264,73 +266,76 @@ function QuoteSection() {
 }
 
 // — Case Studies Preview —
-const CASE_TAG_ACCENT = {
-  "IT Infrastructure": "#1A6B8A",
-  "Security Systems": "#b45309",
-  Networking: "#0f766e",
+const CASE_THEMES = {
+  "IT Infrastructure": { accent: "#1A6B8A", glow: "rgba(26,107,138,0.12)" },
+  "Security Systems": { accent: "#1a7d96", glow: "rgba(26,125,150,0.12)" },
+  "Networking": { accent: "#1A6B8A", glow: "rgba(26,107,138,0.10)" },
 };
 
 function CaseCard({ study }) {
-  const color = CASE_TAG_ACCENT[study.tag] ?? "#1A6B8A";
+  const theme = CASE_THEMES[study.tag] || { accent: "#1A6B8A", glow: "rgba(26,107,138,0.12)" };
 
   return (
     <motion.div
       variants={staggerItem}
-      whileHover={{
-        y: -6,
-        transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] },
-      }}
-      className="group relative bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-container-high hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-shadow duration-400 flex flex-col"
+      whileHover={{ y: -6 }}
+      className="group relative bg-white rounded-2xl overflow-hidden border border-surface-container-high hover:border-primary/20 hover:shadow-[0_20px_48px_rgba(26,107,138,0.10)] transition-all duration-500 flex flex-col h-full"
     >
-      {/* Top accent line — scales in on hover */}
-      <div
-        className="h-[3px] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shrink-0"
-        style={{ backgroundColor: color }}
-      />
+      {/* Logo Hero Area */}
+      <div className="relative flex items-center justify-center pt-10 pb-6 overflow-hidden">
+        {/* Soft radial tint behind circle */}
+        <div
+          className="absolute inset-0 opacity-100 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 75% 65% at 50% 50%, ${theme.glow} 0%, transparent 80%)`,
+          }}
+        />
 
-      <div className="flex flex-col flex-1 p-7">
-        {/* Logo + Tag */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="h-6 flex items-center">
-            {study.logo && (
-              <img
-                src={study.logo}
-                alt={study.client}
-                className="h-full max-w-[100px] object-contain opacity-55 group-hover:opacity-90 transition-opacity duration-300"
-              />
-            )}
-          </div>
-          <span
-            className="text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1 rounded-full"
-            style={{ color, backgroundColor: color + "14" }}
-          >
-            {study.tag}
-          </span>
+        {/* Logo circle */}
+        <div
+          className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{
+            border: `1.5px solid rgba(26,107,138,0.15)`,
+            boxShadow: `0 4px 20px rgba(26,107,138,0.12), 0 1px 3px rgba(0,0,0,0.06)`,
+          }}
+        >
+          {study.logo && (
+            <img
+              src={study.logo}
+              alt={study.client}
+              className="w-11 h-11 object-contain"
+            />
+          )}
         </div>
+      </div>
 
-        {/* Client name */}
-        <p className="text-[10px] font-extrabold text-outline uppercase tracking-[0.2em] mb-1.5">
-          {study.client}
-        </p>
-
+      {/* Content */}
+      <div className="flex flex-col flex-1 px-7 pb-7 pt-1">
         {/* Title */}
-        <h3 className="font-sora font-bold text-[1.05rem] leading-snug text-on-surface mb-3 group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-sora font-bold text-[1.1rem] leading-snug mb-2 text-on-surface group-hover:text-primary transition-colors duration-300">
           {study.title}
         </h3>
 
-        {/* Short description */}
-        <p className="text-sm text-on-surface-variant leading-relaxed flex-1 mb-7">
+        {/* Short Description */}
+        <p className="text-sm leading-relaxed flex-1 mb-6 text-on-surface-variant">
           {study.shortDesc}
         </p>
 
-        {/* Divider + CTA */}
-        <div className="h-px bg-surface-container-high mb-5" />
-        <Link
-          to="/case-studies"
-          className="text-xs font-bold text-outline group-hover:text-primary transition-colors duration-300 pb-0.5 border-b border-transparent group-hover:border-primary/40 self-start"
-        >
-          View case study
-        </Link>
+        {/* Footer row */}
+        <div className="flex items-center justify-between pt-5 border-t border-surface-container-high">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-outline">
+            {study.tag}
+          </span>
+
+          <Link
+            to="/case-studies"
+            className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:gap-2"
+            style={{ color: theme.accent }}
+          >
+            View
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
       </div>
     </motion.div>
   );
@@ -366,10 +371,12 @@ function CaseStudiesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 mb-14 pb-8 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0"
         >
           {homePreviewCases.map((study) => (
-            <CaseCard key={study.client} study={study} />
+            <div key={study.client} className="min-w-[85vw] sm:min-w-[45vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto">
+              <CaseCard study={study} />
+            </div>
           ))}
         </motion.div>
 
@@ -379,12 +386,12 @@ function CaseStudiesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex flex-wrap gap-4"
+          className="flex flex-col sm:flex-row gap-4 w-full"
         >
-          <a href="tel:+918087051208" className="btn-primary py-4 px-7">
+          <a href="tel:+918087051208" className="btn-primary py-4 px-7 justify-center">
             Get Free IT Consultation
           </a>
-          <Link to="/case-studies" className="btn-secondary py-4 px-7">
+          <Link to="/case-studies" className="btn-secondary py-4 px-7 justify-center">
             View All Stories
             <span className="material-symbols-outlined text-sm">
               arrow_forward

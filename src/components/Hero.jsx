@@ -85,10 +85,10 @@ export default function Hero() {
                 operational continuity.
               </p>
 
-              <div className="flex flex-wrap gap-5">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 w-full">
                 <Link
                   to="/services"
-                  className="btn-primary text-base py-4 px-8 shadow-lg shadow-primary/20"
+                  className="btn-primary flex justify-center text-base py-4 px-8 shadow-lg shadow-primary/20"
                 >
                   Explore Services
                   <span className="material-symbols-outlined text-[18px]">
@@ -97,7 +97,7 @@ export default function Hero() {
                 </Link>
                 <Link
                   to="/case-studies"
-                  className="btn-secondary text-base py-4 px-8 bg-surface-container-low hover:bg-surface-container"
+                  className="btn-secondary flex justify-center text-base py-4 px-8 bg-surface-container-low hover:bg-surface-container"
                 >
                   Our Method
                 </Link>

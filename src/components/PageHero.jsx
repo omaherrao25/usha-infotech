@@ -56,7 +56,7 @@ export default function PageHero({ label, title, accent, subtitle, subtitleLine2
           )}
 
           <h1
-            className={`font-sora font-extrabold text-5xl sm:text-6xl lg:text-7xl tracking-tighter leading-[0.9] mb-7 ${
+            className={`font-sora font-extrabold text-5xl sm:text-6xl lg:text-7xl tracking-tighter leading-[1.1] lg:leading-[0.9] mb-7 ${
               bgImage ? 'text-white' : 'text-on-surface'
             }`}
           >
