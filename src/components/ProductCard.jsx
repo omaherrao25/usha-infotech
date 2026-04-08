@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
             </p>
 
             <a
-              href="tel:+918087051208"
+              href="tel:+919850751208"
               className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-sky-200 transition-colors duration-200 w-max border-b border-white/30 hover:border-sky-200 pb-0.5"
             >
               {product.ctaLabel || "Enquire Now"}

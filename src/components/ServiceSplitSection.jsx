@@ -28,9 +28,6 @@ export default function ServiceSplitSection({ service, index }) {
       {/* Features */}
       <motion.ul
         variants={staggerMed}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
         className="space-y-4 mb-10"
       >
         {service.features.map((feature) => (
@@ -55,14 +52,14 @@ export default function ServiceSplitSection({ service, index }) {
       {/* CTAs */}
       <div className="flex flex-wrap gap-4">
         <a
-          href="tel:+918087051208"
+          href="tel:+919850751208"
           className="btn-primary text-sm"
         >
           {service.ctaLabel}
           <span className="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
         <a
-          href="https://wa.me/918087051208"
+          href="https://wa.me/919850751208"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-secondary text-sm"
@@ -113,14 +110,14 @@ export default function ServiceSplitSection({ service, index }) {
   return (
     <section
       id={service.id}
-      className={`py-24 lg:py-32 ${isEven ? 'bg-surface-container-low' : 'bg-surface'}`}
+      className={`py-24 lg:py-32 scroll-mt-36 ${isEven ? 'bg-surface-container-low' : 'bg-surface'}`}
     >
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className={`${isEven ? 'order-2 lg:order-1' : 'order-1'}`}>
+          <div className="order-1">
             <ImageBlock />
           </div>
-          <div className={`${isEven ? 'order-1 lg:order-2' : 'order-2'}`}>
+          <div className="order-2">
             <TextBlock />
           </div>
         </div>

@@ -44,9 +44,6 @@ export default function CaseStudySplitSection({ study, index }) {
       {/* Challenge / Solution / ROI */}
       <motion.div
         variants={staggerMed}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
         className="flex flex-col gap-4 mb-8"
       >
         {[
@@ -77,7 +74,7 @@ export default function CaseStudySplitSection({ study, index }) {
 
       {/* CTA */}
       <a
-        href="tel:+918087051208"
+        href="tel:+919850751208"
         className="btn-primary w-fit text-sm"
       >
         {study.ctaLabel}
@@ -126,13 +123,7 @@ export default function CaseStudySplitSection({ study, index }) {
       </div>
 
       {/* Metrics bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportOnce}
-        transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-4 grid grid-cols-3 gap-3"
-      >
+      <div className="mt-4 grid grid-cols-3 gap-3">
         {study.metrics.map((m) => (
           <div
             key={m.label}
@@ -142,14 +133,14 @@ export default function CaseStudySplitSection({ study, index }) {
             <div className="text-[11px] font-semibold uppercase tracking-wide text-outline">{m.label}</div>
           </div>
         ))}
-      </motion.div>
+      </div>
     </motion.div>
   )
 
   return (
     <section
       id={`case-${study.id}`}
-      className={`py-24 lg:py-32 transition-colors duration-500 overflow-hidden ${
+      className={`py-24 lg:py-32 scroll-mt-36 transition-colors duration-500 overflow-hidden ${
         isEven ? 'bg-[#eef6f9]' : 'bg-white'
       }`}
     >

@@ -88,7 +88,7 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:block">
             <a
-              href="tel:+918087051208"
+              href="tel:+919850751208"
               className="bg-primary-container text-on-primary px-6 py-2.5 rounded-lg font-sora font-semibold text-sm hover:opacity-80 transition-all transform active:scale-95 duration-200"
               aria-label="Call for consultation"
             >
@@ -172,14 +172,14 @@ export default function Navbar() {
               className="mt-12 flex flex-col items-center gap-4 w-full px-8 max-w-[280px]"
             >
               <a
-                href="tel:+918087051208"
+                href="tel:+919850751208"
                 className="btn-primary text-lg px-8 py-4 w-full justify-center"
                 onClick={toggleMobile}
               >
                 Call Now
               </a>
               <a
-                href="https://wa.me/918087051208"
+                href="https://wa.me/919850751208"
                 className="btn-secondary text-base px-8 py-4 w-full justify-center"
                 onClick={toggleMobile}
                 target="_blank"

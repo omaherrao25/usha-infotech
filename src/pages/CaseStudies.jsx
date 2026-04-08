@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
@@ -43,10 +43,21 @@ function MetricsBar() {
   )
 }
 
-function IndustryNav({ activeId }) {
+function IndustryNav({ activeId, onTabClick }) {
+  const scrollRef = useRef(null);
+
+  // Auto-scroll the active tab into view when activeId changes
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    const activeEl = scrollRef.current.querySelector("[data-active='true']");
+    if (activeEl) {
+      activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeId]);
+
   return (
-    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
-      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
+    <div className="sticky top-20 z-30 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide" ref={scrollRef}>
         <div className="flex gap-2 py-3 min-w-max">
           {caseStudies.map((s) => {
             const isActive = activeId === s.id
@@ -54,6 +65,8 @@ function IndustryNav({ activeId }) {
               <a
                 key={s.id}
                 href={`#case-${s.id}`}
+                data-active={isActive.toString()}
+                onClick={(e) => { e.preventDefault(); onTabClick(s.id); }}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
                     ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
@@ -131,29 +144,56 @@ function TestimonialsStrip() {
 
 export default function CaseStudies() {
   const [activeId, setActiveId] = useState('')
+  const isNavigating = useRef(false)
+  const targetId = useRef(null)
 
-  useEffect(() => {
-    const handleObserver = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveId(entry.target.id.replace('case-', ''))
-            }
-          })
-        },
-        { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
-      )
+  const handleTabClick = (studyId) => {
+    setActiveId(studyId)
+    isNavigating.current = true
+    targetId.current = studyId
 
-      caseStudies.forEach((study) => {
-        const el = document.getElementById(`case-${study.id}`)
-        if (el) observer.observe(el)
-      })
-      return observer
+    const el = document.getElementById(`case-${studyId}`)
+    if (el) {
+      const STICKY_HEIGHT = 136 // main nav + industry nav
+      const top = el.getBoundingClientRect().top + window.scrollY - STICKY_HEIGHT
+      window.scrollTo({ top, behavior: 'smooth' })
     }
 
-    const obs = handleObserver()
-    return () => obs.disconnect()
+    // Fallback: re-enable scroll-spy after scroll completes
+    setTimeout(() => {
+      isNavigating.current = false
+      targetId.current = null
+    }, 1000)
+  }
+
+  useEffect(() => {
+    // Scroll-spy: find the section whose top is at/just above the sticky nav
+    const OFFSET = 150; // main nav (~80px) + quick nav (~52px) + buffer
+    const onScroll = () => {
+      let current = '';
+      for (const study of caseStudies) {
+        const el = document.getElementById(`case-${study.id}`);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= OFFSET) {
+          current = study.id;
+        }
+      }
+      // While navigating to a target, stop scroll-spy from overriding the active tab.
+      // Re-enable once the target section reaches the top.
+      if (isNavigating.current) {
+        if (current === targetId.current) {
+          isNavigating.current = false
+          targetId.current = null
+        } else {
+          return
+        }
+      }
+      if (current) setActiveId(current);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // set initial active on mount
+    return () => window.removeEventListener('scroll', onScroll);
   }, [])
 
   return (
@@ -173,7 +213,7 @@ export default function CaseStudies() {
       />
 
       <MetricsBar />
-      <IndustryNav activeId={activeId} />
+      <IndustryNav activeId={activeId} onTabClick={handleTabClick} />
 
       {caseStudies.map((study, index) => (
         <CaseStudySplitSection key={study.id} study={study} index={index} />
