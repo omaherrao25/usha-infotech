@@ -15,7 +15,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
           ) : (
             <span className="material-symbols-outlined text-4xl text-primary">{study.icon}</span>
           )}
-          <span className="tag-pill shrink-0 ml-auto">{study.tag}</span>
+          <span className="tag-glass-primary shrink-0 ml-auto">{study.tag}</span>
         </div>
 
         <p className="text-xs font-bold text-outline uppercase tracking-widest mb-1">{study.client}</p>
@@ -55,7 +55,7 @@ export default function CaseStudyCard({ study, variant = 'default' }) {
         ) : (
           <span className="text-5xl">{study.icon}</span>
         )}
-        <span className="tag-pill shrink-0 ml-auto">{study.tag}</span>
+        <span className="tag-glass-primary shrink-0 ml-auto">{study.tag}</span>
       </div>
 
       <p className="text-xs font-bold text-outline uppercase tracking-widest mb-1">{study.client}</p>

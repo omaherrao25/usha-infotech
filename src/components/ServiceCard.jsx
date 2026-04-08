@@ -19,6 +19,13 @@ export default function ServiceCard({ service, index }) {
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
         
+        {/* Top Tag (Always visible) */}
+        <div className="absolute top-6 left-6 z-20">
+          <span className="tag-glass">
+            {service.tag}
+          </span>
+        </div>
+        
         {/* Top Info (Hidden by default, slides down on hover) */}
         <div className="flex-1 overflow-hidden">
           <div className="transform -translate-y-[120%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col gap-4">

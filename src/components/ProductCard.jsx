@@ -18,9 +18,7 @@ export default function ProductCard({ product }) {
       {/* Image area — editorial style */}
       <div className="bg-surface-container-lowest aspect-[4/5] relative overflow-hidden mb-6 flex items-center justify-center p-12 transition-all duration-500 group-hover:bg-white">
         {/* Badge */}
-        <span className={`absolute top-6 left-6 text-[10px] font-bold tracking-widest uppercase py-1 px-3 rounded-full z-10 ${
-          badgeStyles[product.badge?.type] || 'badge-new'
-        }`}>
+        <span className="absolute top-6 left-6 z-10 tag-glass-primary">
           {product.badge?.label || 'New'}
         </span>
 
