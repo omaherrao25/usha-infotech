@@ -99,20 +99,14 @@ export default function Products() {
       <section className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-8">
           <div className="editorial-grid">
-            <div className="col-span-12 md:col-span-8">
-              <span className="section-label mb-6 block">Inventory Ledger v.2024</span>
+            <div className="col-span-12">
+              <span className="section-label mb-6 block">Inventory Ledger v.2026</span>
               <h1 className="text-6xl md:text-8xl font-sora font-extrabold tracking-tighter text-on-surface leading-[0.9] mb-8">
                 Precision<br />Infrastructure.
               </h1>
-              <p className="text-xl text-on-surface-variant max-w-xl leading-relaxed">
+              <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">
                 Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
               </p>
-            </div>
-            <div className="hidden md:block col-span-4 relative">
-              <div className="absolute right-0 top-0 w-full h-full bg-surface-container-high rounded-xl -z-10 translate-x-8 translate-y-8" />
-              <div className="w-full h-full bg-surface-container-highest rounded-xl overflow-hidden flex items-center justify-center min-h-[240px]">
-                <span className="material-symbols-outlined text-[80px] text-outline/20">dns</span>
-              </div>
             </div>
           </div>
         </div>

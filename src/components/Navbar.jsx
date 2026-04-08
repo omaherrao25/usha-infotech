@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
   { label: 'Products', href: '/products' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Services', href: '/services' },
 ]
 
 export default function Navbar() {
@@ -55,8 +55,15 @@ export default function Navbar() {
       >
         <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
           {/* Logo */}
-          <Link to="/" className="text-xl font-bold tracking-tighter text-on-surface font-sora" aria-label="Usha Infotech — Home">
-            Usha Infotech
+          <Link to="/" className="flex items-center gap-3 transition-transform hover:scale-105" aria-label="Usha Infotech — Home">
+            <img 
+              src="/assets/logo.png" 
+              alt="Usha Infotech Logo" 
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-xl font-bold tracking-tighter text-on-surface font-sora">
+              Usha Infotech
+            </span>
           </Link>
 
           {/* Desktop Nav */}

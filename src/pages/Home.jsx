@@ -54,85 +54,7 @@ function ClientsTicker() {
   )
 }
 
-// — Case Study: Networking (editorial split) —
-function NetworkingCaseStudy() {
-  return (
-    <section className="py-24 lg:py-32 bg-surface-container-low">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Image side */}
-          <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="order-2 lg:order-1"
-          >
-            <div className="relative">
-              <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 -z-10 rounded-full" />
-              <div className="w-full aspect-video lg:aspect-square rounded-xl overflow-hidden shadow-ambient bg-surface-container-high">
-                <img
-                  src="/assets/networking.png"
-                  alt="Enterprise networking infrastructure"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.style.display = 'none'
-                    e.target.parentElement.classList.add('flex', 'items-center', 'justify-center')
-                    const span = document.createElement('span')
-                    span.className = 'material-symbols-outlined text-[120px] text-outline/20'
-                    span.textContent = 'cable'
-                    e.target.parentElement.appendChild(span)
-                  }}
-                />
-              </div>
-              {/* Floating metric */}
-              <div className="absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
-                <span className="text-xs font-bold uppercase tracking-widest text-outline block mb-2">Metrics</span>
-                <p className="text-2xl font-sora font-bold text-primary">99.99%</p>
-                <p className="text-sm text-on-surface-variant">Uptime achieved for global enterprise infrastructure.</p>
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Text side */}
-          <motion.div
-            variants={fadeRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="order-1 lg:order-2"
-          >
-            <span className="text-sm font-bold text-primary-container mb-4 block uppercase tracking-widest">
-              Case Study
-            </span>
-            <h2 className="text-4xl md:text-5xl font-sora font-bold tracking-tight mb-6 text-on-surface">
-              Cognitive Networking Infrastructure
-            </h2>
-            <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
-              Connectivity is the central nervous system of the modern enterprise. We don't just pull cables; we design intelligent, self-healing network architectures that scale with your ambition.
-            </p>
-            <ul className="space-y-4 mb-10">
-              {['SD-WAN Optimization', 'Zero-Trust Architecture', 'Fiber-Optic Precision Layout'].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
-                  <span className="font-medium text-on-surface-variant">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/case-studies"
-              className="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all"
-            >
-              View technical breakdown
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </Link>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // — Services Showcase —
 function ServicesSection() {
@@ -205,8 +127,13 @@ function QuoteSection() {
             that supports the human experience."
           </blockquote>
           <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
-              <span className="material-symbols-outlined text-on-surface text-2xl">person</span>
+            <div className="w-14 h-14 rounded-full bg-surface-container-high overflow-hidden shadow-lg border-2 border-primary/20 flex items-center justify-center">
+              <img 
+                src="/assets/SameerAgarwal.jpeg" 
+                alt="Sameer Agarwal" 
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
             <div className="text-left">
               <p className="font-bold text-white">Sameer Agarwal</p>
@@ -531,7 +458,7 @@ export default function Home() {
       />
       <Hero />
       <ClientsTicker />
-      <NetworkingCaseStudy />
+
       <ServicesSection />
       <QuoteSection />
       <CaseStudiesSection />
