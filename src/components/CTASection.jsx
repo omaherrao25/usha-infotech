@@ -2,82 +2,53 @@ import { motion } from 'framer-motion'
 import { fadeUp, viewportOnce } from '../animations/fadeUp'
 
 export default function CTASection({
-  title = "Let's switch you on.",
-  subtitle = 'Just a call, message, or email away — available across India.',
-  dark = false,
+  title = "Ready to engineer your next phase?",
+  subtitle = "Speak with our consulting team to define a precision-driven IT roadmap for your enterprise.",
 }) {
   return (
-    <section className={`relative py-24 lg:py-32 overflow-hidden ${dark ? 'bg-slate-950' : 'bg-gradient-to-br from-blue-700 via-blue-800 to-teal-800'}`}>
-      {/* Decorative rings */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full border border-white/5 absolute" />
-        <div className="w-[900px] h-[900px] rounded-full border border-white/5 absolute" />
-        <div className="w-[1200px] h-[1200px] rounded-full border border-white/5 absolute" />
-      </div>
-      <div className="absolute inset-0 dot-pattern opacity-[0.04]" />
+    <section className="py-32 px-8" aria-label="Call to action">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        className="max-w-7xl mx-auto bg-primary-container rounded-[2rem] p-12 md:p-16 relative overflow-hidden text-on-primary"
+      >
+        {/* Decorative SVG curves */}
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" aria-hidden="true">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0,100 Q50,0 100,100" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            <path d="M0,80 Q50,-20 100,80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            <path d="M0,60 Q50,-40 100,60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          </svg>
+        </div>
 
-      <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-white/80 text-xs font-bold tracking-widest uppercase">
-              Available Pan-India · Mon–Sat
-            </span>
-          </div>
-
-          <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight mb-6">
+        <div className="max-w-2xl relative z-10">
+          <h2 className="text-4xl md:text-6xl font-sora font-bold tracking-tight mb-8">
             {title}
           </h2>
-
-          <p className="text-white/60 text-lg lg:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xl mb-12 text-on-primary/80">
             {subtitle}
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 w-full">
             <a
               href="tel:+918087051208"
-              className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-2xl font-bold text-base hover:bg-blue-50 transition-all duration-200 hover:-translate-y-1 shadow-lg"
+              className="bg-surface-container-lowest text-primary px-10 py-5 rounded-xl font-bold text-lg hover:shadow-2xl transition-shadow flex justify-center items-center gap-3 w-full sm:w-auto"
+              aria-label="Schedule consultation call"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
-              </svg>
-              Call Now — Free Consultation
+              Schedule Consultation
             </a>
             <a
               href="https://wa.me/918087051208"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-base hover:bg-white/20 transition-all duration-200 hover:-translate-y-1"
+              className="border border-on-primary/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-on-primary/10 transition-colors flex justify-center items-center gap-3 w-full sm:w-auto"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp Us
+              Request Audit
             </a>
           </div>
-
-          {/* Contact info row */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-white/50 text-sm">
-            <span className="flex items-center gap-2">
-              <span>✉️</span> sales.ushainfocom@gmail.com
-            </span>
-            <span className="w-1 h-1 rounded-full bg-white/30" />
-            <span className="flex items-center gap-2">
-              <span>📍</span> Nashik HQ
-            </span>
-            <span className="w-1 h-1 rounded-full bg-white/30" />
-            <span className="flex items-center gap-2">
-              <span>🚀</span> Pan-India
-            </span>
-          </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

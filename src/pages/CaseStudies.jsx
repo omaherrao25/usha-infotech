@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import CaseStudySplitSection from '../components/CaseStudySplitSection'
 import CTASection from '../components/CTASection'
@@ -6,37 +8,33 @@ import { caseStudies } from '../data/caseStudies'
 import { fadeUp, viewportOnce } from '../animations/fadeUp'
 import { staggerFast, staggerMed, staggerItem } from '../animations/stagger'
 
-// Top metrics bar
 function MetricsBar() {
   const metrics = [
-    { val: '500+', label: 'Businesses Transformed', icon: '🏢' },
-    { val: '₹50Cr+', label: 'Capital Saved for Clients', icon: '💰' },
-    { val: '99.9%', label: 'Uptime Guaranteed', icon: '⚡' },
-    { val: '25 Yrs', label: 'Industry Experience', icon: '🏆' },
-    { val: '40%', label: 'Avg Cost Reduction', icon: '📉' },
+    { val: '500+', label: 'Businesses Transformed', icon: 'corporate_fare' },
+    { val: '25 Cr+', label: 'Capital Saved for Clients', icon: 'savings' },
+    { val: '99.9%', label: 'Uptime Guaranteed', icon: 'bolt' },
+    { val: '25 Yrs', label: 'Industry Experience', icon: 'emoji_events' },
+    { val: '40%', label: 'Avg Cost Reduction', icon: 'trending_down' },
   ]
 
   return (
-    <section className="py-12 bg-white border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-16 bg-on-surface text-surface">
+      <div className="max-w-7xl mx-auto px-8">
         <motion.div
           variants={staggerFast}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
         >
           {metrics.map((m) => (
             <motion.div
               key={m.label}
               variants={staggerItem}
-              className="flex flex-col items-center text-center p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
+              className="flex flex-col items-center text-center"
             >
-              <span className="text-2xl mb-2 group-hover:scale-110 transition-transform">{m.icon}</span>
-              <div className="font-display font-black text-2xl lg:text-3xl text-slate-900 mb-0.5">
-                {m.val}
-              </div>
-              <div className="text-xs text-slate-400 font-medium leading-tight">{m.label}</div>
+              <div className="font-sora font-black text-2xl lg:text-3xl text-white mb-0.5">{m.val}</div>
+              <div className="text-xs text-outline font-medium uppercase tracking-widest leading-tight">{m.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -45,67 +43,63 @@ function MetricsBar() {
   )
 }
 
-// Industry filter quick links
-const industries = ['All', 'Retail', 'Media & Creative', 'Manufacturing', 'Education', 'Corporate']
-
-function IndustryNav() {
+function IndustryNav({ activeId }) {
   return (
-    <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 overflow-x-auto scrollbar-hide">
+    <div className="sticky top-20 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10">
+      <div className="max-w-7xl mx-auto px-8 overflow-x-auto scrollbar-hide">
         <div className="flex gap-2 py-3 min-w-max">
-          {caseStudies.map((s) => (
-            <a
-              key={s.id}
-              href={`#case-${s.id}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all whitespace-nowrap"
-            >
-              <span>{s.icon}</span>
-              {s.client}
-            </a>
-          ))}
+          {caseStudies.map((s) => {
+            const isActive = activeId === s.id
+            return (
+              <a
+                key={s.id}
+                href={`#case-${s.id}`}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
+                  isActive
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
+                }`}
+              >
+                {s.client}
+              </a>
+            )
+          })}
         </div>
       </div>
     </div>
   )
 }
 
-// Social proof strip
 function TestimonialsStrip() {
   const quotes = [
     {
-      text: "Usha Infotech set up our entire 80-seat office in just 4 days. Saved us ₹6 lakhs and months of headaches.",
+      text: "Usha Infotech set up our entire 80-seat office in just 4 days. Saved us 6 lakhs and months of headaches.",
       name: "Operations Head",
       company: "Pharma Company, Nashik",
-      icon: "🏭",
     },
     {
       text: "Our media transfer times crashed by 70% after they overhauled our network. The team was professional and fast.",
       name: "Creative Director",
       company: "Fizzy Fox Studio",
-      icon: "🎬",
     },
     {
       text: "We've been with them for 8 years. They handle our entire IT infrastructure without us lifting a finger.",
       name: "MD",
       company: "Logistics Group, Nashik",
-      icon: "🚛",
     },
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-24 lg:py-32 bg-on-surface text-surface">
+      <div className="max-w-4xl mx-auto px-8 text-center">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-12"
         >
-          <span className="section-label">What Clients Say</span>
-          <h2 className="font-display font-black text-3xl lg:text-4xl text-slate-900">
-            Voices of Trust
-          </h2>
+          <span className="section-label text-primary-container mb-8 block">What Clients Say</span>
+          <h2 className="font-sora font-bold text-3xl lg:text-4xl text-white mb-16">Voices of Trust</h2>
         </motion.div>
 
         <motion.div
@@ -113,26 +107,19 @@ function TestimonialsStrip() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {quotes.map((q, i) => (
             <motion.div
               key={i}
               variants={staggerItem}
-              className="bg-white rounded-2xl border border-slate-100 shadow-card p-7 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 group relative"
+              className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl text-left"
             >
-              {/* Quote mark */}
-              <div className="absolute top-5 right-7 font-display font-black text-6xl text-slate-100 leading-none group-hover:text-blue-100 transition-colors">
-                "
-              </div>
-
-              <div className="text-3xl mb-4">{q.icon}</div>
-              <p className="text-slate-700 text-sm leading-relaxed mb-6 relative z-10 italic">
-                "{q.text}"
-              </p>
-              <div className="pt-4 border-t border-slate-100">
-                <p className="font-display font-bold text-sm text-slate-900">{q.name}</p>
-                <p className="text-xs text-blue-600 font-semibold">{q.company}</p>
+              <span className="text-4xl text-primary-container block mb-4 font-serif leading-none select-none" aria-hidden="true">&ldquo;</span>
+              <p className="text-white/80 text-sm leading-relaxed mb-6 italic">"{q.text}"</p>
+              <div className="pt-4 border-t border-white/10">
+                <p className="font-sora font-bold text-sm text-white">{q.name}</p>
+                <p className="text-xs text-primary-container font-semibold">{q.company}</p>
               </div>
             </motion.div>
           ))}
@@ -143,20 +130,51 @@ function TestimonialsStrip() {
 }
 
 export default function CaseStudies() {
+  const [activeId, setActiveId] = useState('')
+
+  useEffect(() => {
+    const handleObserver = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id.replace('case-', ''))
+            }
+          })
+        },
+        { threshold: 0.1, rootMargin: '-40% 0px -40% 0px' }
+      )
+
+      caseStudies.forEach((study) => {
+        const el = document.getElementById(`case-${study.id}`)
+        if (el) observer.observe(el)
+      })
+      return observer
+    }
+
+    const obs = handleObserver()
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <>
+      <SEO
+        title="Case Studies"
+        path="/case-studies"
+        description="500+ businesses transformed. Real IT deployments, real savings, real uptime. See how Usha Infotech solves enterprise IT challenges across India."
+      />
       <PageHero
         label="Client Success Stories"
         title="500+ Businesses"
         accent="Transformed"
         subtitle="Real deployments. Real savings. Real uptime. See how Usha Infotech has solved enterprise IT challenges across India."
-        badges={['🏪 Retail', '🎬 Media', '🏭 Manufacturing', '🎓 Education', '📡 Networking']}
+        badges={['Retail', 'Media', 'Manufacturing', 'Education', 'Networking']}
+        bgImage="cust_real.png"
       />
 
       <MetricsBar />
-      <IndustryNav />
+      <IndustryNav activeId={activeId} />
 
-      {/* All case studies in alternating split layout */}
       {caseStudies.map((study, index) => (
         <CaseStudySplitSection key={study.id} study={study} index={index} />
       ))}

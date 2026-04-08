@@ -1,122 +1,78 @@
-import { motion } from 'framer-motion'
-import { staggerItem } from '../animations/stagger'
-
-const badgeStyles = {
-  authorised: 'badge-authorised',
-  refurbished: 'badge-refurbished',
-  new: 'badge-new-tech',
-  rental: 'badge-rental',
-}
+import { motion } from "framer-motion";
+import { staggerItem } from "../animations/stagger";
 
 export default function ProductCard({ product }) {
   return (
     <motion.div
       variants={staggerItem}
       layout
-      className="group bg-white rounded-2xl border border-slate-100 shadow-card hover:shadow-card-hover hover:scale-[1.03] transition-all duration-300 overflow-hidden"
+      className="group relative h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
     >
-      {/* Image Header */}
-      <div className="relative w-full h-[220px] lg:h-[250px] bg-slate-100 flex flex-col items-center justify-center overflow-hidden border-b border-slate-100">
-        {product.image ? (
-          <img 
-            src={`/assets/${product.image}${product.image.includes('.') ? '' : '.png'}`} 
-            alt={product.title} 
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-          />
-        ) : (
-          <div className="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300 relative z-10">
-            {product.icon}
-          </div>
-        )}
-
-        {/* Overlay gradient for badges */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-
-        <div className={`absolute bottom-4 left-4 badge-pill shadow-lg z-10 !bg-white/95 backdrop-blur-md !border-white/60 flex items-center gap-1.5 ${badgeStyles[product.badge.type] || 'badge-new-tech'}`}>
-          {product.badge1 && ['DELL', 'HP', 'Lenovo', 'Cisco'].includes(product.badge1.num) && (
-             <img src={`https://logo.clearbit.com/${product.badge1.num.toLowerCase()}.com`} alt={product.badge1.num} className="h-3.5 w-auto object-contain shrink-0" />
-          )}
-          {product.badge.label.replace('✓', '').trim()}
-        </div>
-
-        {/* Floating mini-badges */}
-        {product.badge1 && (
-          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg px-3 py-2 text-center z-10 border border-slate-100/50">
-            <div className="font-display font-black text-sm text-slate-900 leading-tight">
-              {product.badge1.num}
-            </div>
-            <div className="text-[10px] text-slate-500 font-bold leading-tight uppercase tracking-wider">
-              {product.badge1.label}
-            </div>
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 group-hover:blur-[6px]"
+        style={{
+          backgroundImage: product.image
+            ? `url('/assets/${product.image}${product.image.includes(".") ? "" : ".png"}')`
+            : "none",
+          backgroundColor: product.image ? "transparent" : "#0d3d52",
+        }}
+      >
+        {/* Fallback icon if no image */}
+        {!product.image && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="material-symbols-outlined text-[120px] text-white/10">
+              {product.icon || "devices"}
+            </span>
           </div>
         )}
       </div>
 
-      <div className="p-6">
-        {/* Title */}
-        <h3 className="font-display font-bold text-lg text-slate-900 mb-2 leading-tight group-hover:text-blue-700 transition-colors">
-          {product.title}
-        </h3>
-        <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
-          {product.desc}
-        </p>
+      {/* Base dark scrim — always visible, ensures readability on BOTH dark and light images */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/50" />
+      {/* Teal brand tint — transitions on hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0d3d52]/60 via-transparent to-transparent group-hover:from-[#0a2e3e]/80 group-hover:via-[#1A6B8A]/40 group-hover:to-transparent transition-all duration-500 ease-in-out" />
 
-        {/* Specs Grid (if available) */}
-        {product.specs && product.specs.length > 0 && (
-          <div className="grid grid-cols-2 gap-2 mb-4">
-            {product.specs.map((spec) => (
-              <div key={spec.label} className="spec-item">
-                <div className="spec-label">{spec.label}</div>
-                <div className="spec-value">{spec.value}</div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Feature list (if no specs) */}
-        {!product.specs && product.features && (
-          <ul className="flex flex-col gap-2 mb-4">
-            {product.features.slice(0, 3).map((f) => (
-              <li key={f} className="flex items-start gap-2 text-sm text-slate-600">
-                <span className="mt-0.5 w-4 h-4 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-[10px] font-bold flex-shrink-0">✓</span>
-                <span className="line-clamp-2">{f}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {product.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="tag-pill text-[11px] py-0.5 px-2">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Price row */}
-        <div className="flex items-center gap-3 mb-5 pb-5 border-b border-slate-100">
-          <span className="font-display font-medium text-base text-blue-600">
-            Contact for Pricing
+      {/* Badge Tag — top-left */}
+      {product.badge?.label && (
+        <div className="absolute top-6 left-6 z-20">
+          <span className="tag-glass whitespace-nowrap">
+            {product.badge.label}
           </span>
         </div>
+      )}
 
-        {/* Best for */}
-        {product.bestFor && (
-          <div className="bg-slate-50 rounded-xl p-3 mb-5 border border-slate-100">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">⚡ Best For</p>
-            <p className="text-xs text-slate-600 leading-relaxed">{product.bestFor}</p>
+      {/* Content wrapper */}
+      <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
+
+        {/* Top Info — revealed on hover, starts below badge */}
+        <div className="flex-1 overflow-hidden pt-12">
+          <div className="transform -translate-y-[120%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col gap-4">
+            <p className="text-white/90 text-sm leading-relaxed border-l-2 border-primary pl-3 mt-4">
+              {product.desc || product.tags?.join(" · ")}
+            </p>
+
+            <a
+              href="tel:+918087051208"
+              className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-sky-200 transition-colors duration-200 w-max border-b border-white/30 hover:border-sky-200 pb-0.5"
+            >
+              {product.ctaLabel || "Enquire Now"}
+              <span className="material-symbols-outlined text-[14px]">
+                arrow_forward
+              </span>
+            </a>
           </div>
-        )}
+        </div>
 
-        {/* CTA */}
-        <a
-          href="tel:+918087051208"
-          className="btn-primary w-full justify-center text-sm py-3"
-        >
-          {product.ctaLabel} →
-        </a>
+        {/* Bottom Title — always visible */}
+        <div className="mt-auto relative z-20 -mx-6 md:-mx-8 px-6 md:px-8 pt-5 pb-1 backdrop-blur-md bg-black/30 group-hover:bg-[#1A6B8A]/35 transition-all duration-500">
+          {/* Decorative bar */}
+          <div className="w-8 h-1 bg-primary mb-4 transition-all duration-500 group-hover:w-16 group-hover:bg-white rounded-full" />
+          <h3 className="text-xl md:text-2xl font-sora font-bold text-white/90 group-hover:text-white transition-colors duration-300">
+            {product.title}
+          </h3>
+        </div>
       </div>
     </motion.div>
-  )
+  );
 }

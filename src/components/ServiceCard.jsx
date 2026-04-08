@@ -1,139 +1,51 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { staggerItem } from '../animations/stagger'
-
-const colorMap = {
-  blue: {
-    icon: 'bg-blue-50 text-blue-600',
-    badge: 'bg-blue-50 text-blue-700 border-blue-100',
-    line: 'bg-blue-600',
-    hover: 'group-hover:text-blue-600',
-    arrow: 'group-hover:bg-blue-600',
-  },
-  teal: {
-    icon: 'bg-teal-50 text-teal-600',
-    badge: 'bg-teal-50 text-teal-700 border-teal-100',
-    line: 'bg-teal-600',
-    hover: 'group-hover:text-teal-600',
-    arrow: 'group-hover:bg-teal-600',
-  },
-}
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { staggerItem } from "../animations/stagger";
 
 export default function ServiceCard({ service, index }) {
-  const c = colorMap[service.color] || colorMap.blue
-
-  // 3D Tilt Setup
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 })
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 })
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = e.clientX - rect.left
-    const mouseY = e.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct)
-    y.set(yPct)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
   return (
-    <div className="relative z-0 hover:z-20 transition-all duration-500 group-hover/services:opacity-50 group-hover/services:blur-[3px] hover:!opacity-100 hover:!blur-none">
-      <motion.div
-        variants={staggerItem}
-        whileHover={{ scale: 1.05 }}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-          perspective: 1000
-        }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="group relative bg-white rounded-2xl border border-slate-100 shadow-card hover:shadow-card-hover transition-shadow duration-300 cursor-pointer"
+    <motion.div
+      variants={staggerItem}
+      className="group relative h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
     >
-      {/* Container with overflow-hidden for the accent line and border radius, but translated in Z to pop out slightly */}
-      <div 
-        style={{ transform: "translateZ(40px)" }} 
-        className="w-full h-full relative z-10 p-6 lg:p-7 bg-white rounded-2xl overflow-hidden"
-      >
-        {/* Top accent line */}
-        <div className={`absolute top-0 left-0 right-0 h-1 ${c.line} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+      {/* Background Image (Always visible, blurs and scales up on hover) */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 group-hover:blur-[6px]"
+        style={{ backgroundImage: `url('/assets/${service.image}.png')` }}
+      />
+      {/* Teal overlay for contrast over image */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0d3d52]/88 via-[#1A6B8A]/15 to-[#0d3d52]/35 group-hover:from-[#0a2e3e]/97 group-hover:via-[#1A6B8A]/65 group-hover:to-[#0a2e3e]/88 transition-all duration-500 ease-in-out" />
 
-        {/* Icon + Tag row */}
-        <div className="flex items-center justify-between mb-5">
-          <div className={`w-12 h-12 rounded-xl ${c.icon} flex items-center justify-center text-2xl font-display font-bold transition-transform group-hover:scale-110 duration-300`}>
-            {service.icon}
-          </div>
-          <span className={`text-xs font-bold px-3 py-1 rounded-full border ${c.badge} uppercase tracking-wide`}>
-            {service.tag}
-          </span>
-        </div>
+      {/* Content wrapper */}
+      <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
+        {/* Top Info (Hidden by default, slides down on hover) */}
+        <div className="flex-1 overflow-hidden">
+          <div className="transform -translate-y-[120%] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col gap-4">
+            <p className="text-white/90 text-sm leading-relaxed border-l-2 border-primary pl-3 mt-4">
+              {service.shortDesc}
+            </p>
 
-        {/* Title */}
-        <h3 className={`font-display font-bold text-xl text-slate-900 mb-3 transition-colors duration-200 ${c.hover}`}>
-          {service.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-slate-500 text-sm leading-relaxed mb-5">
-          {service.shortDesc}
-        </p>
-
-        {/* Feature preview */}
-        <ul className="flex flex-col gap-2 mb-6">
-          {service.features.slice(0, 3).map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm text-slate-600">
-              <span className="mt-0.5 w-4 h-4 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-[10px] font-bold flex-shrink-0">✓</span>
-              {f}
-            </li>
-          ))}
-        </ul>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {service.forWhom.map((tag) => (
-            <span key={tag} className="tag-pill text-[11px] py-1 px-2.5">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Footer CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-50">
-          <Link
-            to="/services"
-            className="text-sm font-semibold text-slate-500 group-hover:text-blue-600 transition-colors flex items-center gap-1"
-          >
-            Learn more
-            <svg
-              className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-200"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <Link
+              to="/services"
+              className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-primary transition-colors w-max"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-          <a
-            href="tel:+918087051208"
-            className={`w-8 h-8 rounded-lg bg-slate-100 ${c.arrow} flex items-center justify-center text-slate-400 group-hover:text-white transition-all duration-300 text-xs font-bold`}
-          >
-            →
-          </a>
+              Learn More
+              <span className="material-symbols-outlined text-[14px]">
+                arrow_forward
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Bottom Title (Always visible) */}
+        <div className="mt-auto relative z-20 -mx-6 md:-mx-8 px-6 md:px-8 pt-5 pb-1 backdrop-blur-md bg-black/30 group-hover:bg-[#1A6B8A]/35 transition-all duration-500">
+          {/* Decorative bar */}
+          <div className="w-8 h-1 bg-primary mb-4 transition-all duration-500 group-hover:w-16 group-hover:bg-white rounded-full" />
+          <h3 className="text-xl md:text-2xl font-sora font-bold text-white/90 group-hover:text-white transition-colors duration-300">
+            {service.title}
+          </h3>
         </div>
       </div>
     </motion.div>
-    </div>
-  )
+  );
 }

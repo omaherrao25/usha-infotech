@@ -14,7 +14,7 @@ export const products = [
   {
     id: 'dell-laptop',
     category: 'laptops',
-    badge: { type: 'authorised', label: '✓ Authorised Dealer' },
+    badge: { type: 'authorised', label: 'Authorised Dealer' },
     title: 'Dell Business Laptops & Desktops',
     desc: 'Full range of Dell Latitude, Vostro, OptiPlex and Precision workstations. All units carry original Dell India warranty with on-site service.',
     specs: [
@@ -30,7 +30,7 @@ export const products = [
     badge2: { num: '3 yr', label: 'OnSite Warranty' },
     bestFor: 'Corporate offices, bulk procurement, government departments and enterprise deployments. We handle GEM orders.',
     ctaLabel: 'Get a Quote',
-    icon: '💻',
+    icon: 'laptop_mac',
     image: 'laptop_work',
     features: [
       'End-to-end IT setup for new offices',
@@ -42,7 +42,7 @@ export const products = [
   {
     id: 'hp-laptop',
     category: 'laptops',
-    badge: { type: 'authorised', label: '✓ Authorised Dealer' },
+    badge: { type: 'authorised', label: 'Authorised Dealer' },
     title: 'HP Business Laptops & Desktops',
     desc: 'Official HP ProBook, EliteBook, and EliteDesk range. From education to critical finance environments, HP workstations deliver unmatched reliability.',
     specs: [
@@ -58,13 +58,13 @@ export const products = [
     badge2: { num: '3 yr', label: 'OnSite' },
     bestFor: 'Finance teams, medical offices, educational institutions and field teams who need durable, long-lasting hardware.',
     ctaLabel: 'Get a Quote',
-    icon: '💻',
+    icon: 'laptop_mac',
     image: 'hp_laptops',
   },
   {
     id: 'lenovo',
     category: 'laptops',
-    badge: { type: 'authorised', label: '✓ Authorised Dealer' },
+    badge: { type: 'authorised', label: 'Authorised Dealer' },
     title: 'Lenovo ThinkPad & IdeaPad',
     desc: 'The legendary ThinkPad line — engineered for professionals. Mil-spec tested for drops, spills and temperatures. Also available: Lenovo IdeaPad for SMB.',
     specs: [
@@ -80,7 +80,7 @@ export const products = [
     badge2: { num: 'Military', label: 'Grade Build' },
     bestFor: 'High-demand professionals, developers, government departments, and power users who need military-grade durability.',
     ctaLabel: 'Get a Quote',
-    icon: '💻',
+    icon: 'laptop_mac',
     image: 'lenovo_thinkpad',
   },
   {
@@ -101,7 +101,7 @@ export const products = [
     badge2: { num: '10G', label: 'Backbone Ready' },
     bestFor: 'Offices, server rooms, warehouses and data centers needing reliable, high-throughput networking infrastructure.',
     ctaLabel: 'Enquire Now',
-    icon: '🌐',
+    icon: 'language',
     image: 'net_real',
   },
   {
@@ -122,7 +122,7 @@ export const products = [
     badge2: { num: 'Zero', label: 'Dead Zones' },
     bestFor: 'Large offices, warehouses, hotels, hospitals and educational institutions requiring blanket enterprise wireless coverage.',
     ctaLabel: 'Plan Your Wi-Fi',
-    icon: '📡',
+    icon: 'settings_input_antenna',
     image: 'net_real',
   },
   {
@@ -143,13 +143,13 @@ export const products = [
     badge2: { num: '24/7', label: 'Recording' },
     bestFor: 'Factories, offices, retail stores, warehouses and residential complexes requiring robust, 24/7 surveillance coverage.',
     ctaLabel: 'Get Security Systems Quote',
-    icon: '📷',
+    icon: 'videocam',
     image: 'sec_real',
   },
   {
     id: 'refurbished',
     category: 'refurbished',
-    badge: { type: 'refurbished', label: '🔁 Refurbished' },
+    badge: { type: 'refurbished', label: 'Refurbished' },
     title: 'Refurbished Laptops & Desktops',
     desc: 'Grade-A certified refurbished laptops and desktops — premium brands fully tested, cleaned, upgraded and backed by in-house 3-month warranty.',
     specs: [
@@ -170,7 +170,7 @@ export const products = [
     badge2: { num: '60%', label: 'Cost Savings' },
     bestFor: 'Schools, coaching centers, startups and cost-conscious businesses that need reliable hardware without breaking the budget.',
     ctaLabel: 'Check Stock & Pricing',
-    icon: '♻️',
+    icon: 'recycling',
     image: 'refurbished_laptops',
   },
   ...accessoryProductsList,

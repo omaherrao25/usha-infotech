@@ -3,7 +3,7 @@
 export const services = [
   {
     id: 'infrastructure',
-    icon: '🏢',
+    icon: 'corporate_fare',
     tag: 'Core Service',
     title: 'IT Infrastructure Setup',
     shortDesc: 'End-to-end office IT setup — server rooms to conference systems. Tailored to your business size.',
@@ -19,7 +19,7 @@ export const services = [
     badge1: { num: '3 Days', label: 'Avg. Office Setup' },
     badge2: { num: '40%', label: 'Cost Saved vs Market' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Pharma company, Nashik — 80-seat office setup in 4 days. Saved ₹6 Lakhs vs outsourcing to Mumbai, with 6-month AMC included.',
       stats: [
         { val: '₹6L+', label: 'Saved' },
@@ -33,7 +33,7 @@ export const services = [
   },
   {
     id: 'hardware',
-    icon: '💻',
+    icon: 'laptop_mac',
     tag: 'Authorised Dealer',
     title: 'Hardware Solutions',
     shortDesc: 'Authorised Dell, HP & Lenovo procurement with full enterprise warranty. GEM registered.',
@@ -49,7 +49,7 @@ export const services = [
     badge1: { num: 'GEM', label: 'Registered Vendor' },
     badge2: { num: '3 OEMs', label: 'Dell · HP · Lenovo' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Government college, Maharashtra — 120 refurbished laptops for a computer lab. Saved ₹18 Lakhs vs buying new, all with 1-year warranty.',
       stats: [
         { val: '₹18L+', label: 'Saved' },
@@ -63,7 +63,7 @@ export const services = [
   },
   {
     id: 'security',
-    icon: '📷',
+    icon: 'videocam',
     tag: 'Surveillance',
     title: 'Security Systems',
     shortDesc: 'IP & HD camera systems with 24/7 remote monitoring. Complete installation & NVR setup.',
@@ -79,7 +79,7 @@ export const services = [
     badge1: { num: 'IP & HD', label: 'Camera Systems' },
     badge2: { num: '24/7', label: 'Remote Monitoring' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Retail chain, Pune — 45-camera IP Security Systems system across 3 floors. Reduced shrinkage by 80% in first quarter post-installation.',
       stats: [
         { val: '45 Cams', label: 'Installed' },
@@ -93,7 +93,7 @@ export const services = [
   },
   {
     id: 'networking',
-    icon: '🌐',
+    icon: 'language',
     tag: 'Networking',
     title: 'Enterprise Networking',
     shortDesc: 'Cisco, Fortinet & Wi-Fi 6 deployments. Structured cabling to fiber-optic backbone.',
@@ -109,7 +109,7 @@ export const services = [
     badge1: { num: 'Wi-Fi 6', label: 'Ready' },
     badge2: { num: '99.9%', label: 'Uptime SLA' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Logistics company, Nashik — complete structured cabling for 200-seat office. 10Gbps fiber backbone with managed switch stack.',
       stats: [
         { val: '200 Pts', label: 'Network Points' },
@@ -123,7 +123,7 @@ export const services = [
   },
   {
     id: 'rentals',
-    icon: '🔄',
+    icon: 'sync_alt',
     tag: 'Flexible Plans',
     title: 'IT Rentals & AMC',
     shortDesc: 'Laptop, desktop & projector rentals. Daily to yearly contracts. Zero CAPEX model.',
@@ -139,7 +139,7 @@ export const services = [
     badge1: { num: '24Hr', label: 'Replacement' },
     badge2: { num: '₹0', label: 'CAPEX' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Corporate training event, Mumbai — 80 laptops deployed and retrieved in 3 days. All pre-configured with custom software image.',
       stats: [
         { val: '80 Units', label: 'Deployed' },
@@ -153,7 +153,7 @@ export const services = [
   },
   {
     id: 'b2b',
-    icon: '🤝',
+    icon: 'handshake',
     tag: 'White-Label',
     title: 'Third-Party IT Contracting',
     shortDesc: 'White-labeled IT execution under NDA. 300+ branch deployments. You keep the client.',
@@ -169,7 +169,7 @@ export const services = [
     badge1: { num: 'NDA', label: '100% Confidential' },
     badge2: { num: 'Pan-India', label: 'Execution Ready' },
     caseStudy: {
-      pill: '📋 Case Study',
+      pill: 'Case Study',
       text: 'Mumbai IT agency (NDA — anonymous) — 300-branch retail rollout across Maharashtra. ₹2.4Cr contract delivered on time.',
       stats: [
         { val: '300', label: 'Branches' },

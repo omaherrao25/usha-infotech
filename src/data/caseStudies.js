@@ -26,7 +26,7 @@ export const caseStudies = [
     tags: ['IT Infrastructure', 'Retail Scaling', 'Turnkey Deployment'],
     ctaLabel: 'Scale your Retail Brand? Let\'s Talk',
     color: 'blue',
-    icon: '🏪',
+    icon: 'storefront',
     image: 'cust_real',
   },
   {
@@ -54,7 +54,7 @@ export const caseStudies = [
     tags: ['Gigabit Networking', 'Studio IT Setup', 'Wi-Fi 6 Integration'],
     ctaLabel: 'Upgrade Your Network',
     color: 'teal',
-    icon: '🎬',
+    icon: 'movie',
     image: 'fizzyfox_network',
   },
   {
@@ -82,7 +82,7 @@ export const caseStudies = [
     tags: ['Industrial Security Systems', 'IP Surveillance', 'Factory Security'],
     ctaLabel: 'Audit Factory Security',
     color: 'blue',
-    icon: '🏭',
+    icon: 'factory',
     image: 'weldtech_security',
   },
   {
@@ -110,7 +110,7 @@ export const caseStudies = [
     tags: ['IT Rentals', 'Refurbished Endpoints', 'Education Logistics'],
     ctaLabel: 'Get Rental Estimates',
     color: 'teal',
-    icon: '🎓',
+    icon: 'school',
     image: 'laptop_work',
   },
   {
@@ -138,7 +138,7 @@ export const caseStudies = [
     tags: ['Networking', 'Cisco Integration', 'Corporate Wi-Fi'],
     ctaLabel: 'Audit Your Network Now',
     color: 'blue',
-    icon: '📡',
+    icon: 'settings_input_antenna',
     image: 'infra_real',
   },
 ]
@@ -148,28 +148,22 @@ export const homePreviewCases = [
     client: 'Timus Lifestyle',
     logo: '/assets/logos/TIMUS LIFESTYLE.png',
     title: 'Pan-India Retail IT Rollout',
-    metric1: { val: '20+', label: 'Stores' },
-    metric2: { val: '30%', label: 'Faster Launch' },
+    shortDesc: 'Standardized IT infrastructure across 20+ retail stores launched simultaneously, enabling zero billing downtime on every opening day.',
     tag: 'IT Infrastructure',
-    color: 'blue',
   },
   {
     client: 'WeldTech Manufacturing',
     logo: '/assets/logos/WELD TECH.png.png',
     title: 'Industrial Plant Surveillance',
-    metric1: { val: '100%', label: 'Coverage' },
-    metric2: { val: '0 Theft', label: 'Incidents' },
+    shortDesc: 'Ruggedized IP camera network deployed across a harsh manufacturing floor, delivering complete 24/7 security coverage.',
     tag: 'Security Systems',
-    color: 'teal',
   },
   {
     client: 'Fizzy Fox Studio',
     logo: '/assets/logos/fizzyfox logo.png',
     title: 'Media Network Overhaul',
-    metric1: { val: '70%', label: 'Faster Transfers' },
-    metric2: { val: 'Zero', label: 'Dropouts' },
+    shortDesc: 'Enterprise Wi-Fi 6 and gigabit switching built for a high-throughput creative studio, eliminating transfer delays and dropouts entirely.',
     tag: 'Networking',
-    color: 'blue',
   },
 ]
 
