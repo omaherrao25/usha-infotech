@@ -169,6 +169,7 @@ export default function CaseStudies() {
         accent="Transformed"
         subtitle="Real deployments. Real savings. Real uptime. See how Usha Infotech has solved enterprise IT challenges across India."
         badges={['Retail', 'Media', 'Manufacturing', 'Education', 'Networking']}
+        bgImage="cust_real.png"
       />
 
       <MetricsBar />

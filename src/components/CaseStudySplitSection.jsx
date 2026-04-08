@@ -4,7 +4,6 @@ import { staggerMed, staggerItem } from '../animations/stagger'
 
 export default function CaseStudySplitSection({ study, index }) {
   const isEven = index % 2 === 0
-  const isKaizen = study.id === 'kaizen'
 
   const TextBlock = () => (
     <motion.div
@@ -16,9 +15,9 @@ export default function CaseStudySplitSection({ study, index }) {
     >
       {/* Industry + tag */}
       <div className="flex items-center gap-3 mb-5">
-        <span className={`tag-pill ${isKaizen ? 'bg-primary/20 text-primary-container border-primary/20' : ''}`}>{study.industry}</span>
-        <span className={isKaizen ? 'text-surface-dim' : 'text-outline'}>&middot;</span>
-        <span className={`text-xs font-semibold uppercase tracking-widest ${isKaizen ? 'text-primary-container' : 'text-outline'}`}>
+        <span className="tag-pill">{study.industry}</span>
+        <span className="text-outline">&middot;</span>
+        <span className="text-xs font-semibold uppercase tracking-widest text-outline">
           {study.tag}
         </span>
       </div>
@@ -26,19 +25,19 @@ export default function CaseStudySplitSection({ study, index }) {
       {/* Client */}
       <div className="flex items-center gap-4 mb-3">
         {study.logo && (
-          <img src={study.logo} alt={study.client} className={`h-10 max-w-[140px] object-contain ${isKaizen ? 'brightness-0 invert' : ''}`} />
+          <img src={study.logo} alt={study.client} className="h-10 max-w-[140px] object-contain" />
         )}
-        <p className={`font-sora font-black text-sm tracking-widest uppercase ${isKaizen ? 'text-surface-dim' : 'text-outline'}`}>
+        <p className="font-sora font-black text-sm tracking-widest uppercase text-outline">
           {study.client}
         </p>
       </div>
 
       {/* Title */}
-      <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-sora font-bold tracking-tight leading-tight mb-4 ${isKaizen ? 'text-white' : 'text-on-surface'}`}>
+      <h2 className="text-3xl lg:text-4xl xl:text-5xl font-sora font-bold tracking-tight leading-tight mb-4 text-on-surface">
         {study.title}
       </h2>
 
-      <p className={`text-base leading-relaxed mb-8 ${isKaizen ? 'text-surface-dim' : 'text-on-surface-variant'}`}>
+      <p className="text-base leading-relaxed mb-8 text-on-surface-variant">
         {study.desc}
       </p>
 
@@ -58,13 +57,13 @@ export default function CaseStudySplitSection({ study, index }) {
           <motion.div
             key={item.label}
             variants={staggerItem}
-            className={`p-5 rounded-xl ${isKaizen ? 'bg-white/5 border border-white/10' : 'bg-surface-container-lowest shadow-card'}`}
+            className="p-5 rounded-xl bg-white shadow-card border-l-[3px] border-l-primary/40 border border-surface-container-high"
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className={`material-symbols-outlined text-lg ${isKaizen ? 'text-primary-container' : 'text-primary'}`}>{item.icon}</span>
-              <p className={`text-xs font-bold uppercase tracking-widest ${isKaizen ? 'text-primary-container' : 'text-outline'}`}>{item.label}</p>
+              <span className="material-symbols-outlined text-lg text-primary">{item.icon}</span>
+              <p className="text-xs font-bold uppercase tracking-widest text-outline">{item.label}</p>
             </div>
-            <p className={`text-sm leading-relaxed ${isKaizen ? 'text-surface-dim' : 'text-on-surface'}`}>{item.text}</p>
+            <p className="text-sm leading-relaxed text-on-surface">{item.text}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -106,24 +105,24 @@ export default function CaseStudySplitSection({ study, index }) {
           />
         ) : (
           <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
-            <span className={`material-symbols-outlined text-[120px] ${isKaizen ? 'text-primary/20' : 'text-primary/10'}`}>{study.icon}</span>
+            <span className="material-symbols-outlined text-[120px] text-primary/10">{study.icon}</span>
           </div>
         )}
 
         {/* Floating badges */}
-        <div className={`stat-float-badge top-4 left-4 backdrop-blur-sm shadow-card ${isKaizen ? 'bg-white/10 text-white border border-white/20' : 'bg-white/95'}`}>
-          <span className={`font-sora font-black text-lg ${isKaizen ? 'text-primary-container' : 'text-primary'}`}>{study.badges[0].num}</span>
-          <span className={`text-[11px] font-bold ${isKaizen ? 'text-surface-dim' : 'text-outline'}`}>{study.badges[0].label}</span>
+        <div className="stat-float-badge top-4 left-4 backdrop-blur-sm shadow-card bg-white/95">
+          <span className="font-sora font-black text-lg text-primary">{study.badges[0].num}</span>
+          <span className="text-[11px] font-bold text-outline">{study.badges[0].label}</span>
         </div>
-        <div className={`stat-float-badge bottom-4 right-4 backdrop-blur-sm shadow-card ${isKaizen ? 'bg-white/10 text-white border border-white/20' : 'bg-white/95'}`}>
-          <span className={`font-sora font-black text-lg ${isKaizen ? 'text-primary-container' : 'text-primary'}`}>{study.badges[1].num}</span>
-          <span className={`text-[11px] font-bold ${isKaizen ? 'text-surface-dim' : 'text-outline'}`}>{study.badges[1].label}</span>
+        <div className="stat-float-badge bottom-4 right-4 backdrop-blur-sm shadow-card bg-white/95">
+          <span className="font-sora font-black text-lg text-primary">{study.badges[1].num}</span>
+          <span className="text-[11px] font-bold text-outline">{study.badges[1].label}</span>
         </div>
       </div>
 
       {/* Quote */}
       <div className="mt-5 text-center px-4">
-        <p className={`text-sm font-medium italic ${isKaizen ? 'text-surface-dim' : 'text-on-surface-variant'}`}>"{study.outcome}"</p>
+        <p className="text-sm font-medium italic text-on-surface-variant">"{study.outcome}"</p>
       </div>
 
       {/* Metrics bar */}
@@ -137,10 +136,10 @@ export default function CaseStudySplitSection({ study, index }) {
         {study.metrics.map((m) => (
           <div
             key={m.label}
-            className={`rounded-xl p-4 text-center shadow-card ${isKaizen ? 'bg-white/5 border border-white/10' : 'bg-surface-container-lowest'}`}
+            className="rounded-xl p-4 text-center shadow-card bg-white border border-surface-container-high"
           >
-            <div className={`font-sora font-black text-2xl mb-0.5 ${isKaizen ? 'text-primary-container' : 'text-primary'}`}>{m.val}</div>
-            <div className={`text-[11px] font-semibold uppercase tracking-wide ${isKaizen ? 'text-primary-container' : 'text-outline'}`}>{m.label}</div>
+            <div className="font-sora font-black text-2xl mb-0.5 text-primary">{m.val}</div>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-outline">{m.label}</div>
           </div>
         ))}
       </motion.div>
@@ -151,11 +150,7 @@ export default function CaseStudySplitSection({ study, index }) {
     <section
       id={`case-${study.id}`}
       className={`py-24 lg:py-32 transition-colors duration-500 overflow-hidden ${
-        isKaizen 
-          ? 'bg-on-surface text-surface' 
-          : isEven 
-            ? 'bg-surface-container-low' 
-            : 'bg-surface'
+        isEven ? 'bg-[#eef6f9]' : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-8">

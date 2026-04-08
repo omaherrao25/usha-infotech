@@ -95,19 +95,36 @@ export default function Products() {
         description="Authorised Dell, HP & Lenovo dealer. Enterprise laptops, networking gear, CCTV cameras, refurbished systems and IT accessories. GEM registered. Pan-India delivery."
       />
 
-      {/* Editorial Hero */}
-      <section className="pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="editorial-grid">
-            <div className="col-span-12">
-              <span className="section-label mb-6 block">Inventory Ledger v.2026</span>
-              <h1 className="text-6xl md:text-8xl font-sora font-extrabold tracking-tighter text-on-surface leading-[0.9] mb-8">
-                Precision<br />Infrastructure.
-              </h1>
-              <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-                Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
-              </p>
-            </div>
+      {/* Hero */}
+      <section className="relative pt-36 pb-28 overflow-hidden min-h-[560px] flex items-center">
+        {/* Plain surface strip behind the navbar */}
+        <div className="absolute inset-x-0 top-0 h-20 bg-surface" aria-hidden="true" />
+        {/* Background image — starts below navbar */}
+        <div className="absolute inset-x-0 top-20 bottom-0" aria-hidden="true">
+          <img src="/assets/hw_real.png" alt="" className="w-full h-full object-cover object-center" />
+        </div>
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-x-0 top-20 bottom-0"
+          aria-hidden="true"
+          style={{ background: 'linear-gradient(105deg, rgba(11,25,35,0.92) 0%, rgba(11,25,35,0.82) 40%, rgba(11,25,35,0.55) 70%, rgba(11,25,35,0.25) 100%)' }}
+        />
+        {/* Brand tint */}
+        <div
+          className="absolute inset-x-0 top-20 bottom-0"
+          aria-hidden="true"
+          style={{ background: 'linear-gradient(180deg, rgba(26,107,138,0.18) 0%, transparent 60%)' }}
+        />
+        <div className="relative max-w-7xl mx-auto px-8 w-full">
+          <div className="max-w-3xl">
+            <span className="section-label mb-6 block text-primary-fixed-dim">Inventory Ledger v.2026</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-sora font-extrabold tracking-tighter text-white leading-[0.9] mb-7">
+              Precision<br />
+              <span className="text-primary-fixed-dim">Infrastructure.</span>
+            </h1>
+            <p className="text-lg text-white/75 max-w-2xl font-light leading-relaxed">
+              Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.
+            </p>
           </div>
         </div>
       </section>
