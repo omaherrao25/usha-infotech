@@ -195,10 +195,12 @@ function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
         >
           {services.slice(0, 4).map((service, i) => (
-            <ServiceCard key={service.id} service={service} index={i} />
+            <div key={service.id} className="min-w-[85vw] sm:min-w-[40vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto h-full">
+              <ServiceCard service={service} index={i} />
+            </div>
           ))}
         </motion.div>
 
@@ -232,8 +234,8 @@ function QuoteSection() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <span className="material-symbols-outlined text-6xl text-primary mb-8 block">
-            format_quote
+          <span className="text-7xl text-primary mb-6 block font-serif leading-none select-none" aria-hidden="true">
+            &ldquo;
           </span>
           <blockquote className="text-3xl md:text-5xl font-sora font-light italic leading-tight mb-12">
             "Precision is not just about the hardware; it's about the{" "}
@@ -262,74 +264,92 @@ function QuoteSection() {
 }
 
 // — Case Studies Preview —
-const CASE_TAG_ACCENT = {
-  "IT Infrastructure": "#1A6B8A",
-  "Security Systems": "#b45309",
-  Networking: "#0f766e",
+const CASE_THEMES = {
+  "IT Infrastructure": { accent: "#1A6B8A", icon: "dns" },
+  "Security Systems": { accent: "#b45309", icon: "security" },
+  "Networking": { accent: "#0f766e", icon: "router" },
 };
 
 function CaseCard({ study }) {
-  const color = CASE_TAG_ACCENT[study.tag] ?? "#1A6B8A";
+  const theme = CASE_THEMES[study.tag] || { accent: "#1A6B8A", icon: "dataset" };
 
   return (
     <motion.div
       variants={staggerItem}
-      whileHover={{
-        y: -6,
-        transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] },
-      }}
-      className="group relative bg-surface-container-lowest rounded-2xl overflow-hidden border border-surface-container-high hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] transition-shadow duration-400 flex flex-col"
+      whileHover={{ y: -8 }}
+      className="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden border border-surface-container-high hover:border-transparent hover:shadow-[0_32px_64px_rgba(0,0,0,0.06)] transition-all duration-500 flex flex-col h-full"
     >
-      {/* Top accent line — scales in on hover */}
-      <div
-        className="h-[3px] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shrink-0"
-        style={{ backgroundColor: color }}
-      />
+      {/* Abstract Top Hero Area */}
+      <div 
+        className="relative h-44 w-full overflow-hidden flex items-center justify-center"
+        style={{ backgroundColor: `${theme.accent}08` }}
+      >
+        {/* Soft Radial Gradient Background Blob */}
+        <div 
+          className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[64px] opacity-40 group-hover:opacity-70 transition-opacity duration-700 translate-x-1/3 -translate-y-1/4 pointer-events-none"
+          style={{ backgroundColor: theme.accent }}
+        />
+        
+        {/* Floating Client Logo Box */}
+        <div className="relative z-10 w-24 h-24 bg-white rounded-[1.25rem] shadow-[0_8px_24px_rgba(0,0,0,0.06)] border border-surface-container p-3 flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+          {study.logo && (
+            <img
+              src={study.logo}
+              alt={study.client}
+              className="max-h-full max-w-full object-contain mix-blend-multiply"
+            />
+          )}
+        </div>
+      </div>
 
-      <div className="flex flex-col flex-1 p-7">
-        {/* Logo + Tag */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="h-6 flex items-center">
-            {study.logo && (
-              <img
-                src={study.logo}
-                alt={study.client}
-                className="h-full max-w-[100px] object-contain opacity-55 group-hover:opacity-90 transition-opacity duration-300"
-              />
-            )}
-          </div>
-          <span
-            className="text-[10px] font-bold uppercase tracking-[0.14em] px-2.5 py-1 rounded-full"
-            style={{ color, backgroundColor: color + "14" }}
-          >
-            {study.tag}
-          </span>
+      {/* Content Area */}
+      <div className="flex flex-col flex-1 p-8 relative bg-surface-container-lowest z-10 pt-6">
+        <div className="flex items-center mb-6">
+           <span
+              className="text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full flex items-center gap-1.5"
+              style={{ color: theme.accent, backgroundColor: `${theme.accent}14` }}
+            >
+              <span className="material-symbols-outlined text-[14px]">
+                {theme.icon}
+              </span>
+              {study.tag}
+            </span>
         </div>
 
-        {/* Client name */}
-        <p className="text-[10px] font-extrabold text-outline uppercase tracking-[0.2em] mb-1.5">
+        {/* Client Name Label */}
+        <p className="text-[10px] font-black text-outline uppercase tracking-[0.2em] mb-2">
           {study.client}
         </p>
 
         {/* Title */}
-        <h3 className="font-sora font-bold text-[1.05rem] leading-snug text-on-surface mb-3 group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-sora font-extrabold text-xl lg:text-[1.35rem] leading-[1.3] text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
           {study.title}
         </h3>
 
-        {/* Short description */}
-        <p className="text-sm text-on-surface-variant leading-relaxed flex-1 mb-7">
+        {/* Short Description */}
+        <p className="text-sm text-on-surface-variant leading-relaxed flex-1 mb-8">
           {study.shortDesc}
         </p>
 
-        {/* Divider + CTA */}
-        <div className="h-px bg-surface-container-high mb-5" />
-        <Link
-          to="/case-studies"
-          className="text-xs font-bold text-outline group-hover:text-primary transition-colors duration-300 pb-0.5 border-b border-transparent group-hover:border-primary/40 self-start"
-        >
-          View case study
-        </Link>
+        {/* Custom CTA */}
+        <div className="pt-5 border-t border-surface-container-high mt-auto flex items-center justify-between">
+           <Link
+             to="/case-studies"
+             className="text-xs font-bold uppercase tracking-wider text-outline group-hover:text-primary transition-colors duration-300 flex items-center gap-2"
+           >
+             Read Case Study
+             <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1.5 transition-transform duration-300">
+               east
+             </span>
+           </Link>
+        </div>
       </div>
+      
+      {/* Animated Bottom Border Line */}
+      <div 
+        className="absolute bottom-0 left-0 h-1 w-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 pointer-events-none"
+        style={{ backgroundColor: theme.accent }}
+      />
     </motion.div>
   );
 }
@@ -364,10 +384,12 @@ function CaseStudiesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 mb-14 pb-8 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0"
         >
           {homePreviewCases.map((study) => (
-            <CaseCard key={study.client} study={study} />
+            <div key={study.client} className="min-w-[85vw] sm:min-w-[45vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto">
+              <CaseCard study={study} />
+            </div>
           ))}
         </motion.div>
 
@@ -377,12 +399,12 @@ function CaseStudiesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex flex-wrap gap-4"
+          className="flex flex-col sm:flex-row gap-4 w-full"
         >
-          <a href="tel:+918087051208" className="btn-primary py-4 px-7">
+          <a href="tel:+918087051208" className="btn-primary py-4 px-7 justify-center">
             Get Free IT Consultation
           </a>
-          <Link to="/case-studies" className="btn-secondary py-4 px-7">
+          <Link to="/case-studies" className="btn-secondary py-4 px-7 justify-center">
             View All Stories
             <span className="material-symbols-outlined text-sm">
               arrow_forward

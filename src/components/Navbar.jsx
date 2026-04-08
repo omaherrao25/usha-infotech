@@ -169,18 +169,18 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="mt-12 flex flex-col items-center gap-4"
+              className="mt-12 flex flex-col items-center gap-4 w-full px-8 max-w-[280px]"
             >
               <a
                 href="tel:+918087051208"
-                className="btn-primary text-lg px-8 py-4"
+                className="btn-primary text-lg px-8 py-4 w-full justify-center"
                 onClick={toggleMobile}
               >
                 Call Now
               </a>
               <a
                 href="https://wa.me/918087051208"
-                className="btn-secondary text-base px-8 py-4"
+                className="btn-secondary text-base px-8 py-4 w-full justify-center"
                 onClick={toggleMobile}
                 target="_blank"
                 rel="noopener noreferrer"

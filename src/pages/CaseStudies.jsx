@@ -115,7 +115,7 @@ function TestimonialsStrip() {
               variants={staggerItem}
               className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl text-left"
             >
-              <span className="material-symbols-outlined text-primary-container text-3xl mb-4 block">format_quote</span>
+              <span className="text-4xl text-primary-container block mb-4 font-serif leading-none select-none" aria-hidden="true">&ldquo;</span>
               <p className="text-white/80 text-sm leading-relaxed mb-6 italic">"{q.text}"</p>
               <div className="pt-4 border-t border-white/10">
                 <p className="font-sora font-bold text-sm text-white">{q.name}</p>
