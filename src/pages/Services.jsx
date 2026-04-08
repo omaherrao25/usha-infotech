@@ -35,8 +35,8 @@ function ServiceQuickNav({ activeId, onTabClick }) {
                 onClick={(e) => { e.preventDefault(); onTabClick(s.id); }}
                 className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
-                    ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
-                    : "text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                    ? "bg-logo-gradient text-white shadow-lg shadow-primary/20 scale-105"
+                    : "text-on-surface-variant hover:text-gradient hover:bg-logo-gradient-5"
                 }`}
               >
                 {s.title}
@@ -194,7 +194,7 @@ export default function Services() {
                 variants={staggerItem}
                 className="flex flex-col items-center text-center"
               >
-                <div className="w-1 h-12 bg-primary/20 rounded-full mb-6" />
+                <div className="w-1 h-12 bg-logo-gradient-20 rounded-full mb-6" />
                 <h3 className="font-sora font-bold text-sm text-white mb-2 uppercase tracking-widest">
                   {item.title}
                 </h3>

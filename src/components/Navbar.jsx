@@ -89,7 +89,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <a
               href="tel:+919850751208"
-              className="bg-primary-container text-on-primary px-6 py-2.5 rounded-lg font-sora font-semibold text-sm hover:opacity-80 transition-all transform active:scale-95 duration-200"
+              className="bg-logo-gradient text-white px-6 py-2.5 rounded-lg font-sora font-semibold text-sm hover:opacity-80 transition-all transform active:scale-95 duration-200"
               aria-label="Call for consultation"
             >
               Consultation
