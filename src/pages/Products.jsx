@@ -46,8 +46,8 @@ function ProductQuickNav({ activeId, onNavClick }) {
                 onClick={() => onNavClick(id)}
                 className={`flex items-center px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
-                    : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
+                    ? 'bg-logo-gradient text-white shadow-lg shadow-primary/20 scale-105'
+                    : 'text-on-surface-variant hover:text-gradient hover:bg-logo-gradient-5'
                 }`}
               >
                 {meta.label}
@@ -75,8 +75,8 @@ function CategorySection({ categoryId }) {
       <div className="max-w-7xl mx-auto px-8">
         {/* Section header */}
         <div className="flex items-center gap-5 mb-10">
-          <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center shrink-0">
-            <span className="material-symbols-outlined text-primary text-2xl">{meta.icon}</span>
+          <div className="w-12 h-12 bg-logo-gradient-5 rounded-xl flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-gradient text-2xl">{meta.icon}</span>
           </div>
           <div>
             <h2 className="font-sora font-bold text-xl text-on-surface">{meta.label}</h2>
@@ -190,10 +190,10 @@ export default function Products() {
         />
         <div className="relative max-w-7xl mx-auto px-8 w-full">
           <div className="max-w-3xl">
-            <span className="section-label mb-6 block text-primary-fixed-dim">Inventory Ledger v.2026</span>
+            <span className="section-label mb-6 block text-gradient">Inventory Ledger v.2026</span>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-sora font-extrabold tracking-tighter text-white leading-[0.9] mb-7">
               Precision<br />
-              <span className="text-primary-fixed-dim">Infrastructure.</span>
+              <span className="text-gradient">Infrastructure.</span>
             </h1>
             <p className="text-lg text-white/75 max-w-2xl font-light leading-relaxed">
               Curated high-performance hardware for enterprise scalability. Available for strategic rental or certified procurement.

@@ -13,7 +13,7 @@ export default function ServiceSplitSection({ service, index }) {
       viewport={viewportOnce}
       className="flex flex-col justify-center"
     >
-      <span className="text-sm font-bold text-primary-container mb-4 block uppercase tracking-widest">
+      <span className="text-sm font-bold text-gradient mb-4 block uppercase tracking-widest">
         {service.tag}
       </span>
 
@@ -36,7 +36,7 @@ export default function ServiceSplitSection({ service, index }) {
             variants={staggerItem}
             className="flex items-center gap-3"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+            <div className="w-1.5 h-1.5 rounded-full bg-logo-gradient-40 shrink-0" />
             <span className="font-medium text-on-surface">{feature}</span>
           </motion.li>
         ))}
@@ -80,7 +80,7 @@ export default function ServiceSplitSection({ service, index }) {
     >
       <div className="relative">
         {/* Decorative circle */}
-        <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 -z-10 rounded-full" />
+        <div className="absolute -top-8 -left-8 w-32 h-32 bg-logo-gradient-10 -z-10 rounded-full" />
 
         <div className="relative w-full aspect-video lg:aspect-square overflow-hidden rounded-xl shadow-ambient">
           {service.image ? (
@@ -92,7 +92,7 @@ export default function ServiceSplitSection({ service, index }) {
             />
           ) : (
             <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
-              <span className="material-symbols-outlined text-[120px] text-primary/10">{service.icon}</span>
+              <span className="material-symbols-outlined text-[120px] text-gradient opacity-10">{service.icon}</span>
             </div>
           )}
         </div>
@@ -100,7 +100,7 @@ export default function ServiceSplitSection({ service, index }) {
         {/* Floating metric card — hidden on small screens to prevent image overlap */}
         <div className="hidden sm:block absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
           <span className="text-xs font-bold uppercase tracking-widest text-outline block mb-2">Metrics</span>
-          <p className="text-2xl font-sora font-bold text-primary">{service.badge1?.num}</p>
+          <p className="text-2xl font-sora font-bold text-gradient">{service.badge1?.num}</p>
           <p className="text-sm text-on-surface-variant">{service.badge1?.label}</p>
         </div>
       </div>

@@ -69,8 +69,8 @@ function IndustryNav({ activeId, onTabClick }) {
                 onClick={(e) => { e.preventDefault(); onTabClick(s.id); }}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105'
-                    : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
+                    ? 'bg-logo-gradient text-white shadow-lg shadow-primary/20 scale-105'
+                    : 'text-on-surface-variant hover:text-gradient hover:bg-logo-gradient-5'
                 }`}
               >
                 {s.client}
@@ -111,7 +111,7 @@ function TestimonialsStrip() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <span className="section-label text-primary-container mb-8 block">What Clients Say</span>
+          <span className="section-label text-gradient mb-8 block">What Clients Say</span>
           <h2 className="font-sora font-bold text-3xl lg:text-4xl text-white mb-16">Voices of Trust</h2>
         </motion.div>
 
