@@ -672,7 +672,7 @@ export default function Home() {
       />
       <Hero />
       <ClientsTicker />
-      <NetworkingCaseStudy />
+
       <ServicesSection />
       <QuoteSection />
       <CaseStudiesSection />
