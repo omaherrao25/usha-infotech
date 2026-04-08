@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { fadeLeft, fadeRight, fadeUp, viewportOnce } from '../animations/fadeUp'
+import { fadeLeft, fadeRight, viewportOnce } from '../animations/fadeUp'
 import { staggerMed, staggerItem } from '../animations/stagger'
 
 export default function ServiceSplitSection({ service, index }) {
@@ -7,7 +7,7 @@ export default function ServiceSplitSection({ service, index }) {
 
   const TextBlock = () => (
     <motion.div
-      variants={isEven ? fadeLeft : fadeRight}
+      variants={isEven ? fadeRight : fadeLeft}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -72,7 +72,7 @@ export default function ServiceSplitSection({ service, index }) {
 
   const ImageBlock = () => (
     <motion.div
-      variants={isEven ? fadeRight : fadeLeft}
+      variants={isEven ? fadeLeft : fadeRight}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -97,8 +97,8 @@ export default function ServiceSplitSection({ service, index }) {
           )}
         </div>
 
-        {/* Floating metric card */}
-        <div className="absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
+        {/* Floating metric card — hidden on small screens to prevent image overlap */}
+        <div className="hidden sm:block absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
           <span className="text-xs font-bold uppercase tracking-widest text-outline block mb-2">Metrics</span>
           <p className="text-2xl font-sora font-bold text-primary">{service.badge1?.num}</p>
           <p className="text-sm text-on-surface-variant">{service.badge1?.label}</p>
@@ -114,10 +114,10 @@ export default function ServiceSplitSection({ service, index }) {
     >
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="order-1">
+          <div className={isEven ? 'order-1' : 'order-1 lg:order-2'}>
             <ImageBlock />
           </div>
-          <div className="order-2">
+          <div className={isEven ? 'order-2' : 'order-2 lg:order-1'}>
             <TextBlock />
           </div>
         </div>

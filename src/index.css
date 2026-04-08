@@ -223,41 +223,41 @@
     text-transform: uppercase;
     padding: 6px 14px;
     border-radius: 100px;
-    background: rgba(79, 70, 229, 0.12); /* Semi-transparent primary */
+    background: rgba(26, 107, 138, 0.12);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(79, 70, 229, 0.3);
-    color: #4f46e5;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+    border: 1px solid rgba(26, 107, 138, 0.3);
+    color: #1A6B8A;
+    box-shadow: 0 4px 15px rgba(26, 107, 138, 0.1);
     transition: all 0.3s ease;
   }
 
   .tag-glass-primary:hover {
-    background: rgba(79, 70, 229, 0.2);
-    border-color: rgba(79, 70, 229, 0.4);
+    background: rgba(26, 107, 138, 0.2);
+    border-color: rgba(26, 107, 138, 0.4);
     transform: translateY(-1px);
   }
 
-  /* Tag pills — updated to use glassmorphism */
+  /* Tag pills */
   .tag-pill {
     display: inline-flex;
     align-items: center;
     font-size: 10px;
     font-weight: 700;
-    color: #3525cd;
+    color: #1A6B8A;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: 4px 12px;
     border-radius: 100px;
-    background: rgba(53, 37, 205, 0.05);
+    background: rgba(26, 107, 138, 0.07);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(53, 37, 205, 0.15);
+    border: 1px solid rgba(26, 107, 138, 0.18);
     transition: all 0.2s;
   }
   @media (hover: hover) {
     .tag-pill:hover {
-      border-color: rgba(26, 107, 138, 0.3);
-      color: #1A6B8A;
+      background: rgba(26, 107, 138, 0.12);
+      border-color: rgba(26, 107, 138, 0.35);
     }
   }
 

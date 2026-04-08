@@ -6,7 +6,7 @@ export default function ProductCard({ product }) {
     <motion.div
       variants={staggerItem}
       layout
-      className="group relative h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
+      className="group relative h-[300px] md:h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
     >
       {/* Background Image */}
       <div

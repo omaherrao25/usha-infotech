@@ -106,12 +106,12 @@ export default function CaseStudySplitSection({ study, index }) {
           </div>
         )}
 
-        {/* Floating badges */}
-        <div className="stat-float-badge top-4 left-4 backdrop-blur-sm shadow-card bg-white/95">
+        {/* Floating badges — hidden on very small screens to prevent overlap */}
+        <div className="hidden sm:flex stat-float-badge top-4 left-4 backdrop-blur-sm shadow-card bg-white/95">
           <span className="font-sora font-black text-lg text-primary">{study.badges[0].num}</span>
           <span className="text-[11px] font-bold text-outline">{study.badges[0].label}</span>
         </div>
-        <div className="stat-float-badge bottom-4 right-4 backdrop-blur-sm shadow-card bg-white/95">
+        <div className="hidden sm:flex stat-float-badge bottom-4 right-4 backdrop-blur-sm shadow-card bg-white/95">
           <span className="font-sora font-black text-lg text-primary">{study.badges[1].num}</span>
           <span className="text-[11px] font-bold text-outline">{study.badges[1].label}</span>
         </div>

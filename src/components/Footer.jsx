@@ -48,11 +48,11 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Services</h4>
           <ul className="space-y-4">
-            {['Cloud Architecture', 'Cybersecurity', 'Data Strategy', 'Network Design'].map((item) => (
+            {['IT Infrastructure', 'Hardware Solutions', 'Security Systems', 'Enterprise Networking', 'IT Rentals & AMC'].map((item) => (
               <li key={item}>
                 <Link
                   to="/services"
-                  className="hover:text-indigo-400 hover:translate-x-1 transition-all duration-300 block"
+                  className="hover:text-primary hover:translate-x-1 transition-all duration-300 block"
                 >
                   {item}
                 </Link>
@@ -73,7 +73,7 @@ export default function Footer() {
               <li key={item.label}>
                 <Link
                   to={item.href}
-                  className="hover:text-indigo-400 hover:translate-x-1 transition-all duration-300 block"
+                  className="hover:text-primary hover:translate-x-1 transition-all duration-300 block"
                 >
                   {item.label}
                 </Link>
