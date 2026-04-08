@@ -265,91 +265,76 @@ function QuoteSection() {
 
 // — Case Studies Preview —
 const CASE_THEMES = {
-  "IT Infrastructure": { accent: "#1A6B8A", icon: "dns" },
-  "Security Systems": { accent: "#b45309", icon: "security" },
-  "Networking": { accent: "#0f766e", icon: "router" },
+  "IT Infrastructure": { accent: "#1A6B8A", glow: "rgba(26,107,138,0.12)" },
+  "Security Systems": { accent: "#1a7d96", glow: "rgba(26,125,150,0.12)" },
+  "Networking": { accent: "#1A6B8A", glow: "rgba(26,107,138,0.10)" },
 };
 
 function CaseCard({ study }) {
-  const theme = CASE_THEMES[study.tag] || { accent: "#1A6B8A", icon: "dataset" };
+  const theme = CASE_THEMES[study.tag] || { accent: "#1A6B8A", glow: "rgba(26,107,138,0.12)" };
 
   return (
     <motion.div
       variants={staggerItem}
-      whileHover={{ y: -8 }}
-      className="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden border border-surface-container-high hover:border-transparent hover:shadow-[0_32px_64px_rgba(0,0,0,0.06)] transition-all duration-500 flex flex-col h-full"
+      whileHover={{ y: -6 }}
+      className="group relative bg-white rounded-2xl overflow-hidden border border-surface-container-high hover:border-primary/20 hover:shadow-[0_20px_48px_rgba(26,107,138,0.10)] transition-all duration-500 flex flex-col h-full"
     >
-      {/* Abstract Top Hero Area */}
-      <div 
-        className="relative h-44 w-full overflow-hidden flex items-center justify-center"
-        style={{ backgroundColor: `${theme.accent}08` }}
-      >
-        {/* Soft Radial Gradient Background Blob */}
-        <div 
-          className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[64px] opacity-40 group-hover:opacity-70 transition-opacity duration-700 translate-x-1/3 -translate-y-1/4 pointer-events-none"
-          style={{ backgroundColor: theme.accent }}
+      {/* Logo Hero Area */}
+      <div className="relative flex items-center justify-center pt-10 pb-6 overflow-hidden">
+        {/* Soft radial tint behind circle */}
+        <div
+          className="absolute inset-0 opacity-100 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 75% 65% at 50% 50%, ${theme.glow} 0%, transparent 80%)`,
+          }}
         />
-        
-        {/* Floating Client Logo Box */}
-        <div className="relative z-10 w-24 h-24 bg-white rounded-[1.25rem] shadow-[0_8px_24px_rgba(0,0,0,0.06)] border border-surface-container p-3 flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+
+        {/* Logo circle */}
+        <div
+          className="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{
+            border: `1.5px solid rgba(26,107,138,0.15)`,
+            boxShadow: `0 4px 20px rgba(26,107,138,0.12), 0 1px 3px rgba(0,0,0,0.06)`,
+          }}
+        >
           {study.logo && (
             <img
               src={study.logo}
               alt={study.client}
-              className="max-h-full max-w-full object-contain mix-blend-multiply"
+              className="w-11 h-11 object-contain"
             />
           )}
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="flex flex-col flex-1 p-8 relative bg-surface-container-lowest z-10 pt-6">
-        <div className="flex items-center mb-6">
-           <span
-              className="text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full flex items-center gap-1.5"
-              style={{ color: theme.accent, backgroundColor: `${theme.accent}14` }}
-            >
-              <span className="material-symbols-outlined text-[14px]">
-                {theme.icon}
-              </span>
-              {study.tag}
-            </span>
-        </div>
-
-        {/* Client Name Label */}
-        <p className="text-[10px] font-black text-outline uppercase tracking-[0.2em] mb-2">
-          {study.client}
-        </p>
-
+      {/* Content */}
+      <div className="flex flex-col flex-1 px-7 pb-7 pt-1">
         {/* Title */}
-        <h3 className="font-sora font-extrabold text-xl lg:text-[1.35rem] leading-[1.3] text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
+        <h3 className="font-sora font-bold text-[1.1rem] leading-snug mb-2 text-on-surface group-hover:text-primary transition-colors duration-300">
           {study.title}
         </h3>
 
         {/* Short Description */}
-        <p className="text-sm text-on-surface-variant leading-relaxed flex-1 mb-8">
+        <p className="text-sm leading-relaxed flex-1 mb-6 text-on-surface-variant">
           {study.shortDesc}
         </p>
 
-        {/* Custom CTA */}
-        <div className="pt-5 border-t border-surface-container-high mt-auto flex items-center justify-between">
-           <Link
-             to="/case-studies"
-             className="text-xs font-bold uppercase tracking-wider text-outline group-hover:text-primary transition-colors duration-300 flex items-center gap-2"
-           >
-             Read Case Study
-             <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1.5 transition-transform duration-300">
-               east
-             </span>
-           </Link>
+        {/* Footer row */}
+        <div className="flex items-center justify-between pt-5 border-t border-surface-container-high">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-outline">
+            {study.tag}
+          </span>
+
+          <Link
+            to="/case-studies"
+            className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:gap-2"
+            style={{ color: theme.accent }}
+          >
+            View
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
-      
-      {/* Animated Bottom Border Line */}
-      <div 
-        className="absolute bottom-0 left-0 h-1 w-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 pointer-events-none"
-        style={{ backgroundColor: theme.accent }}
-      />
     </motion.div>
   );
 }
