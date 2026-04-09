@@ -156,7 +156,7 @@ export default function Products() {
           current = id;
         }
       }
-      if (current) setActiveId(current);
+      if (current && current !== activeId) setActiveId(current);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });

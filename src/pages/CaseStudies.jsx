@@ -69,7 +69,7 @@ function IndustryNav({ activeId, onTabClick }) {
                 onClick={(e) => { e.preventDefault(); onTabClick(s.id); }}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 font-sora ${
                   isActive
-                    ? 'bg-logo-gradient text-white shadow-lg shadow-primary/20 scale-105'
+                    ? 'bg-logo-gradient text-white shadow-lg shadow-primary/20'
                     : 'text-on-surface-variant hover:text-gradient hover:bg-logo-gradient-5'
                 }`}
               >
@@ -188,7 +188,7 @@ export default function CaseStudies() {
           return
         }
       }
-      if (current) setActiveId(current);
+      if (current && current !== activeId) setActiveId(current);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
