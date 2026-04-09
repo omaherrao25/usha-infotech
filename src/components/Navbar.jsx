@@ -75,8 +75,8 @@ export default function Navbar() {
                   aria-current={active ? 'page' : undefined}
                   className={`font-sora font-light tracking-tight transition-all duration-200 ${
                     active
-                      ? 'text-primary font-semibold border-b-2 border-primary'
-                      : 'text-on-surface-variant hover:text-on-surface'
+                      ? 'text-gradient font-semibold border-b-2 border-primary'
+                      : 'text-on-surface-variant hover:text-gradient'
                   }`}
                 >
                   {link.label}
@@ -155,8 +155,8 @@ export default function Navbar() {
                     to={link.href}
                     onClick={toggleMobile}
                     aria-current={location.pathname === link.href ? 'page' : undefined}
-                    className={`font-sora text-4xl font-bold transition-colors hover:text-primary ${
-                      location.pathname === link.href ? 'text-primary' : 'text-on-surface'
+                    className={`font-sora text-4xl font-bold transition-colors hover:text-gradient ${
+                      location.pathname === link.href ? 'text-gradient' : 'text-on-surface'
                     }`}
                   >
                     {link.label}
