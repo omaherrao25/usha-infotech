@@ -12,7 +12,7 @@ export default function CTASection({
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
-        className="max-w-7xl mx-auto bg-primary-container rounded-[2rem] p-12 md:p-16 relative overflow-hidden text-on-primary"
+        className="max-w-7xl mx-auto bg-logo-gradient rounded-[2rem] p-8 md:p-12 lg:p-16 relative overflow-hidden text-on-primary"
       >
         {/* Decorative SVG curves */}
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none" aria-hidden="true">

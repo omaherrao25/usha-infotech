@@ -6,12 +6,7 @@ import ServiceCard from "../components/ServiceCard";
 import CTASection from "../components/CTASection";
 import { services } from "../data/services";
 import { homePreviewCases, clients } from "../data/caseStudies";
-import {
-  fadeUp,
-  fadeLeft,
-  fadeRight,
-  viewportOnce,
-} from "../animations/fadeUp";
+import { fadeUp, fadeLeft, fadeRight, viewportOnce } from "../animations/fadeUp";
 import { staggerFast, staggerMed, staggerItem } from "../animations/stagger";
 
 // — Clients Ticker —
@@ -234,15 +229,12 @@ function QuoteSection() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <span className="text-7xl text-primary mb-6 block font-serif leading-none select-none" aria-hidden="true">
-            &ldquo;
-          </span>
           <blockquote className="text-3xl md:text-5xl font-sora font-light italic leading-tight mb-12">
-            "Precision is not just about the hardware; it's about the{" "}
-            <span className="text-primary-container font-semibold not-italic">
+            &ldquo;Precision is not just about the hardware; it&rsquo;s about the{" "}
+            <span className="text-gradient font-semibold not-italic">
               integrity of the architecture
             </span>{" "}
-            that supports the human experience."
+            that supports the human experience.&rdquo;
           </blockquote>
           <div className="flex items-center justify-center gap-4">
             <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white/10">
@@ -358,7 +350,7 @@ function CaseStudiesSection() {
             <h2 className="font-sora font-extrabold text-4xl lg:text-5xl text-on-surface leading-tight">
               Results that speak
               <br />
-              <span className="text-primary-container">
+              <span className="text-gradient">
                 louder than claims.
               </span>
             </h2>
@@ -449,8 +441,7 @@ function ProcessSection() {
           className="mb-20"
         >
           <span
-            className="text-xs font-bold uppercase tracking-[0.22em] mb-5 block"
-            style={{ color: "#1A6B8A" }}
+            className="text-xs font-bold uppercase tracking-[0.22em] mb-5 block text-gradient"
           >
             How We Work
           </span>
@@ -460,7 +451,7 @@ function ProcessSection() {
               style={{ letterSpacing: "-0.02em" }}
             >
               A process built around your{" "}
-              <span style={{ color: "#1a9dbb" }}>operational continuity.</span>
+              <span className="text-gradient">operational continuity.</span>
             </h2>
             <p
               className="text-sm leading-relaxed lg:max-w-[280px] lg:pb-2"
@@ -497,13 +488,9 @@ function ProcessSection() {
                 }}
               />
 
-              {/* Animated teal entry line */}
+              {/* Animated logo gradient entry line */}
               <motion.div
-                className="h-[2px] w-full origin-left mb-10"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #1A6B8A 0%, rgba(26,107,138,0.25) 100%)",
-                }}
+                className="h-[2px] w-full origin-left mb-10 bg-logo-gradient"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -524,7 +511,7 @@ function ProcessSection() {
 
               {/* Title */}
               <h3
-                className="font-sora font-bold text-[1.55rem] leading-tight text-white mb-6 group-hover:text-[#62c2d9] transition-colors duration-300"
+                className="font-sora font-bold text-[1.55rem] leading-tight text-white mb-6 group-hover:text-gradient transition-colors duration-300"
                 style={{ letterSpacing: "-0.02em" }}
               >
                 {step.title}
@@ -532,8 +519,7 @@ function ProcessSection() {
 
               {/* Expanding separator */}
               <div
-                className="h-px mb-7 w-7 group-hover:w-14 transition-all duration-500"
-                style={{ background: "rgba(26,107,138,0.55)" }}
+                className="h-px mb-7 w-7 group-hover:w-14 transition-all duration-500 bg-logo-gradient-40"
               />
 
               {/* Description */}
@@ -621,7 +607,7 @@ function StorySection() {
             <h2 className="font-sora font-extrabold text-4xl lg:text-5xl xl:text-6xl text-on-surface leading-tight mb-6">
               Built on one promise
               <br />
-              <span className="text-primary-container">since 2000.</span>
+              <span className="text-gradient">since 2000.</span>
             </h2>
             <p className="text-on-surface-variant text-base leading-relaxed mb-6">
               What started as a small computer shop in Nashik has grown into a

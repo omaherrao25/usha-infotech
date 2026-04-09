@@ -6,15 +6,15 @@ export default function ServiceCard({ service, index }) {
   return (
     <motion.div
       variants={staggerItem}
-      className="group relative h-[300px] md:h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_20px_48px_rgba(26,107,138,0.35)] hover:-translate-y-2 cursor-pointer"
+      className="group relative h-[300px] md:h-[420px] rounded-2xl overflow-hidden bg-surface-container border border-outline/10 transition-all hover:shadow-[0_25px_50px_-12px_rgba(45,58,176,0.25)] hover:-translate-y-2 cursor-pointer"
     >
       {/* Background Image (Always visible, blurs and scales up on hover) */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 group-hover:blur-[6px]"
         style={{ backgroundImage: `url('/assets/${service.image}.png')` }}
       />
-      {/* Teal overlay for contrast over image */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0d3d52]/88 via-[#1A6B8A]/15 to-[#0d3d52]/35 group-hover:from-[#0a2e3e]/97 group-hover:via-[#1A6B8A]/65 group-hover:to-[#0a2e3e]/88 transition-all duration-500 ease-in-out" />
+      {/* Brand gradient overlay for contrast over image */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 group-hover:from-black/95 group-hover:bg-logo-gradient-20 group-hover:via-transparent group-hover:to-black/80 transition-all duration-500 ease-in-out" />
 
       {/* Content wrapper */}
       <div className="relative h-full flex flex-col p-6 md:p-8 z-10 justify-between text-left">
@@ -27,7 +27,7 @@ export default function ServiceCard({ service, index }) {
 
             <Link
               to="/services"
-              className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-primary transition-colors w-max"
+              className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-gradient transition-colors w-max"
             >
               Learn More
               <span className="material-symbols-outlined text-[14px]">
@@ -38,7 +38,7 @@ export default function ServiceCard({ service, index }) {
         </div>
 
         {/* Bottom Title (Always visible) */}
-        <div className="mt-auto relative z-20 -mx-6 md:-mx-8 px-6 md:px-8 pt-5 pb-1 backdrop-blur-md bg-black/30 group-hover:bg-[#1A6B8A]/35 transition-all duration-500">
+        <div className="mt-auto relative z-20 -mx-6 md:-mx-8 px-6 md:px-8 pt-5 pb-1 backdrop-blur-md bg-black/30 group-hover:bg-logo-gradient-40 transition-all duration-500">
           {/* Decorative bar */}
           <div className="w-8 h-1 bg-primary mb-4 transition-all duration-500 group-hover:w-16 group-hover:bg-white rounded-full" />
           <h3 className="text-xl md:text-2xl font-sora font-bold text-white/90 group-hover:text-white transition-colors duration-300">
