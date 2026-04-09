@@ -6,7 +6,7 @@ export default function CTASection({
   subtitle = "Speak with our consulting team to define a precision-driven IT roadmap for your enterprise.",
 }) {
   return (
-    <section className="py-32 px-8" aria-label="Call to action">
+    <section className="py-32 px-6 md:px-8" aria-label="Call to action">
       <motion.div
         variants={fadeUp}
         initial="hidden"

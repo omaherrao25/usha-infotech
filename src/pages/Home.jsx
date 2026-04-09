@@ -30,14 +30,14 @@ function ClientsTicker() {
       className="py-16 bg-surface-container-low overflow-hidden"
       aria-label="Our trusted clients"
     >
-      <div className="max-w-7xl mx-auto px-8 mb-10 text-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 mb-10 text-center">
         <span className="section-label">Trusted By</span>
         <h2 className="font-sora font-bold text-2xl text-on-surface">
           Our Clients
         </h2>
       </div>
       <div className="relative overflow-hidden">
-        <div className="flex ticker-track gap-16 items-center">
+        <div className="flex ticker-track gap-16 items-center pr-16 w-max">
           {doubled.map((logo, i) => (
             <motion.div
               key={i}
@@ -63,11 +63,110 @@ function ClientsTicker() {
   );
 }
 
+// — Case Study: Networking (editorial split) —
+function NetworkingCaseStudy() {
+  return (
+    <section className="py-24 lg:py-32 bg-surface-container-low">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Image side */}
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="order-2 lg:order-1"
+          >
+            <div className="relative">
+              <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 -z-10 rounded-full" />
+              <div className="w-full aspect-video lg:aspect-square rounded-xl overflow-hidden shadow-ambient bg-surface-container-high">
+                <img
+                  src="/assets/networking.png"
+                  alt="Enterprise networking infrastructure"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.classList.add(
+                      "flex",
+                      "items-center",
+                      "justify-center",
+                    );
+                    const span = document.createElement("span");
+                    span.className =
+                      "material-symbols-outlined text-[120px] text-outline/20";
+                    span.textContent = "cable";
+                    e.target.parentElement.appendChild(span);
+                  }}
+                />
+              </div>
+              {/* Floating metric */}
+              <div className="absolute bottom-6 right-6 bg-surface-container-lowest p-6 rounded-lg shadow-card max-w-xs">
+                <span className="text-xs font-bold uppercase tracking-widest text-outline block mb-2">
+                  Metrics
+                </span>
+                <p className="text-2xl font-sora font-bold text-primary">
+                  99.99%
+                </p>
+                <p className="text-sm text-on-surface-variant">
+                  Uptime achieved for global enterprise infrastructure.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Text side */}
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="order-1 lg:order-2"
+          >
+            <span className="text-sm font-bold text-primary-container mb-4 block uppercase tracking-widest">
+              Case Study
+            </span>
+            <h2 className="text-4xl md:text-5xl font-sora font-bold tracking-tight mb-6 text-on-surface">
+              Cognitive Networking Infrastructure
+            </h2>
+            <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
+              Connectivity is the central nervous system of the modern
+              enterprise. We don't just pull cables; we design intelligent,
+              self-healing network architectures that scale with your ambition.
+            </p>
+            <ul className="space-y-4 mb-10">
+              {[
+                "SD-WAN Optimization",
+                "Zero-Trust Architecture",
+                "Fiber-Optic Precision Layout",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                  <span className="font-medium text-on-surface-variant">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all"
+            >
+              View technical breakdown
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // — Services Showcase —
 function ServicesSection() {
   return (
     <section className="py-24 lg:py-32 bg-surface" id="services">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -91,10 +190,10 @@ function ServicesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {services.slice(0, 4).map((service, i) => (
-            <div key={service.id} className="min-w-[calc(100vw-4rem)] sm:min-w-[40vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto h-full">
+            <div key={service.id} className="h-full">
               <ServiceCard service={service} index={i} />
             </div>
           ))}
@@ -123,7 +222,7 @@ function ServicesSection() {
 function QuoteSection() {
   return (
     <section className="py-24 lg:py-32 bg-on-surface text-surface">
-      <div className="max-w-4xl mx-auto px-8 text-center">
+      <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -237,7 +336,7 @@ function CaseCard({ study }) {
 function CaseStudiesSection() {
   return (
     <section className="py-24 lg:py-32 bg-surface-container-low" id="cases">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Header */}
         <motion.div
           variants={fadeUp}
@@ -264,10 +363,10 @@ function CaseStudiesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 mb-14 pb-8 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14"
         >
           {homePreviewCases.map((study) => (
-            <div key={study.client} className="min-w-[calc(100vw-4rem)] sm:min-w-[45vw] snap-center md:min-w-0 md:snap-align-none flex-shrink-0 md:flex-shrink-auto">
+            <div key={study.client}>
               <CaseCard study={study} />
             </div>
           ))}
@@ -332,7 +431,7 @@ function ProcessSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Header */}
         <motion.div
           variants={fadeUp}
@@ -442,7 +541,7 @@ function ProcessSection() {
 function StorySection() {
   return (
     <section className="py-24 lg:py-32 bg-surface-container-low" id="story">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Founders visual */}
           <motion.div
