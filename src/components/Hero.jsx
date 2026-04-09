@@ -76,7 +76,7 @@ export default function Hero() {
 
               <h1 className="text-5xl md:text-7xl lg:text-7xl font-sora font-extrabold tracking-tighter leading-[1.05] text-on-surface mb-8">
                 Strategic <br />
-                <span className="text-primary-container">IT Solutions</span>
+                <span className="text-gradient">IT Solutions</span>
               </h1>
 
               <p className="text-lg md:text-xl text-on-surface-variant max-w-xl font-light leading-relaxed mb-10">

@@ -5,7 +5,14 @@ export default function Footer() {
     <footer className="bg-slate-950 w-full py-20 text-slate-400 font-manrope text-sm leading-relaxed" role="contentinfo">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
         <div className="col-span-1 md:col-span-1">
-          <span className="text-2xl font-extrabold text-white mb-4 block font-sora">Usha Infotech</span>
+          <Link to="/" className="flex items-center gap-3 mb-6 transition-transform hover:scale-105 origin-left w-fit">
+            <img 
+              src="/assets/logo.png" 
+              alt="Usha Infotech Logo" 
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-2xl font-extrabold text-white font-sora">Usha Infotech</span>
+          </Link>
           <p className="mb-6">
             Engineering precision for the digital age. We provide the physical backbone for the world's most demanding computational tasks.
           </p>

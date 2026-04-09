@@ -352,7 +352,7 @@ function ProcessSection() {
               style={{ letterSpacing: "-0.02em" }}
             >
               A process built around your{" "}
-              <span style={{ color: "#1a9dbb" }}>operational continuity.</span>
+              <span className="text-gradient">operational continuity.</span>
             </h2>
             <p
               className="text-sm leading-relaxed lg:max-w-[280px] lg:pb-2"
@@ -412,7 +412,7 @@ function ProcessSection() {
 
               {/* Title */}
               <h3
-                className="font-sora font-bold text-[1.55rem] leading-tight text-white mb-6 group-hover:text-[#62c2d9] transition-colors duration-300"
+                className="font-sora font-bold text-[1.55rem] leading-tight text-white mb-6 group-hover:text-gradient transition-colors duration-300"
                 style={{ letterSpacing: "-0.02em" }}
               >
                 {step.title}
