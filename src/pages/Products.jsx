@@ -156,7 +156,7 @@ export default function Products() {
           current = id;
         }
       }
-      if (current) setActiveId(current);
+      if (current && current !== activeId) setActiveId(current);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -214,7 +214,7 @@ export default function Products() {
 
       <CTASection
         title="Need a quote or bulk pricing?"
-        subtitle="Call us or WhatsApp with your requirements. We'll get back within 2 hours with a detailed quote."
+        subtitle="Call us or WhatsApp with your requirements. We'll get back within 24 hours with a detailed quote."
       />
     </>
   )
