@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <footer className="bg-slate-950 w-full py-20 text-slate-400 font-manrope text-sm leading-relaxed" role="contentinfo">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6 md:px-8">
         <div className="col-span-1 md:col-span-1">
           <span className="text-2xl font-extrabold text-white mb-4 block font-sora">Usha Infotech</span>
           <p className="mb-6">
@@ -96,7 +96,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 mt-20 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 mt-20 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p>&copy; {new Date().getFullYear()} Usha Infotech. Engineering Precision.</p>
         <p className="text-xs uppercase tracking-wider">Precision &middot; Stability &middot; Scale</p>
       </div>

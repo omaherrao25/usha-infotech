@@ -48,10 +48,12 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         role="banner"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-surface/70 backdrop-blur-xl shadow-nav' : 'bg-transparent'
+          scrolled || window.innerWidth < 768 
+            ? 'bg-surface/90 backdrop-blur-xl shadow-nav' 
+            : 'bg-transparent'
         }`}
       >
-        <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 transition-transform hover:scale-105" aria-label="Usha Infotech — Home">
             <img 
@@ -169,7 +171,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="mt-12 flex flex-col items-center gap-4 w-full px-8 max-w-[280px]"
+              className="mt-12 flex flex-col items-center gap-4 w-full px-6 md:px-8 max-w-[280px]"
             >
               <a
                 href="tel:+919850751208"
