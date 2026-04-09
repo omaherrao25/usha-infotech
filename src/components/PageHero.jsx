@@ -64,7 +64,7 @@ export default function PageHero({ label, title, accent, subtitle, subtitleLine2
             {accent && (
               <>
                 <br />
-                <span className={bgImage ? 'text-primary-fixed-dim' : 'text-primary-container'}>
+                <span className="text-gradient">
                   {accent}
                 </span>
               </>

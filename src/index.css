@@ -371,6 +371,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    padding-right: 0.08em; /* Prevent right edge cutting on webkit */
   }
   
   .border-gradient {
@@ -389,12 +390,14 @@
   
   .hover\:bg-logo-gradient:hover { background: var(--gradient-logo); }
   .hover\:bg-logo-gradient-5:hover { background: var(--gradient-logo-5); }
-  .hover\:text-gradient:hover {
+  .hover\:text-gradient:hover,
+  .group:hover .group-hover\:text-gradient {
     background: var(--gradient-logo);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    padding-right: 0.08em;
   }
 
   .text-balance {
