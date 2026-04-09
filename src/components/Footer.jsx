@@ -104,8 +104,8 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 mt-20 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p>&copy; {new Date().getFullYear()} Usha Infotech. Engineering Precision.</p>
-        <p className="text-xs uppercase tracking-wider">Precision &middot; Stability &middot; Scale</p>
+        <p>&copy; {new Date().getFullYear()} Usha Infotech.</p>
+        <p className="text-xs uppercase tracking-wider">Engineering Precision &middot; Stability &middot; Scale</p>
       </div>
     </footer>
   )
